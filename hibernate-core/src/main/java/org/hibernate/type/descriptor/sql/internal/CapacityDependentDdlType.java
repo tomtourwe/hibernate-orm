@@ -9,7 +9,6 @@ import org.hibernate.dialect.Dialect;
 import org.hibernate.engine.jdbc.Size;
 import org.hibernate.metamodel.mapping.SqlExpressible;
 import org.hibernate.type.Type;
-import org.hibernate.type.descriptor.jdbc.JdbcType;
 import org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry;
 
 /**
@@ -85,59 +84,6 @@ public class CapacityDependentDdlType extends DdlTypeImpl {
 		return lobKind == LobKind.BIGGEST_LOB;
 	}
 
-	public static Builder builder(int sqlTypeCode, String typeNamePattern, Dialect dialect) {
-		return builder(
-				sqlTypeCode,
-				JdbcType.isLob( sqlTypeCode ) ? LobKind.ALL_LOB : LobKind.NONE,
-				typeNamePattern,
-				typeNamePattern,
-				dialect
-		);
-	}
-
-	public static Builder builder(int sqlTypeCode, LobKind lobKind, String typeNamePattern, Dialect dialect) {
-		return builder( sqlTypeCode, lobKind, typeNamePattern, typeNamePattern, dialect );
-	}
-
-	public static Builder builder(
-			int sqlTypeCode,
-			String typeNamePattern,
-			String castTypeName,
-			Dialect dialect) {
-		return builder(
-				sqlTypeCode,
-				JdbcType.isLob( sqlTypeCode ) ? LobKind.ALL_LOB : LobKind.NONE,
-				typeNamePattern,
-				castTypeName,
-				dialect
-		);
-	}
-
-	public static Builder builder(
-			int sqlTypeCode,
-			LobKind lobKind,
-			String typeNamePattern,
-			String castTypeName,
-			Dialect dialect) {
-		return builder( sqlTypeCode, lobKind, typeNamePattern, (String) null, castTypeName, dialect );
-	}
-
-	public static Builder builder(
-			int sqlTypeCode,
-			String typeNamePattern,
-			String castTypeNamePattern,
-			String castTypeName,
-			Dialect dialect) {
-		return builder(
-				sqlTypeCode,
-				JdbcType.isLob( sqlTypeCode ) ? LobKind.ALL_LOB : LobKind.NONE,
-				typeNamePattern,
-				castTypeNamePattern,
-				castTypeName,
-				dialect
-		);
-	}
-
 	public static Builder builder(
 			int sqlTypeCode,
 			LobKind lobKind,
@@ -146,16 +92,6 @@ public class CapacityDependentDdlType extends DdlTypeImpl {
 			String castTypeName,
 			Dialect dialect) {
 		return new Builder( sqlTypeCode, lobKind, typeNamePattern, castTypeNamePattern, castTypeName, dialect );
-	}
-
-	public static Builder builder(
-			int sqlTypeCode,
-			LobKind lobKind,
-			String typeNamePattern,
-			Function<Integer,String> parameterizedCastTypeName,
-			String castTypeName,
-			Dialect dialect) {
-		return new Builder( sqlTypeCode, lobKind, typeNamePattern, parameterizedCastTypeName, castTypeName, dialect );
 	}
 
 	public static class Builder {

@@ -2,7 +2,6 @@ package org.hibernate.tool.reveng.internal.export.common;
 
 import org.hibernate.mapping.Collection;
 import org.hibernate.mapping.Component;
-import org.hibernate.mapping.PersistentClass;
 import org.hibernate.mapping.Property;
 import org.hibernate.tool.reveng.internal.export.java.Cfg2JavaTool;
 import org.hibernate.tool.reveng.internal.export.java.ComponentPOJOClass;
@@ -18,11 +17,6 @@ import java.util.Map;
 public class ConfigurationNavigator {
 
 	private static final Logger log = Logger.getLogger(ConfigurationNavigator.class);
-
-	public static void collectComponents(Map<String, Component> components, PersistentClass clazz) {
-		Iterator<Property> iter = new Cfg2JavaTool().getPOJOClass(clazz).getAllPropertiesIterator();
-		collectComponents( components, iter );
-	}
 
 	public static void collectComponents(Map<String, Component> components, POJOClass clazz) {
 		Iterator<Property> iter = clazz.getAllPropertiesIterator();

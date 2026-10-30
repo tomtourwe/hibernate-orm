@@ -55,10 +55,6 @@ public class SQLQueryParser {
 		return aliasesFound>0;
 	}
 
-	protected String getOriginalQueryString() {
-		return originalQueryString;
-	}
-
 	public String process() {
 		return substituteBrackets( originalQueryString );
 	}

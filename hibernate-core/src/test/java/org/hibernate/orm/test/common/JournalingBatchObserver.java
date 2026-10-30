@@ -26,9 +26,4 @@ public class JournalingBatchObserver implements BatchObserver {
 	public int getExplicitExecutionCount() {
 		return explicitExecutionCount;
 	}
-
-	public void reset() {
-		explicitExecutionCount = 0;
-		implicitExecutionCount = 0;
-	}
 }

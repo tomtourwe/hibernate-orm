@@ -10,15 +10,8 @@ public class AddressId {
 	}
 
 	public AddressId() {}
-
-	public String getType() {
-		return type;
-	}
 	public void setType(String type) {
 		this.type = type;
-	}
-	public String getAddressId() {
-		return addressId;
 	}
 	public void setAddressId(String customerId) {
 		this.addressId = customerId;

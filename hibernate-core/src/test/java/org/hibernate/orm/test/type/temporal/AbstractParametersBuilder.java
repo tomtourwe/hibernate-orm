@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 /**
  * @author Steve Ebersole
  */
-public class AbstractParametersBuilder<V,D extends Data<V>,B extends AbstractParametersBuilder<V,D,B>> {
+public class AbstractParametersBuilder<V,D,B extends AbstractParametersBuilder<V,D,B>> {
 	protected final Dialect dialect;
 
 	private final List<Parameter<V,D>> result = new ArrayList<>();

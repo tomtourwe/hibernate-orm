@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.hibernate.internal.util.StringHelper.nullIfEmpty;
-import static org.hibernate.property.access.spi.BuiltInPropertyAccessStrategies.EMBEDDED;
 
 /**
  * @author Steve Ebersole
@@ -91,10 +90,6 @@ public class Helper {
 						false,
 						true
 				);
-	}
-
-	public static String getPropertyAccessorName(String access, boolean isEmbedded, String defaultAccess) {
-		return getValue( access, isEmbedded ? EMBEDDED.getExternalName() : defaultAccess );
 	}
 
 	public static <T> T getValue(T value, T defaultValue){

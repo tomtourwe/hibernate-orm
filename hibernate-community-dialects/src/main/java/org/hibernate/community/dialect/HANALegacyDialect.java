@@ -285,7 +285,6 @@ public class HANALegacyDialect extends Dialect implements CurrentTemporalSupport
 
 	private static final Boolean USE_LEGACY_BOOLEAN_TYPE_DEFAULT_VALUE = Boolean.FALSE;
 	private static final Boolean TREAT_DOUBLE_TYPED_FIELDS_AS_DECIMAL_DEFAULT_VALUE = Boolean.FALSE;
-	private static final String SQL_IGNORE_LOCKED = " ignore locked";
 
 	private final int maxLobPrefetchSize;
 
@@ -1657,14 +1656,6 @@ public class HANALegacyDialect extends Dialect implements CurrentTemporalSupport
 				}
 			};
 		}
-
-		public int getMaxLobPrefetchSize() {
-			return this.maxLobPrefetchSize;
-		}
-
-		public boolean isUseUnicodeStringTypes() {
-			return this.useUnicodeStringTypes;
-		}
 	}
 
 	private static class HANANClobJdbcType extends NClobJdbcType {
@@ -1759,10 +1750,6 @@ public class HANALegacyDialect extends Dialect implements CurrentTemporalSupport
 					return doExtract( statement.getNClob( name ), options );
 				}
 			};
-		}
-
-		public int getMaxLobPrefetchSize() {
-			return maxLobPrefetchSize;
 		}
 	}
 

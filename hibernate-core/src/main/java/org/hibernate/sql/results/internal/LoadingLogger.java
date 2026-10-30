@@ -30,14 +30,6 @@ public interface LoadingLogger extends BasicLogger {
 
 	LoadingLogger LOADING_LOGGER = Logger.getMessageLogger( MethodHandles.lookup(), LoadingLogger.class, LOGGER_NAME, Locale.ROOT );
 
-	static String subLoggerName(String subName) {
-		return LOGGER_NAME + "." + subName;
-	}
-
-	static Logger subLogger(String subName) {
-		return Logger.getLogger( subLoggerName( subName ) );
-	}
-
 	@LogMessage(level = DEBUG)
 	@Message(id = 90005801,
 			value = "Found matching entity in context, but it is scheduled for removal (returning null)")

@@ -141,16 +141,6 @@ public class Parameters {
 	/**
 	 * Adds <code>IS NOT NULL</code> restriction.
 	 *
-	 * @param propertyName Property name.
-	 * @param addAlias Positive if an alias to property name shall be added.
-	 */
-	public void addNotNullRestriction(String propertyName, boolean addAlias) {
-		addWhere( propertyName, addAlias, "is not", "null", false );
-	}
-
-	/**
-	 * Adds <code>IS NOT NULL</code> restriction.
-	 *
 	 * @param alias the alias which should be added to the property name.
 	 * @param propertyName Property name.
 	 */

@@ -8,19 +8,11 @@ import org.hibernate.HibernateException;
  * @author Steve Ebersole
  */
 public class XsdException extends HibernateException {
-	private final String xsdName;
-
-	public XsdException(String message, String xsdName) {
+	public XsdException(String message) {
 		super( message );
-		this.xsdName = xsdName;
 	}
 
-	public XsdException(String message, Throwable root, String xsdName) {
+	public XsdException(String message, Throwable root) {
 		super( message, root );
-		this.xsdName = xsdName;
-	}
-
-	public String getXsdName() {
-		return xsdName;
 	}
 }

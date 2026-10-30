@@ -275,9 +275,7 @@ public class ZonedDateTimeTest
 		}
 	}
 
-	public record DataImpl(int year, int month, int day, int hour, int minute, int second, int nanosecond, String zone)
-			implements Data<ZonedDateTime> {
-		@Override
+	public record DataImpl(int year, int month, int day, int hour, int minute, int second, int nanosecond, String zone) {
 		public ZonedDateTime makeValue() {
 			return ZonedDateTime.of( year, month, day, hour, minute, second, nanosecond, ZoneId.of( zone ) );
 		}

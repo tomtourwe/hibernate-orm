@@ -32,10 +32,6 @@ public class NativeEnumDdlTypeImpl implements DdlType {
 		this( dialect, "varchar", null );
 	}
 
-	public NativeEnumDdlTypeImpl(Dialect dialect, IntFunction<String> parameterizedCastTypeName) {
-		this( dialect, "varchar", parameterizedCastTypeName );
-	}
-
 	public NativeEnumDdlTypeImpl(
 			Dialect dialect,
 			String castTypeName,

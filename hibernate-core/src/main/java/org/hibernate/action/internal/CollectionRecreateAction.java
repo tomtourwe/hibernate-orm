@@ -19,30 +19,6 @@ public final class CollectionRecreateAction extends CollectionAction {
 
 	@Nullable
 	private final Object affectedOwner;
-	@Nullable
-	private final Object affectedOwnerId;
-
-	/**
-	 * Constructs a CollectionRecreateAction
-	 *  @param collection The collection being recreated
-	 * @param persister The collection persister
-	 * @param id The collection key
-	 * @param session The session
-	 */
-	public CollectionRecreateAction(
-			final @Nonnull PersistentCollection<?> collection,
-			final @Nonnull CollectionPersister persister,
-			final @Nullable Object id,
-			final @Nonnull EventSource session) {
-		super( persister, collection, id, session );
-		assert collection != null;
-		// Capture the owner at action creation time so it's available when the post-event
-		// fires (which may be after the collection owner reference has been cleared)
-		affectedOwner = collection.getOwner();
-		// Also capture the owner ID from the entity entry at action creation time
-		final var ownerEntry = session.getPersistenceContextInternal().getEntry( affectedOwner );
-		affectedOwnerId = ownerEntry != null ? ownerEntry.getId() : null;
-	}
 
 	/// Creates the legacy lowering of an already-prepared semantic mutation.
 	///
@@ -57,7 +33,6 @@ public final class CollectionRecreateAction extends CollectionAction {
 			final CollectionMutationInterpretation interpretation) {
 		super( persister, collection, id, session, true, interpretation );
 		this.affectedOwner = affectedOwner;
-		this.affectedOwnerId = affectedOwnerId;
 	}
 
 	@Override
@@ -140,10 +115,5 @@ public final class CollectionRecreateAction extends CollectionAction {
 	@Nullable
 	public Object getAffectedOwner() {
 		return affectedOwner;
-	}
-
-	@Nullable
-	public Object getAffectedOwnerId() {
-		return affectedOwnerId;
 	}
 }

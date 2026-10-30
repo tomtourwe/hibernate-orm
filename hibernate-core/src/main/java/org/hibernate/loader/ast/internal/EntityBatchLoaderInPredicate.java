@@ -27,10 +27,10 @@ import static org.hibernate.sql.exec.spi.JdbcParameterBindings.NO_BINDINGS;
 
 /**
  * An {@link EntityBatchLoader} using one or more SQL queries, which each initialize up
- * to {@linkplain #getSqlBatchSize()} entities using a SQL IN predicate restriction -
+ * to {@code getSqlBatchSize()} entities using a SQL IN predicate restriction -
  * e.g., {@code ... where id in (?,?,...)}.
  * <p>
- * The number of parameters rendered into the SQL is controlled by {@linkplain #getSqlBatchSize()}.
+ * The number of parameters rendered into the SQL is controlled by {@code getSqlBatchSize()}.
  * Any unused parameter slots for a particular execution are set to {@code null}.
  *
  * @author Steve Ebersole
@@ -97,10 +97,6 @@ public class EntityBatchLoaderInPredicate<T>
 	@Override
 	public int getDomainBatchSize() {
 		return domainBatchSize;
-	}
-
-	public int getSqlBatchSize() {
-		return sqlBatchSize;
 	}
 
 	@Nullable
@@ -179,7 +175,6 @@ public class EntityBatchLoaderInPredicate<T>
 				identifierMapping.getJdbcTypeCount(),
 				identifierMapping,
 				jdbcParameters,
-				sqlAst,
 				jdbcSelectOperation
 		);
 	}

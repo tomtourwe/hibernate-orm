@@ -4,7 +4,6 @@ import jakarta.annotation.Nullable;
 import jakarta.annotation.Nonnull;
 import org.hibernate.metamodel.mapping.EntityMappingType;
 import org.hibernate.query.sqm.spi.DiscriminatorSqmPath;
-import org.hibernate.metamodel.model.domain.EntityDomainType;
 import org.hibernate.query.sqm.spi.NodeBuilder;
 import org.hibernate.query.sqm.spi.SemanticQueryWalker;
 import org.hibernate.query.sqm.spi.SqmPathSource;
@@ -38,11 +37,6 @@ public class EntityDiscriminatorSqmPath<T> extends AbstractSqmPath<T> implements
 		super( navigablePath, referencedPathSource, lhs, nodeBuilder );
 		this.entityDomainType = entityDomainType;
 		this.entityDescriptor = entityDescriptor;
-	}
-
-	@Nonnull
-	public EntityDomainType getEntityDomainType() {
-		return entityDomainType;
 	}
 
 	@Nonnull

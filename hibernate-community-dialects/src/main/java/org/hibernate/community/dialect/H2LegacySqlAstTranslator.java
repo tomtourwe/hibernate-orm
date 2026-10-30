@@ -6,7 +6,6 @@ import org.hibernate.Internal;
 import org.hibernate.SPI;
 import org.hibernate.dialect.sql.ast.spi.PaginationRenderingPlan;
 import org.hibernate.dialect.sql.ast.spi.PaginationRenderingSupport;
-import org.hibernate.dialect.sql.ast.spi.NullOrderingSupport;
 import org.hibernate.dialect.sql.ast.spi.PrimaryTableReferenceContext;
 import org.hibernate.dialect.sql.ast.spi.QueryMutationRenderingSupport;
 import org.hibernate.dialect.sql.ast.spi.ReturningRenderingSupport;
@@ -247,12 +246,6 @@ public class H2LegacySqlAstTranslator<T extends JdbcOperation> extends AbstractS
 		if ( likePredicate.getEscapeCharacter() == null ) {
 			appendSql( " escape ''" );
 		}
-	}
-
-	protected boolean allowsNullPrecedence() {
-		return getClauseStack().getCurrent() != Clause.WITHIN_GROUP
-				|| getDialect().getNullOrderingSupport()
-						.supports( NullOrderingSupport.Capability.NULLS_FIRST_LAST );
 	}
 
 	private boolean supportsOffsetFetchClause() {

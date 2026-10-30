@@ -106,16 +106,6 @@ public class CollectionElementLoaderByIndex implements Loader {
 		return attributeMapping;
 	}
 
-	@Nonnull
-	public SelectStatement getSqlAst() {
-		return sqlAst;
-	}
-
-	@Nonnull
-	public JdbcParametersList getJdbcParameters() {
-		return jdbcParameters;
-	}
-
 	@Nullable
 	public Object load(@Nonnull Object key, @Nonnull Object index, @Nonnull SharedSessionContractImplementor session) {
 

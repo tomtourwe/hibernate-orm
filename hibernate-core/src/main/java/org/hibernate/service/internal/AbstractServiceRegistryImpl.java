@@ -79,10 +79,6 @@ public abstract class AbstractServiceRegistryImpl
 		this.autoCloseRegistry = autoCloseRegistry;
 	}
 
-	public AbstractServiceRegistryImpl(BootstrapServiceRegistry bootstrapServiceRegistry) {
-		this( bootstrapServiceRegistry, true );
-	}
-
 	public AbstractServiceRegistryImpl(
 			BootstrapServiceRegistry bootstrapServiceRegistry,
 			boolean autoCloseRegistry) {

@@ -16,10 +16,6 @@ public class NullnessHelper {
 		return coalesce( test, fallback );
 	}
 
-	public static <T> T nullif(T test, Supplier<T> fallbackSupplier) {
-		return test != null ? test : fallbackSupplier.get();
-	}
-
 	/**
 	 * Operates like SQL coalesce expression, returning the first non-empty value
 	 *

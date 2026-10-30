@@ -12,7 +12,6 @@ import org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl;
 import org.hibernate.testing.orm.junit.EntityManagerFactoryBasedFunctionalTest;
 import org.hibernate.testing.orm.junit.JiraKey;
 import org.hibernate.testing.orm.junit.RequiresDialect;
-import org.hibernate.testing.orm.junit.SettingProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,13 +32,6 @@ public class AttributeConverterMetadataBuilderContributorTest extends EntityMana
 		return new Class<?>[] {
 				Employee.class,
 		};
-	}
-
-	public static class MetadataBuilderProvider implements SettingProvider.Provider<Object> {
-		@Override
-		public Object getSetting() {
-			return null;
-		}
 	}
 
 	@Override

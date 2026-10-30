@@ -43,34 +43,6 @@ public class DdlTypeImpl implements DdlType {
 
 	public DdlTypeImpl(
 			int sqlTypeCode,
-			boolean isLob,
-			String typeNamePattern,
-			String castTypeName,
-			Dialect dialect) {
-		this( sqlTypeCode, isLob, typeNamePattern, null, castTypeName, castTypeName, dialect );
-	}
-
-	public DdlTypeImpl(
-			int sqlTypeCode,
-			String typeNamePattern,
-			String castTypeNamePattern, //optional, usually null
-			String castTypeName,
-			Dialect dialect) {
-		this( sqlTypeCode, typeNamePattern, castTypeNamePattern, castTypeName, castTypeName, dialect );
-	}
-
-	public DdlTypeImpl(
-			int sqlTypeCode,
-			boolean isLob,
-			String typeNamePattern,
-			String castTypeNamePattern, //optional, usually null
-			String castTypeName,
-			Dialect dialect) {
-		this( sqlTypeCode, isLob, typeNamePattern, castTypeNamePattern, castTypeName, castTypeName, dialect );
-	}
-
-	public DdlTypeImpl(
-			int sqlTypeCode,
 			String typeNamePattern,
 			String castTypeNamePattern, //optional, usually null
 			String castTypeName,

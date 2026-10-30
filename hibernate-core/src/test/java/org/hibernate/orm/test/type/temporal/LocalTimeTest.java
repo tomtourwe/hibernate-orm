@@ -259,8 +259,7 @@ public class LocalTimeTest extends AbstractJavaTimeTypeTests<LocalTime, LocalTim
 			int nanosecond,
 			int yearWhenPersistedWithoutHibernate,
 			int monthWhenPersistedWithoutHibernate,
-			int dayWhenPersistedWithoutHibernate) implements Data<LocalTime> {
-		@Override
+			int dayWhenPersistedWithoutHibernate) {
 		public LocalTime makeValue() {
 			return LocalTime.of( hour(), minute(), second(), nanosecond() );
 		}

@@ -22,21 +22,6 @@ public record UniqueSlot(
 		return constraint.constraintName();
 	}
 
-	/// Check if this slot conflicts with another (same table, constraint, and values)
-	public boolean conflictsWith(UniqueSlot other) {
-		if (!tableName.equals(other.tableName)) {
-			return false;
-		}
-		if (!constraintName().equals(other.constraintName())) {
-			return false;
-		}
-		// Both must have values to conflict
-		if (keyValues == null || other.keyValues == null) {
-			return false;
-		}
-		return Arrays.equals(keyValues, other.keyValues);
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

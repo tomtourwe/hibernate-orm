@@ -12,12 +12,4 @@ public interface ObjectNameSource {
 	 * @return The explicit name.
 	 */
 	String getExplicitName();
-
-	/**
-	 * Retrieve the logical name for this object.  Usually this is the name under which
-	 * the "thing" is registered.
-	 *
-	 * @return The logical name.
-	 */
-	String getLogicalName();
 }

@@ -214,16 +214,6 @@ public class CachedQueryDirectReferenceTest {
 		return employees;
 	}
 
-	private static void save(EntityManagerFactoryScope scope, int cardinality) {
-		scope.inTransaction(
-				em -> {
-					for ( int i = 0; i < cardinality; i++ ) {
-						em.persist( new ImmutableEmployee( "John" + i, 20d + i ) );
-					}
-				}
-		);
-	}
-
 	@Entity(name = "ImmutableEmployee")
 	@Immutable
 	public static class ImmutableEmployee implements Serializable {

@@ -38,12 +38,4 @@ public class FetchMementoEmbeddableStandard implements FetchMemento {
 	public NavigablePath getNavigablePath() {
 		return navigablePath;
 	}
-
-	public EmbeddableValuedModelPart getAttributeMapping() {
-		return attributeMapping;
-	}
-
-	public List<String> getColumnNames() {
-		return columnNames;
-	}
 }

@@ -1,8 +1,6 @@
 package org.hibernate.boot.jaxb.internal.stax;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ListIterator;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLStreamException;
@@ -22,26 +20,12 @@ public class BufferedXMLEventReader extends BaseXMLEventReader {
 	private ListIterator<XMLEvent> bufferReader;
 
 	/**
-	 * Create new buffering reader, no buffering is done until {@link #mark(int)} is called.
-	 */
-	public BufferedXMLEventReader(XMLEventReader reader) {
-		super(reader);
-	}
-
-	/**
 	 * Create new buffering reader. Calls {@link #mark(int)} with the specified event limit
 	 * @see #mark(int)
 	 */
 	public BufferedXMLEventReader(XMLEventReader reader, int eventLimit) {
 		super(reader);
 		this.eventLimit = eventLimit;
-	}
-
-	/**
-	 * @return A copy of the current buffer
-	 */
-	public List<XMLEvent> getBuffer() {
-		return new ArrayList<>(this.eventBuffer);
 	}
 
 	@Override
@@ -88,13 +72,6 @@ public class BufferedXMLEventReader extends BaseXMLEventReader {
 			return event;
 		}
 		return super.peek();
-	}
-
-	/**
-	 * Same as calling {@link #mark(int)} with -1.
-	 */
-	public void mark() {
-		this.mark(-1);
 	}
 
 	/**
@@ -146,13 +123,6 @@ public class BufferedXMLEventReader extends BaseXMLEventReader {
 	public void close() throws XMLStreamException {
 		this.mark(0);
 		super.close();
-	}
-
-	/**
-	 * @return The number of events in the buffer.
-	 */
-	public int bufferSize() {
-		return this.eventBuffer.size();
 	}
 
 	/**

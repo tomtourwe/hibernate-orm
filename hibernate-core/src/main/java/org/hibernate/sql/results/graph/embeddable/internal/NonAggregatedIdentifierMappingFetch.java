@@ -20,10 +20,6 @@ public class NonAggregatedIdentifierMappingFetch extends EmbeddableFetchImpl {
 		super( navigablePath, embeddedPartDescriptor, fetchParent, fetchTiming, hasTableGroup, creationState );
 	}
 
-	public NonAggregatedIdentifierMappingFetch(EmbeddableFetchImpl original) {
-		super( original );
-	}
-
 	@Override
 	public EmbeddableInitializer<?> createInitializer(InitializerParent<?> parent, AssemblerCreationState creationState) {
 		return new NonAggregatedIdentifierMappingInitializer( this, parent, creationState, false );

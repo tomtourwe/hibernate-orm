@@ -2,7 +2,6 @@ package org.hibernate.action.internal;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import org.hibernate.AssertionFailure;
 import org.hibernate.collection.spi.PersistentCollection;
 import org.hibernate.collection.spi.CollectionMutationInterpretation;
 import org.hibernate.engine.internal.FlushProcessingContext;
@@ -20,39 +19,7 @@ public final class CollectionRemoveAction extends CollectionAction {
 
 	@Nullable
 	private final Object affectedOwner;
-	@Nullable
-	private final Object affectedOwnerId;
 	private final boolean emptySnapshot;
-
-	/**
-	 * Removes a persistent collection from its loaded owner.
-	 * <p>
-	 * Use this constructor when the collection is non-null.
-	 *
-	 * @param collection The collection to remove; must be non-null
-	 * @param persister  The collection's persister
-	 * @param id The collection key
-	 * @param emptySnapshot Indicates if the snapshot is empty
-	 * @param session The session
-	 *
-	 * @throws AssertionFailure if collection is null.
-	 */
-	public CollectionRemoveAction(
-				final @Nonnull PersistentCollection<?> collection,
-				final @Nonnull CollectionPersister persister,
-				final @Nullable Object id, // only null in certain deserialization tests
-				final boolean emptySnapshot,
-				final @Nonnull EventSource session) {
-		super( persister, collection, id, session );
-		assert collection != null;
-		this.emptySnapshot = emptySnapshot;
-		// the loaded owner will be set to null after the collection is removed,
-		// so capture its value as the affected owner so it is accessible to
-		// both pre- and post- events
-		final var persistenceContext = session.getPersistenceContextInternal();
-		affectedOwner = persistenceContext.getLoadedCollectionOwnerOrNull( collection );
-		affectedOwnerId = persistenceContext.getLoadedCollectionOwnerIdOrNull( collection );
-	}
 
 	/// Creates the legacy lowering of an already-prepared semantic mutation.
 	///
@@ -69,60 +36,6 @@ public final class CollectionRemoveAction extends CollectionAction {
 		super( persister, collection, id, session, true, interpretation );
 		this.emptySnapshot = emptySnapshot;
 		this.affectedOwner = affectedOwner;
-		this.affectedOwnerId = affectedOwnerId;
-	}
-
-	/**
-	 * Removes a persistent collection from a specified owner.
-	 * <p>
-	 * Use this constructor when the collection to be removed has not been loaded.
-	 *
-	 * @param affectedOwner The collection's owner; must be non-null
-	 * @param persister  The collection's persister
-	 * @param id The collection key
-	 * @param emptySnapshot Indicates if the snapshot is empty
-	 * @param session The session
-	 *
-	 * @throws AssertionFailure if affectedOwner is null.
-	 */
-	public CollectionRemoveAction(
-				final @Nonnull Object affectedOwner,
-				final @Nonnull CollectionPersister persister,
-				final @Nonnull Object id,
-				final boolean emptySnapshot,
-				final @Nonnull EventSource session) {
-		super( persister, null, id, session );
-		assert affectedOwner != null;
-		assert id != null;
-		this.emptySnapshot = emptySnapshot;
-		this.affectedOwner = affectedOwner;
-		// Get the owner ID from the entity entry at action creation time
-		final var ownerEntry = session.getPersistenceContextInternal().getEntry( affectedOwner );
-		affectedOwnerId = ownerEntry != null ? ownerEntry.getId() : null;
-	}
-
-	/**
-	 * Removes a persistent collection for an unloaded proxy.
-	 * <p>
-	 * Use this constructor when the owning entity is has not been loaded.
-	 *
-	 * @param persister The collection's persister
-	 * @param id The collection key
-	 * @param session The session
-	 */
-	public CollectionRemoveAction(
-			final @Nonnull CollectionPersister persister,
-			final @Nonnull Object id,
-			final @Nonnull EventSource session) {
-		super( persister, null, id, session );
-		assert id != null;
-		emptySnapshot = false;
-		affectedOwner = null;
-		affectedOwnerId = null;
-	}
-
-	public boolean isEmptySnapshot() {
-		return emptySnapshot;
 	}
 
 	@Override
@@ -205,10 +118,5 @@ public final class CollectionRemoveAction extends CollectionAction {
 	@Nullable
 	public Object getAffectedOwner() {
 		return affectedOwner;
-	}
-
-	@Nullable
-	public Object getAffectedOwnerId() {
-		return affectedOwnerId;
 	}
 }

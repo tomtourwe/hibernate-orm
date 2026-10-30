@@ -20,10 +20,6 @@ public class SpannerVectorDdlType extends VectorDdlType {
 		this.baseType = baseType;
 	}
 
-	public String getBaseType() {
-		return baseType;
-	}
-
 	@Override
 	public String getTypeName(Size size, Type type, DdlTypeRegistry ddlTypeRegistry) {
 		final Integer arrayLength = size != null ? size.getArrayLength() : null;
@@ -31,10 +27,6 @@ public class SpannerVectorDdlType extends VectorDdlType {
 			return "ARRAY<" + baseType + ">(vector_length=>" + arrayLength + ")";
 		}
 		return "ARRAY<" + baseType + ">";
-	}
-
-	public String getTypeName(Size size) {
-		return getTypeName( size, (Type) null, null );
 	}
 
 	@Override

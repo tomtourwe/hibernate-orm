@@ -7,7 +7,6 @@ import java.util.Set;
 
 import org.hibernate.Internal;
 import org.hibernate.sql.ast.spi.AbstractSqlAstWalker;
-import org.hibernate.sql.ast.spi.SqlAstNode;
 import org.hibernate.sql.ast.spi.query.expression.ColumnReference;
 import org.hibernate.sql.ast.spi.query.select.QuerySpec;
 
@@ -27,16 +26,6 @@ public class NestedCorrelationChecker extends AbstractSqlAstWalker {
 		@Override
 		public Throwable fillInStackTrace() {
 			return this;
-		}
-	}
-
-	public static boolean hasNestedCorrelation(SqlAstNode node) {
-		try {
-			node.accept( new NestedCorrelationChecker() );
-			return false;
-		}
-		catch (NestedCorrelationException ex) {
-			return true;
 		}
 	}
 

@@ -6,7 +6,7 @@ import org.hibernate.metamodel.mapping.EntityValuedModelPart;
 import org.hibernate.metamodel.mapping.ModelPart;
 import org.hibernate.metamodel.mapping.PluralAttributeMapping;
 import org.hibernate.metamodel.mapping.SelectableConsumer;
-import org.hibernate.query.NativeQuery;
+import org.hibernate.query.NativeQuery.CollectionReturn;
 import org.hibernate.query.results.spi.ResultBuilder;
 import org.hibernate.query.results.internal.DomainResultCreationStateImpl;
 import org.hibernate.spi.NavigablePath;
@@ -24,7 +24,7 @@ import static org.hibernate.query.results.internal.ResultsHelper.resolveSqlExpre
 /**
  * @author Steve Ebersole
  */
-public class CompleteResultBuilderCollectionStandard implements CompleteResultBuilderCollection, NativeQuery.CollectionReturn {
+public class CompleteResultBuilderCollectionStandard implements ResultBuilder, CollectionReturn {
 
 	private final String tableAlias;
 	private final NavigablePath navigablePath;

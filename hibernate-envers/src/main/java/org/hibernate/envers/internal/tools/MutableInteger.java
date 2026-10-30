@@ -25,10 +25,6 @@ public class MutableInteger {
 		return value;
 	}
 
-	public void set(int value) {
-		this.value = value;
-	}
-
 	public void increase() {
 		++value;
 	}

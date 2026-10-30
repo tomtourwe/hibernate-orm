@@ -2,7 +2,6 @@ package org.hibernate.engine.transaction.internal.jta;
 
 import jakarta.transaction.SystemException;
 import jakarta.transaction.TransactionManager;
-import jakarta.transaction.UserTransaction;
 
 import org.hibernate.TransactionException;
 
@@ -20,28 +19,6 @@ import static jakarta.transaction.Status.STATUS_UNKNOWN;
  */
 public final class JtaStatusHelper {
 	private JtaStatusHelper() {
-	}
-
-	/**
-	 * Extract the status code from a {@link UserTransaction}
-	 *
-	 * @param userTransaction The {@link UserTransaction} from which to extract the status.
-	 *
-	 * @return The transaction status
-	 *
-	 * @throws TransactionException If the {@link UserTransaction} reports the status as unknown
-	 */
-	public static int getStatus(UserTransaction userTransaction) {
-		try {
-			final int status = userTransaction.getStatus();
-			if ( status == STATUS_UNKNOWN ) {
-				throw new TransactionException( "UserTransaction reported transaction status as unknown" );
-			}
-			return status;
-		}
-		catch ( SystemException se ) {
-			throw new TransactionException( "Could not determine transaction status", se );
-		}
 	}
 
 	/**
@@ -79,18 +56,6 @@ public final class JtaStatusHelper {
 	}
 
 	/**
-	 * Does the status code obtained from the given {@link UserTransaction} indicate an active transaction?
-	 *
-	 * @param userTransaction The {@link UserTransaction} whose status is to be checked
-	 *
-	 * @return True if the transaction is active; false otherwise.
-	 */
-	public static boolean isActive(UserTransaction userTransaction) {
-		final int status = getStatus( userTransaction );
-		return isActive( status );
-	}
-
-	/**
 	 * Does the status code obtained from the given {@link TransactionManager} indicate an active transaction?
 	 *
 	 * @param transactionManager The {@link TransactionManager} whose status is to be checked
@@ -115,28 +80,6 @@ public final class JtaStatusHelper {
 	}
 
 	/**
-	 * Does the status code obtained from the given {@link UserTransaction} indicate a roll back?
-	 *
-	 * @param userTransaction The {@link UserTransaction} whose status is to be checked
-	 *
-	 * @return True if the transaction indicates roll back; false otherwise.
-	 */
-	public static boolean isRollback(UserTransaction userTransaction) {
-		return isRollback( getStatus( userTransaction ) );
-	}
-
-	/**
-	 * Does the status code obtained from the given {@link TransactionManager} indicate a roll back?
-	 *
-	 * @param transactionManager The {@link TransactionManager} whose status is to be checked
-	 *
-	 * @return True if the transaction indicates roll back; false otherwise.
-	 */
-	public static boolean isRollback(TransactionManager transactionManager) {
-		return isRollback( getStatus( transactionManager ) );
-	}
-
-	/**
 	 * Does the given status code indicate a committed transaction?
 	 *
 	 * @param status The transaction status code to check
@@ -145,28 +88,6 @@ public final class JtaStatusHelper {
 	 */
 	public static boolean isCommitted(int status) {
 		return status == STATUS_COMMITTED;
-	}
-
-	/**
-	 * Does the status code obtained from the given {@link UserTransaction} indicate a commit?
-	 *
-	 * @param userTransaction The {@link UserTransaction} whose status is to be checked
-	 *
-	 * @return True if the transaction indicates commit; false otherwise.
-	 */
-	public static boolean isCommitted(UserTransaction userTransaction) {
-		return isCommitted( getStatus( userTransaction ) );
-	}
-
-	/**
-	 * Does the status code obtained from the given {@link TransactionManager} indicate a commit?
-	 *
-	 * @param transactionManager The {@link TransactionManager} whose status is to be checked
-	 *
-	 * @return True if the transaction indicates commit; false otherwise.
-	 */
-	public static boolean isCommitted(TransactionManager transactionManager) {
-		return isCommitted( getStatus( transactionManager ) );
 	}
 
 	/**

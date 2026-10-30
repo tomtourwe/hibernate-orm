@@ -179,6 +179,6 @@ class CollectionMutationCompletionTest {
 	}
 
 	private static CollectionMutationCompletion completion(long id) {
-		return new CollectionMutationCompletion( new CollectionMutationId( id ), null );
+		return new CollectionMutationCompletion( new CollectionMutationId( id ));
 	}
 }

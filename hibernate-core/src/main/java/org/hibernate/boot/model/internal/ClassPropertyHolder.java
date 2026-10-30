@@ -481,11 +481,6 @@ public class ClassPropertyHolder extends AbstractPropertyHolder {
 	}
 
 	@Override
-	public String getEntityOwnerClassName() {
-		return getClassName();
-	}
-
-	@Override
 	public Table getTable() {
 		return persistentClass.getTable();
 	}

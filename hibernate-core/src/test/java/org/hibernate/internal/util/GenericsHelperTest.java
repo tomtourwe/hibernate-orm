@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Type;
 import jakarta.persistence.*;
+import jakarta.persistence.AttributeConverter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -52,9 +53,6 @@ public class GenericsHelperTest {
 		assertThat( types[1] ).isEqualTo( String.class );
 	}
 
-	abstract static class AbstractBaseConverter<T> implements AttributeConverter<T, String> {
-	}
-
-	abstract static class AbstractMiddleConverter<T> extends AbstractBaseConverter<T> {
+	abstract static class AbstractMiddleConverter<T> implements AttributeConverter<T, String> {
 	}
 }

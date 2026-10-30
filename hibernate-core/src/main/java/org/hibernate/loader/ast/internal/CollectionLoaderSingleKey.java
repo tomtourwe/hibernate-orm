@@ -97,11 +97,6 @@ public class CollectionLoaderSingleKey implements CollectionLoader {
 	}
 
 	@Nonnull
-	public JdbcParametersList getJdbcParameters() {
-		return jdbcParameters;
-	}
-
-	@Nonnull
 	@Override
 	public PersistentCollection<?> load(@Nonnull Object key, @Nonnull SharedSessionContractImplementor session) {
 		final var collectionKey = session.generateCollectionKey( attributeMapping.getCollectionDescriptor(), key );

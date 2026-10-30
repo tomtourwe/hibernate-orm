@@ -219,28 +219,8 @@ public abstract class AbstractFindMultipleByKeyOperation<T> implements MultiIdLo
 		return keyType;
 	}
 
-	public CacheStoreMode getCacheStoreMode() {
-		return cacheStoreMode;
-	}
-
-	public CacheRetrieveMode getCacheRetrieveMode() {
-		return cacheRetrieveMode;
-	}
-
 	public LockMode getLockMode() {
 		return lockMode;
-	}
-
-	public PessimisticLockScope getLockScope() {
-		return lockScope;
-	}
-
-	public Locking.FollowOn getLockFollowOn() {
-		return lockFollowOn;
-	}
-
-	public Timeout getLockTimeout() {
-		return lockTimeout;
 	}
 
 	public ReadOnlyMode getReadOnlyMode() {

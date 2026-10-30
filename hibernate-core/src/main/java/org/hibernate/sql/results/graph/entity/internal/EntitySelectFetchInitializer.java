@@ -57,14 +57,6 @@ public class EntitySelectFetchInitializer<Data extends EntitySelectFetchInitiali
 				RowProcessingState rowProcessingState) {
 			super( rowProcessingState );
 		}
-
-		/*
-		 * Used by Hibernate Reactive
-		 */
-		public EntitySelectFetchInitializerData(EntitySelectFetchInitializerData original) {
-			super( original );
-			this.entityIdentifier = original.entityIdentifier;
-		}
 	}
 
 	public EntitySelectFetchInitializer(

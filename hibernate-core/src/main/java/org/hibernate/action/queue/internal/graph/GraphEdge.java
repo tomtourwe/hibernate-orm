@@ -57,8 +57,6 @@ import org.hibernate.metamodel.mapping.SelectableMappings;
 ///
 /// @author Steve Ebersole
 public class GraphEdge {
-	// The referenced/target side for FK edges; may be null for unique-slot edges.
-	final GroupNode targetNode;
 	// The key side for FK edges, or the operation that receives a patch for unique-slot edges.
 	final GroupNode keyNode;
 
@@ -85,7 +83,6 @@ public class GraphEdge {
 			Constraint constraint,
 			long stableId) {
 		return new GraphEdge(
-				targetTableOpGroup,
 				keyTableOpGroup,
 				from,
 				to,
@@ -107,7 +104,6 @@ public class GraphEdge {
 			int breakCost,
 			long stableId) {
 		return new GraphEdge(
-				targetTableOpGroup,
 				keyTableOpGroup,
 				from,
 				to,
@@ -129,7 +125,6 @@ public class GraphEdge {
 			int breakCost,
 			long stableId) {
 		return new GraphEdge(
-				targetTableOpGroup,
 				keyTableOpGroup,
 				from,
 				to,
@@ -151,7 +146,6 @@ public class GraphEdge {
 			int breakCost,
 			long stableId) {
 		return new GraphEdge(
-				targetTableOpGroup,
 				keyTableOpGroup,
 				from,
 				to,
@@ -164,7 +158,6 @@ public class GraphEdge {
 	}
 
 	private GraphEdge(
-			GroupNode targetTableOpGroup,
 			GroupNode keyTableOpGroup,
 			GroupNode from,
 			GroupNode to,
@@ -173,7 +166,6 @@ public class GraphEdge {
 			Constraint constraint,
 			GraphEdgeKind kind,
 			long stableId) {
-		this.targetNode = targetTableOpGroup;
 		this.keyNode = keyTableOpGroup;
 		this.from = from;
 		this.to = to;
@@ -182,11 +174,6 @@ public class GraphEdge {
 		this.constraint = constraint;
 		this.kind = kind;
 		this.stableId = stableId;
-	}
-
-	/// The constraint that this edge describes (might be a foreign key or unique constraint)
-	public Constraint getConstraint() {
-		return constraint;
 	}
 
 	public GraphEdgeKind getKind() {
@@ -213,16 +200,6 @@ public class GraphEdge {
 		return isNullPatchableForeignKey() || isNullPatchableUnique();
 	}
 
-	/// The foreign key that this edge describes, or null if this is a unique constraint edge
-	public ForeignKey getForeignKey() {
-		return constraint instanceof ForeignKey fk ? fk : null;
-	}
-
-	/// Whether this edge represents a foreign key dependency (as opposed to a unique constraint dependency)
-	public boolean isForeignKeyEdge() {
-		return constraint instanceof ForeignKey;
-	}
-
 	public boolean isUniqueConstraintEdge() {
 		return constraint instanceof UniqueConstraint;
 	}
@@ -243,18 +220,6 @@ public class GraphEdge {
 		};
 	}
 
-	/// The referenced/target-side operation for FK edges, or null when the edge
-	/// is not tied to a referenced table.
-	public GroupNode getTargetNode() {
-		return targetNode;
-	}
-
-	/// The key-side operation for FK edges, or the operation that receives the
-	/// NULL-then-fixup patch for unique-slot edges.
-	public GroupNode getKeyNode() {
-		return keyNode;
-	}
-
 	/// The operation group that should receive a cycle-breaking patch.
 	public GroupNode getPatchNode() {
 		return keyNode;
@@ -270,16 +235,6 @@ public class GraphEdge {
 		return to;
 	}
 
-	/// Whether this edge can be broken by temporarily nulling columns and
-	/// installing a later fixup.
-	///
-	/// For nullable FK cycles this is the classic insert-null, insert-other-row,
-	/// update-FK pattern. For nullable unique swaps this temporarily clears the
-	/// unique value on one UPDATE and restores it afterward.
-	public boolean isBreakable() {
-		return isNullPatchable();
-	}
-
 	public int getBreakCost() {
 		return breakCost;
 	}
@@ -287,16 +242,6 @@ public class GraphEdge {
 	/// Columns to temporarily null when breaking this edge.
 	public SelectableMappings getColumnsToNull() {
 		return columnsToNull;
-	}
-
-	/// Whether the underlying constraint is defined as deferrable in the database.
-	/// This basically means that we do not need to worry about trying to break cycles;
-	/// the database will simply allow the 2 operations and check consistency at the end
-	/// of the transaction.
-	///
-	/// @implNote This is currently not used, but is definitely something we want to use.
-	public boolean isDeferrable() {
-		return constraint != null && constraint.isDeferrable();
 	}
 
 	public boolean isEffectivelyDeferred(DeferrableConstraintMode deferrableConstraintMode) {

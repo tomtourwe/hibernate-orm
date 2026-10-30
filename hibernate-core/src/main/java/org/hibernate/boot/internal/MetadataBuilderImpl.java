@@ -344,11 +344,6 @@ public class MetadataBuilderImpl implements MetadataBuilderImplementor, TypeCont
 		return this;
 	}
 
-	public MetadataBuilder noConstraintByDefault() {
-		options.noConstraintByDefault = true;
-		return this;
-	}
-
 	@Override
 	public MetadataBuilder applyFunctions(FunctionContributor functionContributor) {
 		functionContributor.contributeFunctions( new FunctionContributions() {

@@ -64,7 +64,7 @@ class CollectionMutationExecutorCompletionTest {
 		final var handler = mock( PostExecutionCallback.class );
 		final var bindPlan = new TestingGroupedBindPlan( 4 );
 		final var operation = operation( bindPlan );
-		final var completion = new CollectionMutationCompletion( new CollectionMutationId( 2 ), null );
+		final var completion = new CollectionMutationCompletion( new CollectionMutationId( 2 ));
 		completion.registerOperation( operation );
 		completion.registerCompletionHandler( handler );
 		completion.seal( session );
@@ -103,8 +103,7 @@ class CollectionMutationExecutorCompletionTest {
 		private final SessionImplementor session = mock( SessionImplementor.class );
 		private final PostExecutionCallback handler = mock( PostExecutionCallback.class );
 		private final CollectionMutationCompletion completion = new CollectionMutationCompletion(
-				new CollectionMutationId( 1 ),
-				null
+				new CollectionMutationId( 1 )
 		);
 		private final FlushOperation operation;
 

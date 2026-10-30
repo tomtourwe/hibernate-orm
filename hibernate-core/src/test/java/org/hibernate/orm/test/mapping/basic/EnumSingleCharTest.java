@@ -58,10 +58,6 @@ public class EnumSingleCharTest {
 		SinglecharEnum(String item) {
 			this.item = item;
 		}
-
-		public String getItem() {
-			return item;
-		}
 	}
 
 	@Entity(name = "Person")

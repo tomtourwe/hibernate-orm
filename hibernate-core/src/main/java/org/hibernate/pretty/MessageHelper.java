@@ -104,74 +104,6 @@ public final class MessageHelper {
 	}
 
 	/**
-	 * Generate an info message string relating to a particular entity,.
-	 *
-	 * @param persister The persister for the entity
-	 * @param id The entity id value
-	 * @param identifierType The entity identifier type mapping
-	 * @param factory The session factory
-	 * @return An info string, in the form [FooBar#1]
-	 */
-	public static String infoString(
-			@Nullable EntityPersister persister,
-			@Nullable Object id,
-			Type identifierType,
-			SessionFactoryImplementor factory) {
-		final StringBuilder info = new StringBuilder();
-		info.append( '[' );
-		if( persister == null ) {
-			info.append( "unknown entity" );
-		}
-		else {
-			info.append( persister.getEntityName() );
-		}
-
-		if ( id == null ) {
-			info.append( " with null id" );
-		}
-		else {
-			info.append( " with id '" ).append( identifierType.toLoggableString( id, factory ) ).append( "'" );
-		}
-		info.append( ']' );
-
-		return info.toString();
-	}
-
-	/**
-	 * Generate an info message string relating to a series of entities.
-	 *
-	 * @param persister The persister for the entities
-	 * @param ids The entity id values
-	 * @param factory The session factory
-	 * @return An info string, in the form [FooBar#&lt;1,2,3&gt;]
-	 */
-	public static String infoString(
-			@Nullable EntityPersister persister,
-			Object[] ids,
-			SessionFactoryImplementor factory) {
-		final StringBuilder info = new StringBuilder();
-		info.append( '[' );
-		if ( persister == null ) {
-			info.append( "unknown entity" );
-		}
-		else {
-			info.append( persister.getEntityName() );
-			info.append( " with ids " );
-			for ( int i=0; i<ids.length; i++ ) {
-				info.append( "'" )
-					.append( persister.getIdentifierType().toLoggableString( ids[i], factory ) )
-					.append( "'" );
-				if ( i < ids.length-1 ) {
-					info.append( ", " );
-				}
-			}
-		}
-		info.append( ']' );
-		return info.toString();
-
-	}
-
-	/**
 	 * Generate an info message string relating to given entity persister.
 	 *
 	 * @param persister The persister.
@@ -261,40 +193,6 @@ public final class MessageHelper {
 			info.append( " with owner id '" )
 					.append( ownerIdentifierType.toLoggableString( ownerKey, session.getFactory() ) )
 					.append( "'" );
-		}
-		info.append( ']' );
-		return info.toString();
-	}
-
-	/**
-	 * Generate an info message string relating to a series of managed
-	 * collections.
-	 *
-	 * @param persister The persister for the collections
-	 * @param ids The id values of the owners
-	 * @param factory The session factory
-	 * @return An info string, in the form [Foo.bars#&lt;1,2,3&gt;]
-	 */
-	public static String collectionInfoString(
-			@Nullable CollectionPersister persister,
-			Object[] ids,
-			SessionFactoryImplementor factory) {
-		final StringBuilder info = new StringBuilder();
-		info.append( '[' );
-		if ( persister == null ) {
-			info.append( "unreferenced collection" );
-		}
-		else {
-			info.append( persister.getRole() );
-			info.append( " with owner ids " );
-			for ( int i = 0; i < ids.length; i++ ) {
-				info.append( "'" );
-				addIdToCollectionInfoString( persister, ids[i], factory, info );
-				info.append( "'" );
-				if ( i < ids.length-1 ) {
-					info.append( ", " );
-				}
-			}
 		}
 		info.append( ']' );
 		return info.toString();

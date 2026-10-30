@@ -40,14 +40,6 @@ public class ColumnReference implements OrderingExpression, SequencePart {
 		this.isColumnExpressionFormula = isColumnExpressionFormula;
 	}
 
-	public String getColumnExpression() {
-		return columnExpression;
-	}
-
-	public boolean isColumnExpressionFormula() {
-		return isColumnExpressionFormula;
-	}
-
 	@Override
 	public Expression resolve(
 			QuerySpec ast,

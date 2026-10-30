@@ -36,7 +36,7 @@ import java.util.List;
  */
 // todo (6.0) : this can generically define a load-by-uk as well.
 // only the SQL AST and `restrictivePart` vary and they are passed as constructor args
-public class SingleIdLoadPlan<T> implements SingleEntityLoadPlan {
+public class SingleIdLoadPlan<T> {
 	private final EntityMappingType entityMappingType;
 	private final ModelPart restrictivePart;
 	private final LockOptions lockOptions;
@@ -81,19 +81,16 @@ public class SingleIdLoadPlan<T> implements SingleEntityLoadPlan {
 	}
 
 	@Nonnull
-	@Override
 	public Loadable getLoadable() {
 		return entityMappingType;
 	}
 
 	@Nonnull
-	@Override
 	public ModelPart getRestrictivePart() {
 		return restrictivePart;
 	}
 
 	@Nonnull
-	@Override
 	public JdbcSelect getJdbcSelect() {
 		return jdbcSelect;
 	}
@@ -106,11 +103,6 @@ public class SingleIdLoadPlan<T> implements SingleEntityLoadPlan {
 	@Nullable
 	public T load(@Nonnull Object restrictedValue, @Nonnull SharedSessionContractImplementor session) {
 		return load( restrictedValue, null, null, false, session );
-	}
-
-	@Nullable
-	public T load(@Nonnull Object restrictedValue, @Nullable Boolean readOnly, @Nonnull SharedSessionContractImplementor session) {
-		return load( restrictedValue, null, readOnly, false, session );
 	}
 
 	@Nullable

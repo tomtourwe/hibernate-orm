@@ -85,34 +85,6 @@ public class JdbcOperationQuerySelect
 		this.scrollExecution = scrollExecution;
 	}
 
-	public JdbcOperationQuerySelect(
-			String sql,
-			List<JdbcParameterBinder> parameterBinders,
-			JdbcValuesMappingProducer jdbcValuesMappingProducer,
-			Set<String> affectedTableNames,
-			int rowsToSkip,
-			int maxRows,
-			Map<JdbcParameter, JdbcParameterBinding> appliedParameters,
-			JdbcLockingApplication lockingApplication,
-			JdbcPaginationApplication paginationApplication,
-			JdbcParameter offsetParameter,
-			JdbcParameter limitParameter) {
-		this(
-				sql,
-				parameterBinders,
-				jdbcValuesMappingProducer,
-				affectedTableNames,
-				rowsToSkip,
-				maxRows,
-				appliedParameters,
-				lockingApplication,
-				paginationApplication,
-				offsetParameter,
-				limitParameter,
-				false
-		);
-	}
-
 	@Override
 	public JdbcValuesMappingProducer getJdbcValuesMappingProducer() {
 		return jdbcValuesMappingProducer;
@@ -149,10 +121,6 @@ public class JdbcOperationQuerySelect
 	@Override
 	public JdbcParameter getLimitParameter() {
 		return limitParameter;
-	}
-
-	public JdbcParameter getOffsetParameter() {
-		return offsetParameter;
 	}
 
 	@Override

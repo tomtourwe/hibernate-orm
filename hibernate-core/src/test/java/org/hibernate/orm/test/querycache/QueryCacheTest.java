@@ -6,21 +6,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.hibernate.Hibernate;
-import org.hibernate.Interceptor;
-import org.hibernate.Session;
-import org.hibernate.SessionBuilder;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.JdbcSettings;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.stat.EntityStatistics;
 import org.hibernate.stat.QueryStatistics;
 import org.hibernate.stat.spi.StatisticsImplementor;
-import org.hibernate.type.Type;
 
 import org.hibernate.testing.jdbc.ConnectionProviderDelegate;
 import org.hibernate.testing.jdbc.SharedDriverManagerConnectionProvider;
@@ -732,68 +727,6 @@ public class QueryCacheTest {
 			assertEquals( "widget", i.getName() );
 			session.remove( i );
 		} );
-	}
-
-	protected Item findByDescription(SessionBuilder sessionBuilder, final String description) {
-		try (Session s = sessionBuilder.openSession()) {
-			CriteriaBuilder criteriaBuilder = s.getCriteriaBuilder();
-			CriteriaQuery<Item> criteria = criteriaBuilder.createQuery( Item.class );
-			Root<Item> root = criteria.from( Item.class );
-			criteria.where( criteriaBuilder.equal( root.get( "description" ), description ) );
-
-			return s.createQuery( criteria ).setCacheable( true ).setReadOnly( true ).uniqueResult();
-//			return (Item) s.createCriteria(Item.class)
-//               .setCacheable(true)
-//               .setReadOnly(true)
-//               .add(Restrictions.eq("description", description))
-//               .uniqueResult();
-
-		}
-	}
-
-	public class DelayLoadOperations implements Interceptor {
-
-		private volatile CountDownLatch blockLatch;
-		private volatile CountDownLatch waitLatch;
-
-		@Override
-		public boolean onLoad(Object entity, Object id, Object[] state, String[] propertyNames, Type[] types){
-			onLoad();
-			return true;
-		}
-
-		private void onLoad() {
-			// Synchronize load and update activities
-			try {
-				if ( waitLatch != null ) {
-					waitLatch.countDown();
-				}
-				if ( blockLatch != null ) {
-					blockLatch.await();
-				}
-			}
-			catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				throw new RuntimeException( e );
-			}
-		}
-
-
-
-		public void blockOnLoad() {
-			blockLatch = new CountDownLatch( 1 );
-			waitLatch = new CountDownLatch( 1 );
-		}
-
-		public void waitOnLoad() throws InterruptedException {
-			waitLatch.await();
-		}
-
-		public void unblockOnLoad() {
-			if ( blockLatch != null ) {
-				blockLatch.countDown();
-			}
-		}
 	}
 
 	public static class ProxyConnectionProvider extends ConnectionProviderDelegate {

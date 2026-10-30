@@ -662,9 +662,5 @@ public class ManyToOnePropertyAccessByFieldTest {
 		StatusRequest(final String description) {
 			this.description = description;
 		}
-
-		public String getDescription() {
-			return description;
-		}
 	}
 }

@@ -64,25 +64,6 @@ public record UniqueConstraint(
 		return type == ConstraintType.UNIQUE_KEY;
 	}
 
-	public boolean isUniqueForeignKey() {
-		return type == ConstraintType.UNIQUE_FOREIGN_KEY;
-	}
-
-	@Override
-	public String getConstrainedTableName() {
-		return tableName;
-	}
-
-	@Override
-	public SelectableMappings getConstrainedColumnMappings() {
-		return columns;
-	}
-
-	@Override
-	public boolean isNullable() {
-		return nullable;
-	}
-
 	@Override
 	public Deferrability getDeferrability() {
 		return deferrability;

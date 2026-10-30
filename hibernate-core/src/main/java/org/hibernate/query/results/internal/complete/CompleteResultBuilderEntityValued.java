@@ -7,7 +7,6 @@ import org.hibernate.query.results.spi.ResultBuilderEntityValued;
  * @author Steve Ebersole
  */
 public interface CompleteResultBuilderEntityValued
-		extends CompleteResultBuilder, ModelPartReferenceEntity, ResultBuilderEntityValued {
-	@Override
+		extends ResultBuilderEntityValued {
 	EntityMappingType getReferencedPart();
 }

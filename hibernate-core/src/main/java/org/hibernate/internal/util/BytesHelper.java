@@ -57,19 +57,6 @@ public final class BytesHelper {
 	 * Interpret a long as its binary form
 	 *
 	 * @param longValue The long to interpret to binary
-	 *
-	 * @return The binary
-	 */
-	public static byte[] fromLong(long longValue) {
-		byte[] bytes = new byte[8];
-		fromLong(longValue, bytes, 0);
-		return bytes;
-	}
-
-	/**
-	 * Interpret a long as its binary form
-	 *
-	 * @param longValue The long to interpret to binary
 	 * @param dest the destination array.
 	 * @param destPos starting position in the destination array.
 	 */
@@ -126,13 +113,6 @@ public final class BytesHelper {
 		}
 		StringBuilder buf = new StringBuilder( "00000000" );
 		buf.replace( 8 - formatted.length(), 8, formatted );
-		return buf.toString();
-	}
-
-	public static String toBinaryString(int value) {
-		String formatted = Long.toBinaryString( value );
-		StringBuilder buf = new StringBuilder( StringHelper.repeat( '0', 32 ) );
-		buf.replace( 64 - formatted.length(), 64, formatted );
 		return buf.toString();
 	}
 

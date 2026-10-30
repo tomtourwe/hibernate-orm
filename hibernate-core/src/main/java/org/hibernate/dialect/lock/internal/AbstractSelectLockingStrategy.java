@@ -42,10 +42,6 @@ public abstract class AbstractSelectLockingStrategy implements LockingStrategy {
 		return lockable;
 	}
 
-	protected LockMode getLockMode() {
-		return lockMode;
-	}
-
 	protected String generateLockString(Timeout lockTimeout) {
 		// for now, use the deprecated form passing the milliseconds to avoid copy/paste.
 		// move that logic here when we can remove that overload.

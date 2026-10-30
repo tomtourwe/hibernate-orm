@@ -25,14 +25,6 @@ public class RevisionTimestampData extends PropertyData {
 		this.javaType = javaType;
 	}
 
-	public RevisionTimestampData(RevisionTimestampData old, String typeName, Class<?> javaType) {
-		this( old.getName(), old.getBeanName(), old.getAccessType(), typeName, javaType );
-	}
-
-	public String getTypeName() {
-		return typeName;
-	}
-
 	public boolean isTimestampDate() {
 		return Date.class.isAssignableFrom( javaType );
 	}

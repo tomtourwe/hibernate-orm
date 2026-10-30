@@ -30,10 +30,6 @@ public class DialectResolverSet implements DialectResolver {
 		this.resolvers = resolvers;
 	}
 
-	public DialectResolverSet(DialectResolver... resolvers) {
-		this( Arrays.asList( resolvers ) );
-	}
-
 	@Override
 	public Dialect resolveDialect(DialectResolutionInfo info) {
 		for ( DialectResolver resolver : resolvers ) {

@@ -8,7 +8,6 @@ import jakarta.persistence.PersistenceException;
 
 import org.hibernate.CacheMode;
 import org.hibernate.FlushMode;
-import jakarta.persistence.QueryFlushMode;
 
 /**
  * @author Emmanuel Bernard
@@ -22,24 +21,6 @@ public abstract class ConfigurationHelper {
 			if ( key != null && value != null ) {
 				properties.put( key, value );
 			}
-		}
-	}
-
-	public static QueryFlushMode resolveQueryFlushModeHint(Object value) {
-		if ( value == null ) {
-			return QueryFlushMode.DEFAULT;
-		}
-		if ( value instanceof QueryFlushMode ref ) {
-			return ref;
-		}
-		else if ( value instanceof FlushModeType jpaMode ) {
-			return FlushModeTypeHelper.queryFlushModeFromFlushModeType( jpaMode );
-		}
-		else if ( value instanceof FlushMode hibernateMode ) {
-			return FlushModeTypeHelper.queryFlushModeFromFlushMode( hibernateMode );
-		}
-		else {
-			return FlushModeTypeHelper.interpretQueryFlushMode( value.toString() );
 		}
 	}
 

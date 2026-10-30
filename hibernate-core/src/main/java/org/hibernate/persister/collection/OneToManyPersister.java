@@ -174,11 +174,6 @@ public class OneToManyPersister extends AbstractCollectionPersister {
 		return removeCoordinator;
 	}
 
-	@Nonnull
-	public WriteIndexCoordinator getWriteIndexCoordinator() {
-		return writeIndexCoordinator;
-	}
-
 	@Override
 	public boolean isRowDeleteEnabled() {
 		return super.isRowDeleteEnabled() && keyIsNullable;

@@ -2,7 +2,6 @@ package org.hibernate.boot.models.xml.internal;
 
 import org.hibernate.internal.util.StringHelper;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.InetAddress;
@@ -71,8 +70,6 @@ public enum SimpleTypeInterpretation {
 	JDBC_TIME( Time.class ),
 	CALENDAR( Calendar.class ),
 	TIME_ZONE( TimeZone.class ),
-	SERIALIZABLE( Serializable.class ),
-
 	PRIMITIVE_BOOLEAN( boolean.class, BOOLEAN ),
 	PRIMITIVE_BYTE( byte.class, BYTE ),
 	PRIMITIVE_SHORT( short.class, SHORT ),
@@ -85,24 +82,17 @@ public enum SimpleTypeInterpretation {
 
 
 	private final Class<?> javaType;
-	private final SimpleTypeInterpretation objectForm;
 
 	SimpleTypeInterpretation(Class<?> javaType) {
 		this.javaType = javaType;
-		this.objectForm = this;
 	}
 
 	SimpleTypeInterpretation(Class<?> javaType, SimpleTypeInterpretation objectForm) {
 		this.javaType = javaType;
-		this.objectForm = objectForm;
 	}
 
 	public Class<?> getJavaType() {
 		return javaType;
-	}
-
-	public SimpleTypeInterpretation getObjectForm() {
-		return objectForm;
 	}
 
 	public static SimpleTypeInterpretation interpret(String name) {

@@ -33,10 +33,8 @@ import org.hibernate.metamodel.mapping.PluralAttributeMapping;
 import org.hibernate.metamodel.mapping.ValuedModelPart;
 import org.hibernate.metamodel.mapping.internal.ToOneAttributeMapping;
 import org.hibernate.metamodel.model.domain.BasicDomainType;
-import org.hibernate.metamodel.model.domain.EntityDomainType;
 import org.hibernate.metamodel.model.domain.IdentifiableDomainType;
 import org.hibernate.metamodel.model.domain.internal.EntitySqmPathSource;
-import org.hibernate.query.IllegalMutationQueryException;
 import org.hibernate.query.IllegalQueryOperationException;
 import org.hibernate.query.IllegalSelectQueryException;
 import org.hibernate.query.Order;
@@ -59,7 +57,6 @@ import org.hibernate.query.sqm.tree.spi.SqmJoinType;
 import org.hibernate.query.sqm.tree.spi.SqmStatement;
 import org.hibernate.query.sqm.tree.spi.delete.SqmDeleteStatement;
 import org.hibernate.query.sqm.tree.spi.domain.SqmPath;
-import org.hibernate.query.sqm.tree.spi.domain.SqmSingularJoin;
 import org.hibernate.query.sqm.tree.spi.expression.JpaCriteriaParameter;
 import org.hibernate.query.sqm.tree.spi.expression.SqmAliasedNodeRef;
 import org.hibernate.query.sqm.tree.spi.expression.SqmExpression;
@@ -101,7 +98,6 @@ import org.hibernate.type.internal.BindingTypeHelper;
 import org.hibernate.type.internal.ConvertedBasicTypeImpl;
 
 import jakarta.persistence.Tuple;
-import jakarta.persistence.metamodel.Type;
 import jakarta.annotation.Nullable;
 
 import static java.util.Collections.emptyList;
@@ -194,20 +190,6 @@ public class SqmUtil {
 				hqlString,
 				null
 		);
-	}
-
-	public static void verifyIsRestrictedMutation(SqmStatement<?> sqm, String hqlString) {
-		if ( ! isRestrictedMutation( sqm ) ) {
-			throw new IllegalMutationQueryException(
-					String.format(
-							Locale.ROOT,
-							"Expecting a restricted mutation query [%s], but found %s",
-							SqmDeleteOrUpdateStatement.class.getName(),
-							sqm.getClass().getName()
-					),
-					hqlString
-			);
-		}
 	}
 
 	public static @Nullable String determineAffectedTableName(TableGroup tableGroup, ValuedModelPart mapping) {
@@ -323,33 +305,6 @@ public class SqmUtil {
 	 * a join that cannot be dereferenced through the foreign key on the associated table,
 	 * i.e. a join that's neither {@linkplain SqmJoinType#INNER} nor {@linkplain SqmJoinType#LEFT}
 	 * or one that has an explicit on clause predicate.
-	 *
-	 * @deprecated Use {@link #isFkOptimizationAllowed(SqmPath, EntityAssociationMapping)} instead
-	 */
-	@Deprecated(forRemoval = true, since = "6.6.1")
-	public static boolean isFkOptimizationAllowed(SqmPath<?> sqmPath) {
-		if ( sqmPath instanceof SqmJoin<?, ?> sqmJoin ) {
-			switch ( sqmJoin.getSqmJoinType() ) {
-				case LEFT:
-					final var associationMapping = resolveAssociationMapping( sqmJoin );
-					if ( associationMapping != null && isFiltered( associationMapping ) ) {
-						return false;
-					}
-					// FallThrough intended
-				case INNER:
-					return sqmJoin.getJoinPredicate() == null;
-				default:
-					return false;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Utility that returns {@code false} when the provided {@link SqmPath sqmPath} is
-	 * a join that cannot be dereferenced through the foreign key on the associated table,
-	 * i.e. a join that's neither {@linkplain SqmJoinType#INNER} nor {@linkplain SqmJoinType#LEFT}
-	 * or one that has an explicit on clause predicate.
 	 */
 	public static boolean isFkOptimizationAllowed(SqmPath<?> sqmPath, EntityAssociationMapping associationMapping) {
 		// By default, never allow the FK optimization if the path is a join, unless the association has a join table
@@ -390,46 +345,6 @@ public class SqmUtil {
 				// When the identifier mappings are different we have a joined subclass entity
 				// which will filter rows based on a discriminator predicate
 				|| entityMappingType.getIdentifierMappingForJoin() != entityMappingType.getIdentifierMapping();
-	}
-
-	private static @Nullable EntityAssociationMapping resolveAssociationMapping(SqmJoin<?, ?> sqmJoin) {
-		return sqmJoin instanceof SqmSingularJoin<?, ?> singularJoin
-			&& singularJoin.getAttribute().getPathType() instanceof EntityDomainType<?>
-				? resolveAssociationMapping( singularJoin )
-				: null;
-	}
-
-	private static @Nullable EntityAssociationMapping resolveAssociationMapping(SqmSingularJoin<?, ?> sqmJoin) {
-		final var metamodel = sqmJoin.nodeBuilder().getMappingMetamodel();
-		var attribute = sqmJoin.getAttribute();
-		var declaringType = attribute.getDeclaringType();
-		if ( declaringType.getPersistenceType() != Type.PersistenceType.ENTITY ) {
-			final var pathBuilder = new StringBuilder();
-			do {
-				if ( !pathBuilder.isEmpty() ) {
-					pathBuilder.insert(0, '.');
-				}
-				pathBuilder.insert( 0, attribute.getName() );
-				if ( sqmJoin.getLhs() instanceof SqmSingularJoin<?, ?> sqmSingularJoin ) {
-					sqmJoin = sqmSingularJoin;
-					attribute = sqmJoin.getAttribute();
-					declaringType = attribute.getDeclaringType();
-				}
-				else {
-					return null;
-				}
-			} while ( declaringType.getPersistenceType() != Type.PersistenceType.ENTITY );
-			pathBuilder.insert(0, '.');
-			pathBuilder.insert( 0, attribute.getName() );
-			return (EntityAssociationMapping)
-					metamodel.getEntityDescriptor( ( (EntityDomainType<?>) declaringType ).getHibernateEntityName() )
-							.findByPath( pathBuilder.toString() );
-		}
-		else {
-			return (EntityAssociationMapping)
-					metamodel.getEntityDescriptor( ( (EntityDomainType<?>) declaringType ).getHibernateEntityName() )
-							.findAttributeMapping( attribute.getName() );
-		}
 	}
 
 	public static List<NavigablePath> getWhereClauseNavigablePaths(SqmQuerySpec<?> querySpec) {

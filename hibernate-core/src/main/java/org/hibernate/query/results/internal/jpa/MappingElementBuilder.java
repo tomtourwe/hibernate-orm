@@ -7,9 +7,6 @@ import org.hibernate.query.results.spi.ResultBuilder;
 ///
 /// @author Steve Ebersole
 public interface MappingElementBuilder<T> extends ResultBuilder {
-	/// @see jakarta.persistence.sql.MappingElement#getAlias()
-	String getAlias();
-
 	/// @see jakarta.persistence.sql.MappingElement#getJavaType()
 	Class<? extends T> getJavaType();
 }

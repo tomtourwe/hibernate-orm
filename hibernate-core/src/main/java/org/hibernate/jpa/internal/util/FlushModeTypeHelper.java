@@ -39,19 +39,6 @@ public class FlushModeTypeHelper {
 		};
 	}
 
-	public static QueryFlushMode getQueryFlushMode(FlushMode flushMode) {
-		if ( flushMode == null ) {
-			return QueryFlushMode.DEFAULT;
-		}
-		return switch (flushMode) {
-			case ALWAYS -> QueryFlushMode.FLUSH;
-			case COMMIT, MANUAL -> QueryFlushMode.NO_FLUSH;
-			case AUTO ->
-				// this is not precisely correctly correct, but good enough
-					QueryFlushMode.DEFAULT;
-		};
-	}
-
 	public static FlushMode getFlushMode(FlushModeType flushModeType) {
 		if ( flushModeType == null ) {
 			return null;
@@ -61,50 +48,6 @@ public class FlushModeTypeHelper {
 			case COMMIT -> FlushMode.COMMIT;
 			case EXPLICIT ->  FlushMode.MANUAL;
 		};
-	}
-
-	public static FlushMode getFlushMode(QueryFlushMode queryFlushMode) {
-		if ( queryFlushMode == null ) {
-			return null;
-		}
-		return switch (queryFlushMode) {
-			case FLUSH -> FlushMode.ALWAYS;
-			case NO_FLUSH -> FlushMode.MANUAL;
-			default -> null;
-		};
-	}
-
-	public static FlushMode interpretFlushMode(QueryFlushMode queryFlushMode) {
-		if ( queryFlushMode == QueryFlushMode.DEFAULT ) {
-			return null;
-		}
-		else if ( queryFlushMode == QueryFlushMode.NO_FLUSH ) {
-			return FlushMode.MANUAL;
-		}
-		else {
-			return FlushMode.AUTO;
-		}
-	}
-
-	public static FlushMode interpretFlushMode(Object value) {
-		if ( value == null ) {
-			return FlushMode.AUTO;
-		}
-		if ( value instanceof FlushMode flushMode ) {
-			return flushMode;
-		}
-		if ( value instanceof QueryFlushMode queryFlushMode ) {
-			return interpretFlushMode( queryFlushMode );
-		}
-		else if ( value instanceof FlushModeType flushModeType ) {
-			return getFlushMode( flushModeType );
-		}
-		else if ( value instanceof String string ) {
-			return interpretExternalSetting( string );
-		}
-		else {
-			throw new IllegalArgumentException( "Unknown FlushMode source : " + value );
-		}
 	}
 
 	public static QueryFlushMode queryFlushModeFromHint(Object value) {

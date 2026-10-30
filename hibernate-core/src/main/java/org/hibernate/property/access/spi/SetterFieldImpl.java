@@ -31,10 +31,6 @@ public class SetterFieldImpl implements Setter {
 		this.setterMethod = setterMethodOrNull( containerClass, propertyName, field.getType() );
 	}
 
-	public Class<?> getContainerClass() {
-		return containerClass;
-	}
-
 	public String getPropertyName() {
 		return propertyName;
 	}

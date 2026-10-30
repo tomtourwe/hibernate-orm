@@ -265,18 +265,6 @@ public abstract class AbstractAuditQuery implements AuditQueryImplementor {
 		return this;
 	}
 
-	/**
-	 * Set lock options
-	 *
-	 * @param lockOptions The @{link LockOptions} used for this query.
-	 *
-	 * @return this object
-	 */
-	public AuditQuery setLockOptions(LockOptions lockOptions) {
-		LockOptions.copy( lockOptions, this.lockOptions );
-		return this;
-	}
-
 	protected void setQueryProperties(Query query) {
 		if ( maxResults != null ) {
 			query.setMaxResults( maxResults );

@@ -15,7 +15,6 @@ import org.hibernate.metamodel.mapping.TableDetails;
 import org.hibernate.query.spi.DomainQueryExecutionContext;
 import org.hibernate.query.sqm.internal.DomainParameterXref;
 import org.hibernate.query.sqm.internal.SqmJdbcExecutionContextAdapter;
-import org.hibernate.query.sqm.mutation.internal.DeleteHandler;
 import org.hibernate.query.sqm.mutation.internal.MatchingIdSelectionHelper;
 import static org.hibernate.query.sqm.mutation.internal.SqmMutationStrategyHelper.softDeleteTargets;
 import org.hibernate.query.sqm.mutation.internal.SqmMutationStrategyHelper;
@@ -46,7 +45,7 @@ import java.util.function.Supplier;
  * @author Vlad Mihalcea
  * @author Steve Ebersole
  */
-public class InlineDeleteHandler extends AbstractInlineHandler implements DeleteHandler {
+public class InlineDeleteHandler extends AbstractInlineHandler {
 
 	private final List<TableDeleter> tableDeleters;
 
@@ -238,10 +237,5 @@ public class InlineDeleteHandler extends AbstractInlineHandler implements Delete
 		final SqlAstTranslatorFactory sqlAstTranslatorFactory = sessionFactory.getJdbcServices().getJdbcEnvironment().getSqlAstTranslatorFactory();
 		return sqlAstTranslatorFactory.buildTranslator( new SqlAstTranslationRequest.QueryMutation( sessionFactory, statement ) )
 				.translate( JdbcParameterBindings.NO_BINDINGS, executionContext.getQueryOptions() );
-	}
-
-	// For Hibernate Reactive
-	protected List<TableDeleter> getTableDeleters() {
-		return tableDeleters;
 	}
 }

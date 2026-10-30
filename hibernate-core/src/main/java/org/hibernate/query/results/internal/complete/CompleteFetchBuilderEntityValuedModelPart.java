@@ -24,7 +24,7 @@ import static org.hibernate.query.results.internal.ResultsHelper.resolveSqlExpre
  * @author Christian Beikov
  */
 public class CompleteFetchBuilderEntityValuedModelPart
-		implements CompleteFetchBuilder, ModelPartReferenceEntity {
+		implements CompleteFetchBuilder {
 	private final NavigablePath navigablePath;
 	private final EntityValuedFetchable modelPart;
 	private final List<String> columnAliases;
@@ -47,7 +47,6 @@ public class CompleteFetchBuilderEntityValuedModelPart
 		);
 	}
 
-	@Override
 	public NavigablePath getNavigablePath() {
 		return navigablePath;
 	}

@@ -31,10 +31,6 @@ public class HbmEventReader extends EventReaderDelegate {
 
 	private final XMLEventFactory xmlEventFactory;
 
-	public HbmEventReader(XMLEventReader reader) {
-		this( reader, XMLEventFactory.newInstance() );
-	}
-
 	public HbmEventReader(XMLEventReader reader, XMLEventFactory xmlEventFactory) {
 		super( reader );
 		this.xmlEventFactory = xmlEventFactory;

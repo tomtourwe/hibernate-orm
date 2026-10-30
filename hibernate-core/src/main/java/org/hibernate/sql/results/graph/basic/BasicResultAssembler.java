@@ -3,7 +3,6 @@ package org.hibernate.sql.results.graph.basic;
 import java.util.Locale;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Internal;
 import org.hibernate.type.descriptor.converter.spi.BasicValueConverter;
 import org.hibernate.sql.ast.spi.query.select.SqlSelection;
 import org.hibernate.sql.results.graph.DomainResultAssembler;
@@ -88,13 +87,5 @@ public class BasicResultAssembler<J> implements DomainResultAssembler<J> {
 		return valueConverter != null
 				? valueConverter.getDomainJavaType()
 				: assembledJavaType;
-	}
-
-	/**
-	 * Exposed for testing purposes
-	 */
-	@Internal
-	public BasicValueConverter<J, ?> getValueConverter() {
-		return valueConverter;
 	}
 }

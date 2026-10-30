@@ -237,20 +237,6 @@ public class JdbcEnvironmentImpl implements JdbcEnvironment {
 	}
 
 	/**
-	 * @deprecated currently used by Hibernate Reactive
-	 * This version of the constructor should handle the case in which we do actually have
-	 * the option to access the {@link DatabaseMetaData}, but since Hibernate Reactive is
-	 * currently not making use of it we take a shortcut.
-	 */
-	@Deprecated
-	public JdbcEnvironmentImpl(
-			ServiceRegistryImplementor serviceRegistry,
-			Dialect dialect,
-			DatabaseMetaData databaseMetaData) {
-		this( serviceRegistry, dialect );
-	}
-
-	/**
 	 * The main constructor form.
 	 * Builds a {@code JdbcEnvironment} using the available {@link DatabaseMetaData}.
 	 *

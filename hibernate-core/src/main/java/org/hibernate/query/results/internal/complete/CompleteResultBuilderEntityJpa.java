@@ -62,7 +62,6 @@ public class CompleteResultBuilderEntityJpa implements CompleteResultBuilderEnti
 		return entityDescriptor.getJavaType().getJavaTypeClass();
 	}
 
-	@Override
 	public NavigablePath getNavigablePath() {
 		return navigablePath;
 	}

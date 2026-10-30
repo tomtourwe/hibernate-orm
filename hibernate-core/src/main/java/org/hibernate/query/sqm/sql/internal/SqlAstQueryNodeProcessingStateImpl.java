@@ -1,12 +1,10 @@
 package org.hibernate.query.sqm.sql.internal;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.hibernate.sql.ast.spi.translation.Clause;
 import org.hibernate.sql.ast.spi.creation.SqlAstCreationState;
 import org.hibernate.sql.ast.spi.creation.SqlAstProcessingState;
-import org.hibernate.sql.ast.spi.creation.SqlExpressionResolver;
 import org.hibernate.sql.ast.spi.query.from.FromClause;
 import org.hibernate.sql.ast.spi.query.predicate.Predicate;
 
@@ -22,16 +20,6 @@ public class SqlAstQueryNodeProcessingStateImpl
 			SqlAstCreationState creationState,
 			Supplier<Clause> currentClauseAccess) {
 		super( parent, creationState, currentClauseAccess );
-		this.fromClause = fromClause;
-	}
-
-	public SqlAstQueryNodeProcessingStateImpl(
-			FromClause fromClause,
-			SqlAstProcessingState parent,
-			SqlAstCreationState creationState,
-			Function<SqlExpressionResolver, SqlExpressionResolver> expressionResolverDecorator,
-			Supplier<Clause> currentClauseAccess) {
-		super( parent, creationState, expressionResolverDecorator, currentClauseAccess );
 		this.fromClause = fromClause;
 	}
 

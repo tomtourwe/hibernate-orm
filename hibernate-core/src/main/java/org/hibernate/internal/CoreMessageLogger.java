@@ -121,38 +121,8 @@ public interface CoreMessageLogger extends BasicLogger {
 	void propertiesNotFound();
 
 	@LogMessage(level = WARN)
-	@Message(
-			value = """
-					Recognized obsolete hibernate namespace %s.\
-					Use namespace %s instead. Refer to Hibernate 3.6 Migration Guide""",
-			id = 223)
-	void recognizedObsoleteHibernateNamespace(String oldHibernateNamespace, String hibernateNamespace);
-
-//	@LogMessage(level = WARN)
-//	@Message(value = "Scoping types to session factory %s after already scoped %s", id = 233)
-//	void scopingTypesToSessionFactoryAfterAlreadyScoped(
-//			SessionFactoryImplementor factory,
-//			SessionFactoryImplementor factory2);
-
-//	@LogMessage(level = WARN)
-//	@Message(value = "SQL Error: %s, SQLState: %s", id = 247)
-//	void sqlWarning(int errorCode, String sqlState);
-
-	@LogMessage(level = INFO)
-	@Message(value = "Start time: %s", id = 251)
-	void startTime(long startTime);
-
-	@LogMessage(level = INFO)
-	@Message(value = "Transactions: %s", id = 266)
-	void transactions(long transactionCount);
-
-	@LogMessage(level = WARN)
 	@Message(value = "Type [%s] defined no registration keys; ignoring", id = 269)
 	void typeDefinedNoRegistrationKeys(Object type);
-
-	@LogMessage(level = WARN)
-	@Message(value = "Error accessing type info result set: %s", id = 273)
-	void unableToAccessTypeInfoResultSet(String string);
 
 	@LogMessage(level = WARN)
 	@Message(value = "Unable to cleanup temporary id table after use [%s]", id = 283)
@@ -215,28 +185,8 @@ public interface CoreMessageLogger extends BasicLogger {
 	void unableToReleaseCacheLock(CacheException ce);
 
 	@LogMessage(level = WARN)
-	@Message(value = "Unable to release type info result set", id = 357)
-	void unableToReleaseTypeInfoResultSet();
-
-	@LogMessage(level = WARN)
 	@Message(value = "Unable to erase previously added bag join fetch", id = 358)
 	void unableToRemoveBagJoinFetch();
-
-	@LogMessage(level = WARN)
-	@Message(value = "Unable to retrieve type info result set: %s", id = 362)
-	void unableToRetrieveTypeInfoResultSet(String string);
-
-	@LogMessage(level = WARN)
-	@Message(
-			value = """
-					The %s.%s.%s version of H2 implements temporary table creation such that it commits current transaction;\
-					multi-table, bulk HQL/JPQL will not work properly""",
-			id = 393)
-	void unsupportedMultiTableBulkHqlJpaql(int majorVersion, int minorVersion, int buildId);
-
-	@LogMessage(level = ERROR)
-	@Message(value = "Don't use old DTDs, read the Hibernate 3.x Migration Guide", id = 404)
-	void usingOldDtd();
 
 	@LogMessage(level = WARN)
 	@Message(value = "Warnings creating temp table: %s", id = 413)
@@ -251,15 +201,6 @@ public interface CoreMessageLogger extends BasicLogger {
 			id = 443
 	)
 	void tooManyInExpressions(String dialectName, int limit, String paramName, int size);
-
-	@LogMessage(level = WARN)
-	@Message(
-			value = """
-					Encountered request for locking however dialect reports that database prefers locking be done in a \
-					separate select (follow-on locking); results will be locked after initial query executes""",
-			id = 444
-	)
-	void usingFollowOnLocking();
 
 	@LogMessage(level = WARN)
 	@Message(
@@ -316,11 +257,6 @@ public interface CoreMessageLogger extends BasicLogger {
 	void unsupportedDatabaseVersion(String databaseName, String actualVersion, String minimumVersion);
 
 	@LogMessage(level = DEBUG)
-	@Message(value = "Unable to create the ReflectionOptimizer for [%s]: %s",
-			id = 513)
-	void unableToGenerateReflectionOptimizer(String className, String cause);
-
-	@LogMessage(level = DEBUG)
 	@Message(
 			id = 517,
 			value = "Encountered a MappedSuperclass [%s] not used in any entity hierarchy"
@@ -344,15 +280,6 @@ public interface CoreMessageLogger extends BasicLogger {
 			String name2,
 			String name3,
 			String name4);
-
-	@LogMessage(level = WARN)
-	@Message(
-			id = 5002,
-			value = "Unable to locate static metamodel field: %s#%s; this may or may not indicate a problem with the static metamodel"
-	)
-	void unableToLocateStaticMetamodelField(
-			String name,
-			String name2);
 
 	@LogMessage(level = DEBUG)
 	@Message( id = 6001, value = "Error creating temp table" )

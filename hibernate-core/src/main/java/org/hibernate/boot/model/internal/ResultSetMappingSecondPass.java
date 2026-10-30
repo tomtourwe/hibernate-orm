@@ -22,10 +22,6 @@ public class ResultSetMappingSecondPass implements QuerySecondPass {
 	private final @Nullable AnnotationTarget location;
 	private final boolean isDefault;
 
-	public ResultSetMappingSecondPass(SqlResultSetMapping annotation, MetadataBuildingContext context, boolean isDefault) {
-		this( annotation, context, null, isDefault );
-	}
-
 	public ResultSetMappingSecondPass(
 			SqlResultSetMapping annotation,
 			MetadataBuildingContext context,

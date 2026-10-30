@@ -111,10 +111,6 @@ public abstract class AbstractNamedQueryBuilder<R, T extends AbstractNamedQueryB
 		return cacheMode;
 	}
 
-	public QueryFlushMode getFlushMode() {
-		return flushMode;
-	}
-
 	public Boolean getReadOnly() {
 		return readOnly;
 	}

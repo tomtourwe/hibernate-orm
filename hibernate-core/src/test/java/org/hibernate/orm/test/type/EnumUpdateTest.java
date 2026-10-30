@@ -50,7 +50,7 @@ public class EnumUpdateTest {
 	}
 
 	public enum HairColor {
-		BLACK, BLONDE, BROWN;
+		BLACK, BROWN;
 	}
 
 	@Entity(name = "Person")

@@ -29,10 +29,6 @@ public class XmlProcessingHelper {
 		return StringHelper.qualifyConditionallyIfNot( jaxbRoot.getPackage(), jaxbManagedType.getClazz() );
 	}
 
-	public static AccessType inverse(AccessType accessType) {
-		return accessType == AccessType.FIELD ? AccessType.PROPERTY : AccessType.FIELD;
-	}
-
 	/**
 	 * Find the member backing the named attribute
 	 */

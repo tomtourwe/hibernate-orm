@@ -22,18 +22,6 @@ public class Triple<T1, T2, T3> {
 		this.obj3 = obj3;
 	}
 
-	public T1 getFirst() {
-		return obj1;
-	}
-
-	public T2 getSecond() {
-		return obj2;
-	}
-
-	public T3 getThird() {
-		return obj3;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if ( this == o ) {

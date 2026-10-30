@@ -51,35 +51,6 @@ public class VirtualEmbeddedAttributeMapping extends EmbeddedAttributeMapping im
 		);
 	}
 
-	public VirtualEmbeddedAttributeMapping(
-			String name,
-			NavigableRole navigableRole,
-			int stateArrayPosition,
-			int fetchableIndex,
-			String tableExpression,
-			AttributeMetadata attributeMetadata,
-			PropertyAccess parentInjectionAttributePropertyAccess,
-			FetchTiming mappedFetchTiming,
-			FetchStyle mappedFetchStyle,
-			EmbeddableMappingType embeddableMappingType,
-			@Nullable ManagedMappingType declaringType,
-			@Nullable PropertyAccess propertyAccess) {
-		super(
-				name,
-				navigableRole,
-				stateArrayPosition,
-				fetchableIndex,
-				tableExpression,
-				attributeMetadata,
-				parentInjectionAttributePropertyAccess,
-				mappedFetchTiming,
-				mappedFetchStyle,
-				embeddableMappingType,
-				declaringType,
-				propertyAccess
-		);
-	}
-
 	// Constructor is only used for creating the inverse attribute mapping
 	VirtualEmbeddedAttributeMapping(
 			@Nullable ManagedMappingType keyDeclaringType,

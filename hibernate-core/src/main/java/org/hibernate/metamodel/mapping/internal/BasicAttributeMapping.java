@@ -245,10 +245,6 @@ public class BasicAttributeMapping
 		return nullable;
 	}
 
-	public boolean isLazy() {
-		return isLazy;
-	}
-
 	@Override
 	public boolean isInsertable() {
 		return insertable;

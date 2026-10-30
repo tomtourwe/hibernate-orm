@@ -194,26 +194,6 @@ public class BatchImpl implements GroupedBatch {
 		statementGroup.release();
 	}
 
-	protected void clearBatch(PreparedStatementDetails statementDetails) {
-		final var statement = statementDetails.getStatement();
-		assert statement != null;
-
-		try {
-			// This code can be called after the connection is released
-			// and the statement is closed. If the statement is closed,
-			// then SQLException will be thrown when PreparedStatement#clearBatch
-			// is called.
-			// Ensure the statement is not closed before
-			// calling PreparedStatement#clearBatch.
-			if ( !statement.isClosed() ) {
-				statement.clearBatch();
-			}
-		}
-		catch ( SQLException e ) {
-			BATCH_MESSAGE_LOGGER.unableToReleaseBatchStatement();
-		}
-	}
-
 	/**
 	 * Convenience method to notify registered observers of an explicit execution of this batch.
 	 */

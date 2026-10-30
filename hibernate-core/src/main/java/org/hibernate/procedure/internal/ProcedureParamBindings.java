@@ -38,10 +38,6 @@ public class ProcedureParamBindings implements QueryParameterBindings {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public ProcedureParameterMetadataImplementor getParameterMetadata() {
-		return parameterMetadata;
-	}
-
 	@Override
 	public boolean isBound(QueryParameterImplementor<?> parameter) {
 		return parameter instanceof ProcedureParameterImplementor<?>

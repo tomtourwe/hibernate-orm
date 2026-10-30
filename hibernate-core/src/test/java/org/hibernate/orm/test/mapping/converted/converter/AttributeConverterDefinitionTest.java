@@ -57,10 +57,7 @@ class AttributeConverterDefinitionTest {
 			implements AttributeConverter<LocalDate, String> {
 	}
 
-	public interface AttrConverterSameType<T> extends AttributeConverter<T, T> {
-	}
-
-	public static class AttrConverterSameTypeImpl implements AttrConverterSameType<String> {
+	public static class AttrConverterSameTypeImpl implements AttributeConverter<String, String> {
 
 		@Override
 		public String convertToDatabaseColumn(String attribute) {
@@ -87,9 +84,6 @@ class AttributeConverterDefinitionTest {
 		}
 	}
 
-	public static abstract class DelegatingAttrConverter<T, V> implements DelegatingAttributeConverter<T, V> {
-	}
-
 	public static class DelegatingAttrConverterImpl implements DelegatingAttributeConverter<Integer, String> {
 		@Override
 		public AttributeConverter<Integer, String> delegate() {
@@ -97,8 +91,8 @@ class AttributeConverterDefinitionTest {
 		}
 	}
 
-	public static class MultiAttrConverter extends DelegatingAttrConverter<Integer, Integer>
-			implements AttrConverterSameType<Integer> {
+	public static class MultiAttrConverter
+			implements DelegatingAttributeConverter<Integer, Integer> {
 
 		@Override
 		public AttributeConverter<Integer, Integer> delegate() {

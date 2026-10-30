@@ -145,14 +145,6 @@ public class CacheableFileXmlSource {
 		}
 	}
 
-	public static void createSerFile(File xmlFile, MappingBinder binder) {
-		createSerFile( xmlFile, determineCachedFile( xmlFile ), binder );
-	}
-
-	public static void createSerFile(File xmlFile, File outputFile, MappingBinder binder) {
-		writeSerFile( FileXmlSource.fromFile( xmlFile, binder ).getRoot(), xmlFile, outputFile );
-	}
-
 	public static boolean isSerfileObsolete(File xmlFile, File serFile) {
 		return xmlFile.exists()
 			&& serFile.exists()

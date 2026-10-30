@@ -679,32 +679,6 @@ public class SingularAttributeImpl<D,J>
 		}
 	}
 
-	/**
-	 * Subclass used to simply instantiation of singular attributes representing an entity's
-	 * version.
-	 */
-	public static class Version<X,Y> extends SingularAttributeImpl<X,Y> {
-		public Version(
-				ManagedDomainType<X> declaringType,
-				String name,
-				AttributeClassification attributeClassification,
-				SqmDomainType<Y> attributeType,
-				Member member) {
-			super(
-					declaringType,
-					name,
-					attributeClassification,
-					attributeType,
-					attributeType.getExpressibleJavaType(),
-					member,
-					false,
-					true,
-					false,
-					false
-			);
-		}
-	}
-
 	@Override
 	public boolean isId() {
 		return isIdentifier;

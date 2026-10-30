@@ -8,7 +8,7 @@ import jakarta.persistence.Embeddable;
  * @author Chris Cranford
  */
 @Embeddable
-public class ParentEmbeddable<MyType extends MyTypeInterface> {
+public class ParentEmbeddable<MyType> {
 	private Set<MyType> fields;
 
 	public Set<MyType> getFields() {

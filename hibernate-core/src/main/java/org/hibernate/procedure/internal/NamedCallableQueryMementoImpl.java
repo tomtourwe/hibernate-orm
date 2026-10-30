@@ -224,11 +224,6 @@ public class NamedCallableQueryMementoImpl extends AbstractQueryMemento<Object> 
 			return mode;
 		}
 
-		@Nonnull
-		public Class<T> getType() {
-			return type;
-		}
-
 		@Nullable
 		public BindableType<T> getHibernateType() {
 			return hibernateType;

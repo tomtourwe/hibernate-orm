@@ -9,30 +9,23 @@ public enum FormatStyle {
 	/**
 	 * Formatting for SELECT, INSERT, UPDATE and DELETE statements
 	 */
-	BASIC( "basic", AntlrBasedSQLFormatterImpl.INSTANCE ),
+	BASIC( AntlrBasedSQLFormatterImpl.INSTANCE ),
 	/**
 	 * Formatting for DDL (CREATE, ALTER, DROP, etc) statements
 	 */
-	DDL( "ddl", DDLFormatterImpl.INSTANCE ),
+	DDL( DDLFormatterImpl.INSTANCE ),
 	/**
 	 * Syntax highlighting via ANSI escape codes
 	 */
-	HIGHLIGHT( "highlight", HighlightingFormatter.INSTANCE ),
+	HIGHLIGHT( HighlightingFormatter.INSTANCE ),
 	/**
 	 * No formatting
 	 */
-	NONE( "none", NoFormatImpl.INSTANCE );
-
-	private final String name;
+	NONE( NoFormatImpl.INSTANCE );
 	private final Formatter formatter;
 
-	FormatStyle(String name, Formatter formatter) {
-		this.name = name;
+	FormatStyle(Formatter formatter) {
 		this.formatter = formatter;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public Formatter getFormatter() {

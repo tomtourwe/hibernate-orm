@@ -5,7 +5,6 @@ import jakarta.annotation.Nonnull;
 import org.hibernate.metamodel.mapping.CollectionPart;
 import org.hibernate.metamodel.mapping.ModelPart;
 import org.hibernate.metamodel.mapping.ModelPartContainer;
-import org.hibernate.metamodel.mapping.PluralAttributeMapping;
 import org.hibernate.metamodel.mapping.internal.AbstractDomainPath;
 import org.hibernate.metamodel.mapping.ordering.TranslationContext;
 import org.hibernate.spi.NavigablePath;
@@ -17,32 +16,19 @@ import org.hibernate.spi.NavigablePath;
  */
 public class CollectionPartPath extends AbstractDomainPath {
 	private final NavigablePath navigablePath;
-	private final PluralAttributePath lhs;
 	private final CollectionPart referencedPart;
 
 	CollectionPartPath(
 			PluralAttributePath lhs,
 			CollectionPart referencedPart) {
-		this.lhs = lhs;
 		this.referencedPart = referencedPart;
 
 		this.navigablePath = lhs.getNavigablePath().append( referencedPart.getPartName() );
 	}
 
 	@Override
-	public PluralAttributeMapping getPluralAttribute() {
-		return lhs.getPluralAttribute();
-	}
-
-	@Override
 	public NavigablePath getNavigablePath() {
 		return navigablePath;
-	}
-
-	@Nonnull
-	@Override
-	public PluralAttributePath getLhs() {
-		return lhs;
 	}
 
 	@Override
@@ -62,7 +48,7 @@ public class CollectionPartPath extends AbstractDomainPath {
 			if ( subPart == null ) {
 				throw new PathResolutionException( name );
 			}
-			return new DomainPathContinuation( navigablePath.append( name ), this, subPart );
+			return new DomainPathContinuation( navigablePath.append( name ), subPart );
 		}
 		else {
 			throw new PathResolutionException( name );

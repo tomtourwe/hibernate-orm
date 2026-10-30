@@ -13,7 +13,6 @@ import org.hibernate.metamodel.model.domain.internal.EntityPersisterConcurrentMa
 import org.hibernate.metamodel.spi.RuntimeModelCreationContext;
 import org.hibernate.persister.collection.CollectionPersister;
 import org.hibernate.persister.entity.EntityPersister;
-import org.hibernate.query.sqm.function.SqmFunctionRegistry;
 
 import static org.hibernate.metamodel.mapping.internal.MappingModelCreationLogging.MAPPING_MODEL_CREATION_MESSAGE_LOGGER;
 
@@ -60,10 +59,6 @@ public class MappingModelCreationProcess {
 
 	public EntityPersister getEntityPersister(String name) {
 		return entityPersisterMap.get( name );
-	}
-
-	public SqmFunctionRegistry getSqmFunctionRegistry() {
-		return creationContext.getFunctionRegistry();
 	}
 
 	/**

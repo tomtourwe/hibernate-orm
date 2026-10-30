@@ -22,22 +22,4 @@ public final class LockModeTypeHelper {
 		return LockModeConverter.convertToLockMode( lockModeType );
 	}
 
-	public static LockMode interpretLockMode(Object value) {
-		if ( value == null ) {
-			return LockMode.NONE;
-		}
-		else if ( value instanceof LockMode lockMode ) {
-			return lockMode;
-		}
-		else if ( value instanceof LockModeType lockModeType ) {
-			return getLockMode( lockModeType );
-		}
-		else if ( value instanceof String string ) {
-			return LockMode.fromExternalForm( string );
-		}
-		else {
-			throw new IllegalArgumentException( "Could not interpret '" + value.getClass().getName() + "' as a LockMode" );
-		}
-	}
-
 }

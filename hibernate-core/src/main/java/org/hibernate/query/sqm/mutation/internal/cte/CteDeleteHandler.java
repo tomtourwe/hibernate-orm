@@ -13,7 +13,6 @@ import org.hibernate.metamodel.mapping.EntityMappingType;
 import org.hibernate.metamodel.mapping.PluralAttributeMapping;
 import org.hibernate.query.spi.DomainQueryExecutionContext;
 import org.hibernate.query.sqm.internal.DomainParameterXref;
-import org.hibernate.query.sqm.mutation.internal.DeleteHandler;
 import org.hibernate.query.sqm.mutation.internal.MultiTableSqmMutationConverter;
 import org.hibernate.query.sqm.mutation.internal.SqmMutationStrategyHelper;
 import org.hibernate.query.sqm.sql.internal.SqlAstQueryPartProcessingStateImpl;
@@ -38,7 +37,7 @@ import org.hibernate.sql.results.graph.basic.BasicResult;
  *
  * @author Christian Beikov
  */
-public class CteDeleteHandler extends AbstractCteMutationHandler implements DeleteHandler {
+public class CteDeleteHandler extends AbstractCteMutationHandler {
 	private static final String DELETE_RESULT_TABLE_NAME_PREFIX = "delete_cte_";
 
 	protected CteDeleteHandler(

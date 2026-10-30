@@ -11,8 +11,4 @@ public class JtaPlatformInaccessibleException extends HibernateException {
 	public JtaPlatformInaccessibleException(String message) {
 		super( message );
 	}
-
-	public JtaPlatformInaccessibleException(String message, Throwable cause) {
-		super( message, cause );
-	}
 }

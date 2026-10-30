@@ -9,20 +9,12 @@ class SourceMock implements AccessCallback {
 	private volatile long currentValue;
 	private volatile int timesCalled;
 
-	public SourceMock(long initialValue) {
-		this( initialValue, 1 );
-	}
-
 	public SourceMock(long initialValue, int increment) {
 		this( null, initialValue, increment );
 	}
 
 	public SourceMock(String tenantId, long initialValue, int increment) {
 		this( tenantId, initialValue, increment, 0 );
-	}
-
-	public SourceMock(long initialValue, int increment, int timesCalled) {
-		this( null, initialValue, increment, timesCalled );
 	}
 
 	public SourceMock(String tenantId, long initialValue, int increment, int timesCalled) {

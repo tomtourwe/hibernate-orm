@@ -636,13 +636,4 @@ public class InsertCoordinatorStandard extends AbstractMutationCoordinator imple
 			return false;
 		}
 	}
-
-	/**
-	 * @deprecated Use {@link #getBatchKey()}
-	 */
-	@Nullable
-	@Deprecated
-	public BatchKey getInsertBatchKey() {
-		return batchKey;
-	}
 }

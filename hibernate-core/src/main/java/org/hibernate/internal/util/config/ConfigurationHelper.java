@@ -22,7 +22,6 @@ import static org.hibernate.cfg.MappingSettings.PREFERRED_INSTANT_JDBC_TYPE;
 import static org.hibernate.cfg.MappingSettings.PREFERRED_UUID_JDBC_TYPE;
 import static org.hibernate.internal.log.IncubationLogger.INCUBATION_LOGGER;
 import static org.hibernate.internal.util.StringHelper.isBlank;
-import static org.hibernate.internal.util.StringHelper.isNotEmpty;
 
 /**
  * Collection of helper methods for dealing with configuration settings.
@@ -242,22 +241,6 @@ public final class ConfigurationHelper {
 	}
 
 	/**
-	 * Replace a property value with a starred version
-	 *
-	 * @param properties properties to check
-	 * @param key property to mask
-	 *
-	 * @return cloned and masked properties
-	 */
-	public static Properties maskOut(Properties properties, String key) {
-		final var clone = (Properties) properties.clone();
-		if ( clone.get( key ) != null ) {
-			clone.setProperty( key, "****" );
-		}
-		return clone;
-	}
-
-	/**
 	 * Replace property values with starred versions
 	 *
 	 * @param properties properties to check
@@ -297,21 +280,6 @@ public final class ConfigurationHelper {
 			}
 		}
 		return result;
-	}
-
-	/**
-	 * Extract a property value by name from the given properties object.
-	 * <p>
-	 * Both {@code null} and {@code empty string} are viewed as the same, and return null.
-	 *
-	 * @param propertyName The name of the property for which to extract value
-	 * @param properties The properties object
-	 * @return The property value; may be null.
-	 */
-	public static String extractPropertyValue(String propertyName, Properties properties) {
-		final String value = properties.getProperty( propertyName );
-		return isBlank( value ) ? null : value.trim();
-
 	}
 	/**
 	 * Extract a property value by name from the given properties object.
@@ -466,12 +434,6 @@ public final class ConfigurationHelper {
 				? explicitSetting
 				: serviceRegistry.requireService( JdbcServices.class )
 						.getDialect().getPreferredSqlTypeCodeForArray();
-	}
-
-	public static void setIfNotEmpty(String value, String settingName, Map<String, String> configuration) {
-		if ( isNotEmpty( value ) ) {
-			configuration.put( settingName, value );
-		}
 	}
 
 	private static class TypeCodeConverter implements ConfigurationService.Converter<Integer> {

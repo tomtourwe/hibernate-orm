@@ -164,17 +164,6 @@ public interface DeprecationLogger extends BasicLogger {
 	)
 	void deprecatedSettingForRemoval(String settingName, String defaultValue);
 
-	/**
-	 * Different from {@link #deprecatedSetting} in that sometimes there is no
-	 * direct alternative
-	 */
-	@LogMessage(level = WARN)
-	@Message(
-			id = 90000030,
-			value = "The [%s] configuration is deprecated and will be removed."
-	)
-	void deprecatedSettingNoReplacement(String settingName);
-
 	@LogMessage(level = WARN)
 	@Message(
 			id = 90000031,
@@ -198,22 +187,6 @@ public interface DeprecationLogger extends BasicLogger {
 
 	@LogMessage(level = WARN)
 	@Message(
-			id = 90000035,
-			value = "Callback method annotated '@%s' declared by embeddable class '%s'"
-					+ " relies on an undocumented and unsupported capability"
-					+ " (lifecycle callback methods should be declared by entity classes)"
-	)
-	void embeddableLifecycleCallback(String annotationType, String embeddable);
-
-	@LogMessage(level = WARN)
-	@Message(
-			id = 90000036,
-			value = "Encountered deprecated hint [%s]"
-	)
-	void deprecatedHint(String deprecatedHint);
-
-	@LogMessage(level = WARN)
-	@Message(
 			id = 90000037,
 			value = "Encountered deprecated hint [%s], use [%s] instead"
 	)
@@ -232,13 +205,6 @@ public interface DeprecationLogger extends BasicLogger {
 			value = "Using %s which does not generate IETF RFC 4122 compliant UUID values; consider using %s instead"
 	)
 	void deprecatedUuidHexGenerator(String name, String name2);
-
-	@LogMessage(level = WARN)
-	@Message(
-			id = 90000040,
-			value = "DEPRECATED: use [%s] instead with custom [%s] implementation"
-	)
-	void deprecatedUuidGenerator(String name, String name2);
 
 	@LogMessage(level = WARN)
 	@Message(

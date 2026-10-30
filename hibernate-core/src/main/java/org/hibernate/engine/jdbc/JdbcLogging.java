@@ -178,10 +178,6 @@ public interface JdbcLogging extends BasicLogger {
 	@Message(value = "Encountered failure rolling back failed commit", id = 100038)
 	void encounteredFailureRollingBackFailedCommit(@Cause Throwable cause);
 
-	@LogMessage(level = DEBUG)
-	@Message(value = "Could not access DatabaseMetaData while building the JdbcEnvironment", id = 100039)
-	void noDatabaseMetaData(@Cause SQLException sqle);
-
 	@LogMessage(level = WARN)
 	@Message(value = "Could not obtain connection metadata: %s", id = 100045)
 	void unableToObtainConnectionMetadata(SQLException error);

@@ -26,7 +26,6 @@ import org.hibernate.sql.results.graph.Fetch;
 import org.hibernate.sql.results.graph.FetchOptions;
 import org.hibernate.sql.results.graph.FetchParent;
 import org.hibernate.sql.results.graph.basic.BasicFetch;
-import org.hibernate.sql.results.graph.basic.BasicResult;
 import org.hibernate.type.BasicType;
 import org.hibernate.type.descriptor.java.JavaType;
 
@@ -280,34 +279,6 @@ public class CollectionIdentifierDescriptorImpl implements CollectionIdentifierD
 				fetchablePath,
 				this,
 				FetchTiming.IMMEDIATE,
-				!sqlSelection.isVirtual()
-		);
-	}
-
-	public DomainResult<?> createDomainResult(
-			NavigablePath collectionPath,
-			TableGroup tableGroup,
-			DomainResultCreationState creationState) {
-		final var astCreationState = creationState.getSqlAstCreationState();
-		final var sqlExpressionResolver = astCreationState.getSqlExpressionResolver();
-
-		final var sqlSelection = sqlExpressionResolver.resolveSqlSelection(
-				sqlExpressionResolver.resolveSqlExpression(
-						tableGroup.getPrimaryTableReference(),
-						this
-				),
-				type.getJdbcJavaType(),
-				null,
-				astCreationState.getCreationContext()
-						.getTypeConfiguration()
-		);
-
-		return new BasicResult<>(
-				sqlSelection.getValuesArrayPosition(),
-				null,
-				type,
-				collectionPath,
-				false,
 				!sqlSelection.isVirtual()
 		);
 	}

@@ -15,7 +15,7 @@ public class UserTypeTest {
 	public void testTypeAnnotationIsDetected(EntityManagerFactoryScope scope) {
 		scope.inTransaction(
 				entityManager -> {
-					Account account = new Account( "first", new AccountCurrencyUnit( "2", 0 ) );
+					Account account = new Account( "first", new AccountCurrencyUnit( "2") );
 					entityManager.persist( account );
 				}
 		);

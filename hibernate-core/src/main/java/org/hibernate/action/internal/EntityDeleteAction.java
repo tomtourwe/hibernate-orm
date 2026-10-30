@@ -103,20 +103,6 @@ public class EntityDeleteAction extends EntityAction {
 		return state;
 	}
 
-	@Nullable
-	private Object getNaturalIdValues() {
-		return naturalIdValues;
-	}
-
-	@Nullable
-	protected SoftLock getLock() {
-		return lock;
-	}
-
-	protected void setLock(@Nullable SoftLock lock) {
-		this.lock = lock;
-	}
-
 	private boolean isInstanceLoaded() {
 		// A null instance signals that we're deleting an unloaded proxy.
 		return getInstance() != null;

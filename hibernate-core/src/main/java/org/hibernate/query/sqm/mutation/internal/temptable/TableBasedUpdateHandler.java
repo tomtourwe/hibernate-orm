@@ -24,7 +24,6 @@ import org.hibernate.query.sqm.internal.SqmUtil;
 import org.hibernate.query.sqm.mutation.internal.AbstractMutationHandler;
 import org.hibernate.query.sqm.mutation.internal.MultiTableSqmMutationConverter;
 import org.hibernate.query.sqm.mutation.internal.TableKeyExpressionCollector;
-import org.hibernate.query.sqm.mutation.internal.UpdateHandler;
 import org.hibernate.query.sqm.mutation.spi.AfterUseAction;
 import org.hibernate.query.sqm.spi.SqmParameterMappingModelResolutionAccess;
 import org.hibernate.query.sqm.tree.spi.expression.SqmParameter;
@@ -83,8 +82,7 @@ import static org.hibernate.sql.ast.spi.query.predicate.Predicate.combinePredica
 * @author Steve Ebersole
 */
 public class TableBasedUpdateHandler
-		extends AbstractMutationHandler
-		implements UpdateHandler {
+		extends AbstractMutationHandler {
 	private static final Logger LOG = Logger.getLogger( TableBasedUpdateHandler.class );
 
 	private final TemporaryTable idTable;
@@ -715,10 +713,5 @@ public class TableBasedUpdateHandler
 	// For Hibernate reactive
 	protected Function<SharedSessionContractImplementor, String> getSessionUidAccess() {
 		return sessionUidAccess;
-	}
-
-	// For Hibernate reactive
-	protected @Nullable JdbcParameter getSessionUidParameter() {
-		return sessionUidParameter;
 	}
 }

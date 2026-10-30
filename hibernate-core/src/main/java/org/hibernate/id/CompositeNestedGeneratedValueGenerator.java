@@ -121,13 +121,6 @@ public class CompositeNestedGeneratedValueGenerator
 	private final boolean needsValueBinding;
 	private final boolean hasAssignedValues;
 
-	public CompositeNestedGeneratedValueGenerator(
-			GenerationContextLocator generationContextLocator,
-			ComponentType componentType) {
-		this( generationContextLocator, componentType,
-				List.of(), null, null, null );
-	}
-
 	// Used by Hibernate Reactive to override generation plans
 	public CompositeNestedGeneratedValueGenerator(CompositeNestedGeneratedValueGenerator original, List<GenerationPlan> generationPlans) {
 		this.generationContextLocator = original.generationContextLocator;

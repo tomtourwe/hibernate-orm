@@ -31,15 +31,6 @@ public abstract class Tools {
 		return new LinkedHashMap<>();
 	}
 
-	public static <T> List<T> iteratorToList(Iterator<T> iter) {
-		final List<T> ret = new ArrayList<>();
-		while ( iter.hasNext() ) {
-			ret.add( iter.next() );
-		}
-
-		return ret;
-	}
-
 	public static <X> List<X> collectionToList(Collection<X> collection) {
 		if ( collection instanceof List ) {
 			return (List<X>) collection;

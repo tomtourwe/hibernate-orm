@@ -1,13 +1,7 @@
 package org.hibernate.orm.test.tool.schema.scripts;
 
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.dialect.H2Dialect;
 import org.hibernate.engine.config.spi.ConfigurationService;
-import org.hibernate.resource.transaction.backend.jta.internal.JtaTransactionCoordinatorBuilderImpl;
-import org.hibernate.resource.transaction.spi.TransactionCoordinatorBuilder;
-import org.hibernate.testing.jta.TestingJtaBootstrap;
 import org.hibernate.testing.orm.junit.DomainModel;
 import org.hibernate.testing.orm.junit.DomainModelScope;
 import org.hibernate.testing.orm.junit.JiraKey;
@@ -36,7 +30,6 @@ import java.util.EnumSet;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.endsWith;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hibernate.cfg.SchemaToolingSettings.HBM2DDL_AUTO;
 import static org.hibernate.cfg.SchemaToolingSettings.HBM2DDL_HALT_ON_ERROR;
@@ -134,21 +127,6 @@ public class StatementsWithoutTerminalCharsImportFileTest implements ExecutionOp
 		public ScriptTargetOutput getScriptTargetOutput() {
 			return null;
 		}
-	}
-
-
-	private Metadata buildMappings(StandardServiceRegistry registry) {
-		return new MetadataSources( registry )
-				.buildMetadata();
-	}
-
-	protected StandardServiceRegistry buildJtaStandardServiceRegistry() {
-		StandardServiceRegistry registry = TestingJtaBootstrap.prepare().build();
-		assertThat(
-				registry.getService( TransactionCoordinatorBuilder.class ),
-				instanceOf( JtaTransactionCoordinatorBuilderImpl.class )
-		);
-		return registry;
 	}
 
 }

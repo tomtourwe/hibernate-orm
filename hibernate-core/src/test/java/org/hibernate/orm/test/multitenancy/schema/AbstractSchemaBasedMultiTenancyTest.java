@@ -42,10 +42,6 @@ public abstract class AbstractSchemaBasedMultiTenancyTest<T extends MultiTenantC
 
 	protected SessionFactoryImplementor sessionFactory;
 
-	protected SessionFactoryImplementor getSessionFactory() {
-		return sessionFactory;
-	}
-
 	@BeforeEach
 	public void setUp() {
 		T multiTenantConnectionProvider = buildMultiTenantConnectionProvider();

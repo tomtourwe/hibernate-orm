@@ -1,8 +1,6 @@
 package org.hibernate.internal.util;
 
 import java.io.Serializable;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -21,34 +19,6 @@ sealed public interface Optional<T> extends Serializable {
 		return new Defined<>(t);
 	}
 
-	default boolean defined() {
-		return this instanceof Defined;
-	}
-
-	default void consume(Consumer<T> consumer) {
-		if (this instanceof Defined<T> defined) {
-			consumer.accept( defined.result() );
-		}
-	}
-
-	default void consume(Consumer<T> consumer, T value) {
-		if (this instanceof Defined<T> defined) {
-			consumer.accept( defined.result() );
-		}
-		else {
-			consumer.accept( value );
-		}
-	}
-
-	default void consume(Consumer<T> consumer, Supplier<T> supplier) {
-		if (this instanceof Defined<T> defined) {
-			consumer.accept( defined.result() );
-		}
-		else {
-			consumer.accept( supplier.get() );
-		}
-	}
-
 	default T evaluate(T value) {
 		return this instanceof Defined<T> defined
 				? defined.result()
@@ -59,17 +29,5 @@ sealed public interface Optional<T> extends Serializable {
 		return this instanceof Defined<T> defined
 				? defined.result()
 				: supplier.get();
-	}
-
-	default <X> X evaluate(Function<T,X> function, Supplier<X> supplier) {
-		return this instanceof Defined<T> defined
-				? function.apply( defined.result() )
-				: supplier.get();
-	}
-
-	default <X> X evaluate(Function<T,X> function, X value) {
-		return this instanceof Defined<T> defined
-				? function.apply( defined.result() )
-				: value;
 	}
 }

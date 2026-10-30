@@ -66,10 +66,6 @@ public class CollectionPropertyHolder extends AbstractPropertyHolder {
 		this.keyAttributeConversionInfoMap = new HashMap<>();
 	}
 
-	public Collection getCollectionBinding() {
-		return collection;
-	}
-
 	private void buildAttributeConversionInfoMaps(
 			MemberDetails collectionProperty,
 			boolean isComposite,
@@ -243,11 +239,6 @@ public class CollectionPropertyHolder extends AbstractPropertyHolder {
 	@Override
 	public String getClassName() {
 		throw new AssertionFailure( "Collection property holder does not have a class name" );
-	}
-
-	@Override
-	public String getEntityOwnerClassName() {
-		return null;
 	}
 
 	@Override

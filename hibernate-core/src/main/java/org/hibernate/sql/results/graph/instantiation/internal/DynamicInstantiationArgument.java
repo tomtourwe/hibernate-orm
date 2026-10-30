@@ -16,10 +16,6 @@ public class DynamicInstantiationArgument<T> {
 		this.alias = alias;
 	}
 
-	public String getAlias() {
-		return alias;
-	}
-
 	public ArgumentDomainResult<T> buildArgumentDomainResult(DomainResultCreationState creationState) {
 		final var sqlExpressionResolver =
 				creationState.getSqlAstCreationState().getCurrentProcessingState()

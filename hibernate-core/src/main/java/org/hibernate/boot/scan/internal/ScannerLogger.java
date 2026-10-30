@@ -11,7 +11,6 @@ import org.jboss.logging.annotations.MessageLogger;
 import org.jboss.logging.annotations.ValidIdRange;
 
 import java.lang.invoke.MethodHandles;
-import java.net.URL;
 import java.util.Locale;
 
 /**
@@ -37,10 +36,6 @@ public interface ScannerLogger extends BasicLogger {
 	@LogMessage(level = Logger.Level.DEBUG)
 	@Message(id = 60002, value = "No ScanningProvider available (to enable scanning add 'hibernate-scan-jandex' dependency or supply a custom ScanningProvider)")
 	void noScannerFactoryAvailable();
-
-	@LogMessage(level = Logger.Level.DEBUG)
-	@Message(id = 60003, value = "Unable to resolve class [%s] named in persistence unit [%s]")
-	void unableToResolveClass(String className, URL rootUrl);
 
 	@LogMessage(level = Logger.Level.WARN)
 	@Message(id = 60004, value = "Scanning was triggered, but no ScanningProvider available; did you forget to add 'hibernate-scan-jandex' dependency?")

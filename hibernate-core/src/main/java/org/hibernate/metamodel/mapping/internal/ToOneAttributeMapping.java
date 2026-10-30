@@ -83,7 +83,6 @@ import org.hibernate.sql.results.graph.DomainResult;
 import org.hibernate.sql.results.graph.DomainResultAssembler;
 import org.hibernate.sql.results.graph.DomainResultCreationState;
 import org.hibernate.sql.results.graph.Fetch;
-import org.hibernate.sql.results.graph.FetchOptions;
 import org.hibernate.sql.results.graph.FetchParent;
 import org.hibernate.sql.results.graph.Fetchable;
 import org.hibernate.sql.results.graph.InitializerParent;
@@ -214,34 +213,6 @@ public class ToOneAttributeMapping
 		identifyingColumnsTableExpression = original.identifyingColumnsTableExpression;
 		canUseParentTableGroup = original.canUseParentTableGroup;
 		temporalTableStrategy = original.temporalTableStrategy;
-	}
-
-	public ToOneAttributeMapping(
-			String name,
-			NavigableRole navigableRole,
-			int stateArrayPosition,
-			int fetchableIndex,
-			ToOne bootValue,
-			AttributeMetadata attributeMetadata,
-			FetchOptions mappedFetchOptions,
-			EntityMappingType entityMappingType,
-			ManagedMappingType declaringType,
-			EntityPersister declaringEntityPersister,
-			PropertyAccess propertyAccess) {
-		this(
-				name,
-				navigableRole,
-				stateArrayPosition,
-				fetchableIndex,
-				bootValue,
-				attributeMetadata,
-				mappedFetchOptions.getTiming(),
-				mappedFetchOptions.getStyle(),
-				entityMappingType,
-				declaringType,
-				declaringEntityPersister,
-				propertyAccess
-		);
 	}
 
 	public ToOneAttributeMapping(
@@ -2733,10 +2704,6 @@ public class ToOneAttributeMapping
 	@Nullable
 	public NotFoundAction getNotFoundAction() {
 		return notFoundAction;
-	}
-
-	public boolean isIgnoreNotFound(){
-		return notFoundAction == NotFoundAction.IGNORE;
 	}
 
 	public boolean hasNotFoundAction() {

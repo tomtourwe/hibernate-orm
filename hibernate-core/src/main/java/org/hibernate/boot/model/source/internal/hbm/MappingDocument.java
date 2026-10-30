@@ -17,7 +17,6 @@ import org.hibernate.boot.spi.InFlightMetadataCollector;
 import org.hibernate.boot.spi.MetadataBuildingContext;
 import org.hibernate.boot.spi.MetadataBuildingOptions;
 import org.hibernate.internal.util.StringHelper;
-import org.hibernate.mapping.PersistentClass;
 
 
 import static org.hibernate.boot.BootLogging.BOOT_LOGGER;
@@ -108,11 +107,6 @@ public class MappingDocument implements HbmLocalMetadataBuildingContext, Metadat
 	@Override
 	public String qualifyClassName(String name) {
 		return qualifyIfNeeded( name, mappingDefaults.getDefaultPackageName() );
-	}
-
-	@Override
-	public PersistentClass findEntityBinding(String entityName, String clazz) {
-		return getMetadataCollector().getEntityBinding( determineEntityName( entityName, clazz ) );
 	}
 
 	@Override

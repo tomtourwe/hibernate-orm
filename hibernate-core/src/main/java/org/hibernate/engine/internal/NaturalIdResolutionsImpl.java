@@ -708,13 +708,6 @@ public class NaturalIdResolutionsImpl implements NaturalIdResolutions, Serializa
 	}
 
 	/**
-	 * Clear the resolution cache
-	 */
-	public void clear() {
-		resolutionsByEntity.clear();
-	}
-
-	/**
 	 * Represents the entity-specific cross-reference cache.
 	 */
 	public static class EntityResolutions implements Serializable {
@@ -734,10 +727,6 @@ public class NaturalIdResolutionsImpl implements NaturalIdResolutions, Serializa
 
 		public EntityMappingType getEntityDescriptor() {
 			return entityDescriptor;
-		}
-
-		public EntityPersister getPersister() {
-			return getEntityDescriptor().getEntityPersister();
 		}
 
 		/**

@@ -121,10 +121,6 @@ public class DocFileManager {
 	 */
 	private final Map<String, DocFile> packageEntityListDocFile = new HashMap<String, DocFile>();
 
-	public DocFolder getRootDocFolder() {
-		return rootDocFolder;
-	}
-
 	/**
 	 * Constructor.
 	 *
@@ -213,16 +209,6 @@ public class DocFileManager {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Returns the DocFolder for the helper files.
-	 *
-	 * @return the value.
-	 */
-	public DocFolder getAssetsDocFolder() {
-
-		return assetsDocFolder;
 	}
 
 	/**

@@ -25,35 +25,6 @@ public final class CollectionUpdateAction extends CollectionAction {
 	private final boolean emptySnapshot;
 	@Nullable
 	private final Object affectedOwner;
-	@Nullable
-	private final Object affectedOwnerId;
-
-	/**
-	 * Constructs a CollectionUpdateAction
-	 * @param collection The collection to update
-	 * @param persister The collection persister
-	 * @param id The collection key
-	 * @param emptySnapshot Indicates if the snapshot is empty
-	 * @param session The session
-	 */
-	public CollectionUpdateAction(
-				final @Nonnull PersistentCollection<?> collection,
-				final @Nonnull CollectionPersister persister,
-				final @Nonnull Object id,
-				final boolean emptySnapshot,
-				final @Nonnull EventSource session) {
-		super( persister, collection, id, session );
-		assert collection != null;
-		assert persister != null;
-		assert id != null;
-		this.emptySnapshot = emptySnapshot;
-		// Capture the owner at action creation time so it's available when the post-event
-		// fires (which may be after the collection owner reference has been cleared)
-		affectedOwner = collection.getOwner();
-		// Also capture the owner ID from the entity entry at action creation time
-		final var ownerEntry = session.getPersistenceContextInternal().getEntry( affectedOwner );
-		affectedOwnerId = ownerEntry != null ? ownerEntry.getId() : null;
-	}
 
 	/// Creates the legacy lowering of an already-prepared semantic mutation.
 	///
@@ -70,7 +41,6 @@ public final class CollectionUpdateAction extends CollectionAction {
 		super( persister, collection, id, session, true, interpretation );
 		this.emptySnapshot = emptySnapshot;
 		this.affectedOwner = affectedOwner;
-		this.affectedOwnerId = affectedOwnerId;
 	}
 
 	@Override
@@ -87,10 +57,6 @@ public final class CollectionUpdateAction extends CollectionAction {
 		final Object key = super.getKey();
 		assert key != null;
 		return key;
-	}
-
-	public boolean isEmptySnapshot() {
-		return emptySnapshot;
 	}
 
 	@Override
@@ -216,11 +182,6 @@ public final class CollectionUpdateAction extends CollectionAction {
 	@Nullable
 	public Object getAffectedOwner() {
 		return affectedOwner;
-	}
-
-	@Nullable
-	public Object getAffectedOwnerId() {
-		return affectedOwnerId;
 	}
 
 }

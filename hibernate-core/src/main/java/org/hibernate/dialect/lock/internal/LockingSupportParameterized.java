@@ -78,16 +78,6 @@ public class LockingSupportParameterized implements LockingSupport, LockingSuppo
 			boolean supportsWait,
 			boolean supportsNoWait,
 			boolean supportsSkipLocked,
-			OuterJoinLockingType outerJoinLockingType) {
-		this( pessimisticLockStyle, rowLockStrategy, supportsWait, supportsNoWait, supportsSkipLocked, outerJoinLockingType, true );
-	}
-
-	public LockingSupportParameterized(
-			PessimisticLockStyle pessimisticLockStyle,
-			RowLockStrategy rowLockStrategy,
-			boolean supportsWait,
-			boolean supportsNoWait,
-			boolean supportsSkipLocked,
 			OuterJoinLockingType outerJoinLockingType,
 			boolean readsWaitForUncommittedWrites) {
 		this(

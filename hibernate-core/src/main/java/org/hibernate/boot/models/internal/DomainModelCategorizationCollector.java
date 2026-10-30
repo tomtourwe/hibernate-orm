@@ -41,18 +41,6 @@ public class DomainModelCategorizationCollector {
 		return globalRegistrations;
 	}
 
-	public Set<ClassDetails> getRootEntities() {
-		return rootEntities;
-	}
-
-	public Map<String, ClassDetails> getMappedSuperclasses() {
-		return mappedSuperclasses;
-	}
-
-	public Map<String, ClassDetails> getEmbeddables() {
-		return embeddables;
-	}
-
 	public void apply(JaxbEntityMappingsImpl jaxbRoot, XmlDocumentContext xmlDocumentContext) {
 		globalRegistrations.collectJavaTypeRegistrations( jaxbRoot.getJavaTypeRegistrations() );
 		globalRegistrations.collectJdbcTypeRegistrations( jaxbRoot.getJdbcTypeRegistrations() );

@@ -18,26 +18,21 @@ public class AttributeConversionInfo {
 	private final boolean conversionDisabled;
 	private final String attributeName;
 
-	private final AnnotationTarget source;
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public AttributeConversionInfo(
 			Class<? extends AttributeConverter> converterClass,
 			boolean conversionDisabled,
-			String attributeName,
-			AnnotationTarget source) {
+			String attributeName) {
 		this.converterClass = (Class<? extends AttributeConverter<?, ?>>) converterClass;
 		this.conversionDisabled = conversionDisabled;
 		this.attributeName = attributeName;
-		this.source = source;
 	}
 
 	public AttributeConversionInfo(Convert convertAnnotation, AnnotationTarget source) {
 		this(
 				convertAnnotation.converter(),
 				convertAnnotation.disableConversion(),
-				convertAnnotation.attributeName(),
-				source
+				convertAnnotation.attributeName()
 		);
 	}
 
@@ -62,12 +57,5 @@ public class AttributeConversionInfo {
 	 */
 	public boolean isConversionDisabled() {
 		return conversionDisabled;
-	}
-
-	/**
-	 * The annotated element
-	 */
-	public AnnotationTarget getSource() {
-		return source;
 	}
 }

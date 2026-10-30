@@ -188,7 +188,6 @@ public abstract class AbstractCollectionPersister
 	private final String mappedByProperty;
 
 	protected final boolean indexContainsFormula;
-	protected final boolean elementIsPureFormula;
 
 	// columns
 	protected final String[] keyColumnNames;
@@ -201,8 +200,6 @@ public abstract class AbstractCollectionPersister
 	@Nullable
 	protected final String[] indexFormulas;
 	@Nullable
-	protected final boolean[] indexColumnIsGettable;
-	@Nullable
 	protected final boolean[] indexColumnIsSettable;
 	protected final String[] elementColumnNames;
 	protected final String[] elementColumnWriters;
@@ -210,7 +207,6 @@ public abstract class AbstractCollectionPersister
 	protected final String[] elementColumnReaderTemplates;
 	protected final String[] elementFormulaTemplates;
 	protected final String[] elementFormulas;
-	protected final boolean[] elementColumnIsGettable;
 	protected final boolean[] elementColumnIsSettable;
 
 	@Nullable
@@ -381,7 +377,6 @@ public abstract class AbstractCollectionPersister
 		elementFormulaTemplates = new String[elementSpan];
 		elementFormulas = new String[elementSpan];
 		elementColumnIsSettable = new boolean[elementSpan];
-		elementColumnIsGettable = new boolean[elementSpan];
 		boolean isPureFormula = true;
 		final boolean oneToMany = collectionBootDescriptor.isOneToMany();
 		final boolean[] columnInsertability = oneToMany ? null : elementBootDescriptor.getColumnInsertability();
@@ -401,7 +396,6 @@ public abstract class AbstractCollectionPersister
 				);
 				elementColumnReaders[j] = column.getReadExpr( dialect );
 				elementColumnReaderTemplates[j] = column.getTemplate( dialect, typeConfiguration );
-				elementColumnIsGettable[j] = true;
 				if ( elementType instanceof ComponentType || elementType instanceof AnyType ) {
 					// Implements desired behavior specifically for @ElementCollection mappings.
 					elementColumnIsSettable[j] = columnInsertability[j];
@@ -414,7 +408,6 @@ public abstract class AbstractCollectionPersister
 			}
 			j++;
 		}
-		elementIsPureFormula = isPureFormula;
 
 		// INDEX AND ROW SELECT
 
@@ -429,7 +422,6 @@ public abstract class AbstractCollectionPersister
 			indexColumnNames = new String[indexSpan];
 			indexFormulaTemplates = new String[indexSpan];
 			indexFormulas = new String[indexSpan];
-			indexColumnIsGettable = new boolean[indexSpan];
 			indexColumnIsSettable = new boolean[indexSpan];
 			indexColumnAliases = new String[indexSpan];
 			int i = 0;
@@ -452,7 +444,6 @@ public abstract class AbstractCollectionPersister
 						hasFormula = true; // this is incorrect, but needed for some reason
 					}
 					indexColumnNames[i] = indexColumn.getQuotedName( dialect );
-					indexColumnIsGettable[i] = true;
 					indexColumnIsSettable[i] = indexColumnInsertability[i] || indexColumnUpdatability[i];
 				}
 				i++;
@@ -461,7 +452,6 @@ public abstract class AbstractCollectionPersister
 		}
 		else {
 			indexContainsFormula = false;
-			indexColumnIsGettable = null;
 			indexColumnIsSettable = null;
 			indexFormulaTemplates = null;
 			indexFormulas = null;
@@ -1408,11 +1398,6 @@ public abstract class AbstractCollectionPersister
 		return elementPersister;
 	}
 
-	@Nullable
-	protected EntityPersister getElementPersisterInternal() {
-		return elementPersister;
-	}
-
 	@Nonnull
 	@Override
 	public String[] getCollectionSpaces() {
@@ -1614,11 +1599,6 @@ public abstract class AbstractCollectionPersister
 	@Override
 	public boolean isExtraLazy() {
 		return isExtraLazy;
-	}
-
-	@Nonnull
-	protected Dialect getDialect() {
-		return dialect;
 	}
 
 	@Override

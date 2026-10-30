@@ -1,7 +1,6 @@
 package org.hibernate.jpa.internal.enhance;
 
 import java.security.ProtectionDomain;
-import org.hibernate.bytecode.enhance.spi.EnhancementModel;
 import org.hibernate.bytecode.enhance.spi.EnhancementOptions;
 import org.hibernate.bytecode.spi.BytecodeProvider;
 
@@ -20,11 +19,6 @@ public final class ClientClassTransformer implements ClassTransformer {
 	private final BytecodeProvider provider;
 	private final Object transformerToken = new Object();
 	private final EnhancementOptions options = EnhancementOptions.of(false, false, false);
-
-	public ClientClassTransformer(EnhancementModel model, BytecodeProvider provider, ClassLoader temporaryLoader) {
-		this(new PersistenceUnitEnhancementState(model), provider);
-		state.discoverTemporaryTypes(temporaryLoader, this.provider);
-	}
 
 	public ClientClassTransformer(PersistenceUnitEnhancementState state, BytecodeProvider provider) {
 		this.state = state;

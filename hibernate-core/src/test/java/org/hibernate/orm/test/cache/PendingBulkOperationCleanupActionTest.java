@@ -174,21 +174,11 @@ public class PendingBulkOperationCleanupActionTest {
 
 	public static class TestCachingRegionFactory extends CachingRegionFactory {
 		private static final Logger LOG = Logger.getLogger( org.hibernate.testing.cache.CachingRegionFactory.class.getName() );
-
-		public static final String DEFAULT_ACCESSTYPE = "DefaultAccessType";
 		private final CacheKeysFactory cacheKeysFactory;
 		private TestDomainDataRegion testDomainDataRegion;
 
 		public TestCachingRegionFactory() {
 			this( DefaultCacheKeysFactory.INSTANCE, null );
-		}
-
-		public TestCachingRegionFactory(CacheKeysFactory cacheKeysFactory) {
-			this( cacheKeysFactory, null );
-		}
-
-		public TestCachingRegionFactory(Properties properties) {
-			this( DefaultCacheKeysFactory.INSTANCE, properties );
 		}
 
 		public TestCachingRegionFactory(CacheKeysFactory cacheKeysFactory, Properties properties) {

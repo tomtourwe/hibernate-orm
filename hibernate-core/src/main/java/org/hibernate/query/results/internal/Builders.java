@@ -123,11 +123,6 @@ public class Builders {
 		return new DynamicResultBuilderBasicConverted<>( columnAlias, domainJavaType, jdbcJavaType, converterJavaType, sessionFactory );
 	}
 
-	public static ResultBuilderBasicValued scalar(int position) {
-		// will be needed for interpreting legacy HBM <resultset/> mappings
-		return new DynamicResultBuilderBasicStandard( position );
-	}
-
 	public static ResultBuilderBasicValued scalar(int position, BasicType<?> type) {
 		// will be needed for interpreting legacy HBM <resultset/> mappings
 		return new DynamicResultBuilderBasicStandard( position, type );

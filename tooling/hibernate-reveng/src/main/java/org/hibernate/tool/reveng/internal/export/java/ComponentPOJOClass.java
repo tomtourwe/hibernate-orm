@@ -82,10 +82,6 @@ public class ComponentPOJOClass extends BasicPOJOClass {
 		return false;
 	}
 
-	public boolean needsAnnTableUniqueConstraints() {
-		return false;
-	}
-
 	public String generateBasicAnnotation(Property property) {
 		return "";
 	}

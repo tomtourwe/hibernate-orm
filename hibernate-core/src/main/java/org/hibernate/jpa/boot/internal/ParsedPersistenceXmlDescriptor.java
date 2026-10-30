@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -147,10 +146,6 @@ public class ParsedPersistenceXmlDescriptor implements PersistenceUnitDescriptor
 		this.validationMode = validationMode;
 	}
 
-	public void setValidationMode(String validationMode) {
-		setValidationMode( ValidationMode.valueOf( validationMode ) );
-	}
-
 	@Override
 	public SharedCacheMode getSharedCacheMode() {
 		return sharedCacheMode;
@@ -158,10 +153,6 @@ public class ParsedPersistenceXmlDescriptor implements PersistenceUnitDescriptor
 
 	public void setSharedCacheMode(SharedCacheMode sharedCacheMode) {
 		this.sharedCacheMode = sharedCacheMode;
-	}
-
-	public void setSharedCacheMode(String sharedCacheMode) {
-		setSharedCacheMode( SharedCacheMode.valueOf( sharedCacheMode ) );
 	}
 
 	@Override
@@ -172,10 +163,6 @@ public class ParsedPersistenceXmlDescriptor implements PersistenceUnitDescriptor
 	@Override
 	public List<String> getAllClassNames() {
 		return classes;
-	}
-
-	public void addClasses(String... classes) {
-		addClasses( Arrays.asList( classes ) );
 	}
 
 	public void addClasses(List<String> classes) {
@@ -203,10 +190,6 @@ public class ParsedPersistenceXmlDescriptor implements PersistenceUnitDescriptor
 	@Override
 	public List<String> getMappingFileNames() {
 		return mappingFiles;
-	}
-
-	public void addMappingFiles(String... mappingFiles) {
-		addMappingFiles( Arrays.asList( mappingFiles ) );
 	}
 
 	public void addMappingFiles(List<String> mappingFiles) {

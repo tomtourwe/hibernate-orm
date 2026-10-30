@@ -43,8 +43,4 @@ public interface UUIDLogger extends BasicLogger {
 	@LogMessage(level = WARN)
 	@Message(value = "Unable to locate requested UUID generation strategy class: %s", id = 90302)
 	void unableToLocateUuidGenerationStrategy(String strategyClassName);
-
-	@LogMessage(level = WARN)
-	@Message(value = "GUID identifier generated: %s", id = 90305)
-	void guidGenerated(String result);
 }

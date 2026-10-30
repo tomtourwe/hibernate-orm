@@ -132,10 +132,6 @@ public class CollectionAuditSupport {
 		return mutationTarget;
 	}
 
-	public @Nullable EntityAuditSupport getOwnerMutationSupport() {
-		return ownerMutationSupport;
-	}
-
 	/// Resolve the owning entity change implied by an audited collection change.
 	///
 	/// Collection audit rows record the row-level ADD/DEL changes, while the

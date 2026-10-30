@@ -26,17 +26,9 @@ public abstract class AbstractCommonBuilder<T extends CommonBuilder> implements 
 	protected final SessionFactoryImplementor sessionFactory;
 	protected final CommonOptions options;
 
-	public AbstractCommonBuilder(SessionFactoryImplementor factory) {
-		this( factory, new CommonOptions( factory ) );
-	}
-
 	protected AbstractCommonBuilder(SessionFactoryImplementor factory, CommonOptions options) {
 		sessionFactory = factory;
 		this.options = options;
-	}
-
-	protected CommonOptions options() {
-		return options;
 	}
 
 	protected abstract T getThis();

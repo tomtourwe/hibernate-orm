@@ -18,10 +18,6 @@ public class MutableBoolean {
 		return value;
 	}
 
-	public void set() {
-		value = true;
-	}
-
 	public void unset() {
 		value = false;
 	}

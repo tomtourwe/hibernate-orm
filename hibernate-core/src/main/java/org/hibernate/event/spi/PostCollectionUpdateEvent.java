@@ -32,21 +32,6 @@ public class PostCollectionUpdateEvent extends AbstractCollectionEvent {
 			@Nonnull CollectionPersister collectionPersister,
 			@Nonnull PersistentCollection<?> collection,
 			@Nonnull EventSource source,
-			@Nullable Object affectedOwner) {
-		super(
-				collectionPersister,
-				collection,
-				source,
-				affectedOwner,
-				getOwnerIdOrNull( affectedOwner, source )
-		);
-	}
-
-	@Internal
-	public PostCollectionUpdateEvent(
-			@Nonnull CollectionPersister collectionPersister,
-			@Nonnull PersistentCollection<?> collection,
-			@Nonnull EventSource source,
 			@Nullable Object affectedOwner,
 			@Nullable Object affectedOwnerId) {
 		super(

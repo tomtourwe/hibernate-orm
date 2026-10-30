@@ -3,7 +3,6 @@ package org.hibernate.boot.model.source.internal.hbm;
 import org.hibernate.boot.jaxb.hbm.spi.EntityInfo;
 import org.hibernate.boot.model.source.spi.LocalMetadataBuildingContext;
 import org.hibernate.boot.model.source.spi.ToolingHintContext;
-import org.hibernate.mapping.PersistentClass;
 
 /**
  * Access to contextual information specific to a {@code hbm.xml} mapping.
@@ -18,6 +17,4 @@ public interface HbmLocalMetadataBuildingContext extends LocalMetadataBuildingCo
 	String determineEntityName(String entityName, String clazz);
 
 	String qualifyClassName(String name);
-
-	PersistentClass findEntityBinding(String entityName, String clazz);
 }

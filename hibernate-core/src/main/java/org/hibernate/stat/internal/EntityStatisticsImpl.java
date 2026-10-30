@@ -46,10 +46,6 @@ public class EntityStatisticsImpl extends AbstractCacheableDataStatistics implem
 		return updateCount.sum();
 	}
 
-	public long getUpsertCount() {
-		return upsertCount.sum();
-	}
-
 	public long getFetchCount() {
 		return fetchCount.sum();
 	}

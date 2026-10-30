@@ -33,8 +33,6 @@ import java.util.function.BiConsumer;
 public class FixupTableUpdate {
 	private final EntityTableDescriptor tableDescriptor;
 	private final EntityPersister entityPersister;
-	private final List<ColumnDescriptor> fixupColumnDescriptors;
-	private final List<ColumnDescriptor> pkColumnDescriptors;
 
 	private final String sql;
 	private final Map<String, JdbcValueDescriptor> jdbcValueDescriptorMap;
@@ -53,32 +51,10 @@ public class FixupTableUpdate {
 		//		we can get them from the table descriptor as well
 		this.tableDescriptor = tableDescriptor;
 		this.entityPersister = entityPersister;
-		this.fixupColumnDescriptors = fixupColumnDescriptors;
-		this.pkColumnDescriptors = pkColumnDescriptors;
 
 		// Generate SQL at construction time
 		this.jdbcValueDescriptorMap = new HashMap<>();
 		this.sql = buildSql( tableDescriptor, fixupColumnDescriptors, pkColumnDescriptors, jdbcValueDescriptorMap::put );
-	}
-
-	public TableDescriptor getTableDescriptor() {
-		return tableDescriptor;
-	}
-
-	public String getSql() {
-		return sql;
-	}
-
-	public Map<String, JdbcValueDescriptor> getJdbcValueDescriptorMap() {
-		return jdbcValueDescriptorMap;
-	}
-
-	public List<ColumnDescriptor> getNormalizedFkColumns() {
-		return fixupColumnDescriptors;
-	}
-
-	public List<ColumnDescriptor> getNormalizedPkColumns() {
-		return pkColumnDescriptors;
 	}
 
 	public PreparableMutationOperation buildJdbcUpdate() {

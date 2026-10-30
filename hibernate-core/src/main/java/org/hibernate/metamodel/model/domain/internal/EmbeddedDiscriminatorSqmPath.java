@@ -3,7 +3,6 @@ package org.hibernate.metamodel.model.domain.internal;
 import jakarta.annotation.Nullable;
 import jakarta.annotation.Nonnull;
 import org.hibernate.query.sqm.spi.DiscriminatorSqmPath;
-import org.hibernate.metamodel.model.domain.EmbeddableDomainType;
 import org.hibernate.query.sqm.spi.NodeBuilder;
 import org.hibernate.query.sqm.spi.SemanticQueryWalker;
 import org.hibernate.query.sqm.spi.SqmPathSource;
@@ -20,21 +19,12 @@ import static org.hibernate.internal.util.NullnessUtil.castNonNull;
  * @author Marco Belladelli
  */
 public class EmbeddedDiscriminatorSqmPath<T> extends AbstractSqmPath<T> implements DiscriminatorSqmPath<T> {
-	private final EmbeddableDomainType<T> embeddableDomainType;
-
 	protected EmbeddedDiscriminatorSqmPath(
 			@Nonnull NavigablePath navigablePath,
 			@Nonnull SqmPathSource<T> referencedPathSource,
 			@Nullable SqmPath<?> lhs,
-			@Nonnull EmbeddableDomainType<T> embeddableDomainType,
 			@Nonnull NodeBuilder nodeBuilder) {
 		super( navigablePath, referencedPathSource, lhs, nodeBuilder );
-		this.embeddableDomainType = embeddableDomainType;
-	}
-
-	@Nonnull
-	public EmbeddableDomainType<T> getEmbeddableDomainType() {
-		return embeddableDomainType;
 	}
 
 	@Override

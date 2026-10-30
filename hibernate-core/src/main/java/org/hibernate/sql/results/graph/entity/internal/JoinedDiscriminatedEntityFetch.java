@@ -71,14 +71,6 @@ public class JoinedDiscriminatedEntityFetch extends AbstractDiscriminatedEntityR
 		return entityMappingType.isAffectedByEnabledFilters( loadQueryInfluencers, true );
 	}
 
-	protected List<EntityResultImpl<?>> getConcreteEntityResults() {
-		return concreteEntityResults;
-	}
-
-	protected BitSet getAffectedByFilters() {
-		return affectedByFilters;
-	}
-
 	@Override
 	public FetchParent getFetchParent() {
 		return fetchParent;

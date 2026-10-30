@@ -339,10 +339,6 @@ public class DiscriminatedAssociationMapping implements MappingType, FetchOption
 		}
 	}
 
-	public MappingType getPartMappingType() {
-		return this;
-	}
-
 	public JavaType<?> getJavaType() {
 		return baseAssociationJtd;
 	}

@@ -1,6 +1,5 @@
 package org.hibernate.sql;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -33,10 +32,6 @@ public class Update implements RestrictionRenderingContext {
 		this.parameterMarkerStrategy = parameterMarkerStrategy;
 	}
 
-	public String getTableName() {
-		return tableName;
-	}
-
 	public Update setTableName(String tableName) {
 		this.tableName = tableName;
 		return this;
@@ -47,13 +42,6 @@ public class Update implements RestrictionRenderingContext {
 		return this;
 	}
 
-	public Update addAssignments(String... columnNames) {
-		for ( String columnName : columnNames ) {
-			addAssignment( columnName );
-		}
-		return this;
-	}
-
 	public Update addAssignment(String columnName) {
 		return addAssignment( columnName, "?" );
 	}
@@ -61,10 +49,6 @@ public class Update implements RestrictionRenderingContext {
 	public Update addAssignment(String columnName, String valueExpression) {
 		assignments.put( columnName, valueExpression );
 		return this;
-	}
-
-	public void addAssignments(Collection<String> columns) {
-		columns.forEach( this::addAssignment );
 	}
 
 	public Update addRestriction(String column) {
@@ -82,11 +66,6 @@ public class Update implements RestrictionRenderingContext {
 		return this;
 	}
 
-	public Update addRestriction(String column, String value) {
-		restrictions.add( new ComparisonRestriction( column, value ) );
-		return this;
-	}
-
 	public Update addRestriction(String column, ComparisonRestriction.Operator op, String value) {
 		restrictions.add( new ComparisonRestriction( column, op, value ) );
 		return this;
@@ -101,12 +80,6 @@ public class Update implements RestrictionRenderingContext {
 	@SuppressWarnings("UnusedReturnValue")
 	public Update addColumnIsNullRestriction(String columnName) {
 		restrictions.add( new NullnessRestriction( columnName ) );
-		return this;
-	}
-
-	@SuppressWarnings("UnusedReturnValue")
-	public Update addColumnIsNotNullRestriction(String columnName) {
-		restrictions.add( new NullnessRestriction( columnName, false ) );
 		return this;
 	}
 

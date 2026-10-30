@@ -15,15 +15,6 @@ import org.hibernate.property.access.spi.PropertyAccessorService;
  * @author Gavin King
  */
 public class PropertyAccessStrategyEnhancedImpl implements PropertyAccessStrategy {
-	public static PropertyAccessStrategy with(AccessType getterAccessType) {
-		return getterAccessType == null
-				? STANDARD
-				: switch ( getterAccessType ) {
-					case FIELD -> FIELD;
-					case PROPERTY -> PROPERTY;
-				};
-	}
-
 	private final @Nullable AccessType classAccessType;
 
 	public static PropertyAccessStrategy STANDARD = new PropertyAccessStrategyEnhancedImpl( null );

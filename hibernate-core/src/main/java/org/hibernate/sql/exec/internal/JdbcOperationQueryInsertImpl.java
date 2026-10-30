@@ -18,22 +18,6 @@ public class JdbcOperationQueryInsertImpl
 		extends AbstractJdbcOperationQueryInsert
 		implements JdbcOperationQueryMutation {
 
-
-	public JdbcOperationQueryInsertImpl(
-			String sql,
-			List<JdbcParameterBinder> parameterBinders,
-			Set<String> affectedTableNames) {
-		super( sql, parameterBinders, affectedTableNames, null );
-	}
-
-	public JdbcOperationQueryInsertImpl(
-			String sql,
-			List<JdbcParameterBinder> parameterBinders,
-			Set<String> affectedTableNames,
-			String uniqueConstraintNameThatMayFail) {
-		super( sql, parameterBinders, affectedTableNames, uniqueConstraintNameThatMayFail );
-	}
-
 	public JdbcOperationQueryInsertImpl(
 			String sql,
 			List<JdbcParameterBinder> parameterBinders,

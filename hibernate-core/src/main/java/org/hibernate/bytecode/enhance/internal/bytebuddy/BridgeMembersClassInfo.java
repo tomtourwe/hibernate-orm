@@ -23,16 +23,8 @@ public class BridgeMembersClassInfo {
 		return getters;
 	}
 
-	public Iterable<Member> settersIterable() {
-		return setters;
-	}
-
 	public boolean containsGetter(Member getter) {
 		return getters.contains( getter );
-	}
-
-	public boolean containsSetter(Member setter) {
-		return setters.contains( setter );
 	}
 
 	public void addGetter(Member getter) {

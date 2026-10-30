@@ -78,12 +78,6 @@ public class BasicCollectionDecomposer implements CollectionDecomposer {
 
 	public BasicCollectionDecomposer(
 			BasicCollectionPersister persister,
-			SessionFactoryImplementor factory) {
-		this( persister, factory, CollectionMutationPlanContributor.STANDARD );
-	}
-
-	public BasicCollectionDecomposer(
-			BasicCollectionPersister persister,
 			SessionFactoryImplementor factory,
 			CollectionMutationPlanContributor mutationPlanContributor) {
 		assert persister != null;
@@ -304,16 +298,6 @@ public class BasicCollectionDecomposer implements CollectionDecomposer {
 			PersistentCollection<?> collection,
 			Object key,
 			int ordinalBase,
-			SharedSessionContractImplementor session) {
-		return planRecreateRows( rows, collection, key, ordinalBase, session, false );
-	}
-
-	@Nonnull
-	private List<FlushOperation> planRecreateRows(
-			FrozenCollectionRows rows,
-			PersistentCollection<?> collection,
-			Object key,
-			int ordinalBase,
 			SharedSessionContractImplementor session,
 			boolean compactRows) {
 		final var insertRowPlan = jdbcOperations.insertRowPlan();
@@ -472,7 +456,6 @@ public class BasicCollectionDecomposer implements CollectionDecomposer {
 		final var postUpdateHandling = new PostCollectionUpdateHandling(
 				persister,
 				collection,
-				key,
 				action.getAffectedOwner(),
 				action.getAffectedOwnerId(),
 				DecompositionSupport.generateCacheKey(action, session)

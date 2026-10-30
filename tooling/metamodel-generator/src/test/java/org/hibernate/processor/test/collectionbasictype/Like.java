@@ -10,18 +10,12 @@ import jakarta.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Like<T extends Like.I1 & Like.I2> {
+public abstract class Like<T> {
 
 	@Id
 	private Long id;
 
 	public abstract Reference<T> getObject();
-
-	interface I1 {
-	}
-
-	interface I2 {
-	}
 
 	public static class Reference<T> {
 	}

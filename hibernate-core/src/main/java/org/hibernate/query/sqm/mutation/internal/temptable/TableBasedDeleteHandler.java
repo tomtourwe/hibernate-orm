@@ -17,7 +17,6 @@ import org.hibernate.query.sqm.internal.CacheableSqmInterpretation;
 import org.hibernate.query.sqm.internal.DomainParameterXref;
 import org.hibernate.query.sqm.internal.SqmUtil;
 import org.hibernate.query.sqm.mutation.internal.AbstractMutationHandler;
-import org.hibernate.query.sqm.mutation.internal.DeleteHandler;
 import org.hibernate.query.sqm.mutation.internal.MultiTableSqmMutationConverter;
 import org.hibernate.query.sqm.mutation.internal.TableKeyExpressionCollector;
 import org.hibernate.query.sqm.mutation.spi.AfterUseAction;
@@ -69,8 +68,7 @@ import static org.hibernate.query.sqm.mutation.internal.temptable.ExecuteWithout
 * @author Steve Ebersole
 */
 public class TableBasedDeleteHandler
-		extends AbstractMutationHandler
-		implements DeleteHandler {
+		extends AbstractMutationHandler {
 	private static final Logger LOG = Logger.getLogger( TableBasedDeleteHandler.class );
 
 	private final TemporaryTable idTable;

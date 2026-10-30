@@ -1,7 +1,6 @@
 package org.hibernate.boot.model.source.internal.hbm;
 
 import org.hibernate.boot.jaxb.Origin;
-import org.hibernate.boot.jaxb.hbm.spi.JaxbHbmHibernateMapping;
 
 /**
  * Base class for any and all source objects coming from {@code hbm.xml} parsing.  Defines standard access
@@ -27,9 +26,5 @@ public abstract class AbstractHbmSourceNode {
 
 	protected Origin origin() {
 		return sourceMappingDocument().getOrigin();
-	}
-
-	protected JaxbHbmHibernateMapping mappingRoot() {
-		return sourceMappingDocument().getDocumentRoot();
 	}
 }

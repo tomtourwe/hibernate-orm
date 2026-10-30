@@ -22,7 +22,7 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
  * portion is instance-based specific to the session factory owning the given
  * instance of this impl (there will be one instance of this per each session
  * factory using this strategy).
- * <li>Second is the externally facing methods {@link #hasBind}, {@link #bind},
+ * <li>Second is the externally facing methods {@code hasBind}, {@link #bind},
  * and {@link #unbind} used by the external thing to manage exposure of the
  * current session it is scoping.  This portion is static to allow easy
  * reference from that external thing.
@@ -56,18 +56,6 @@ public class ManagedSessionContext extends AbstractCurrentSessionContext {
 			validateExistingSession( current );
 			return current;
 		}
-	}
-
-	/**
-	 * Check to see if there is already a session associated with the current
-	 * thread for the given session factory.
-	 *
-	 * @param factory The factory against which to check for a given session
-	 * within the current thread.
-	 * @return True if there is currently a session bound.
-	 */
-	public static boolean hasBind(SessionFactory factory) {
-		return existingSession( factory ) != null;
 	}
 
 	/**

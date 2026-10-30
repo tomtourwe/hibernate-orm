@@ -13,24 +13,8 @@ import org.hibernate.type.descriptor.sql.spi.DdlTypeRegistry;
  */
 public class VectorDdlType extends DdlTypeImpl {
 
-	public VectorDdlType(int sqlTypeCode, boolean isLob, String typeNamePattern, String castTypeNamePattern, String castTypeName, Dialect dialect) {
-		super( sqlTypeCode, isLob, typeNamePattern, castTypeNamePattern, castTypeName, dialect );
-	}
-
-	public VectorDdlType(int sqlTypeCode, String typeNamePattern, String castTypeNamePattern, String castTypeName, Dialect dialect) {
-		super( sqlTypeCode, typeNamePattern, castTypeNamePattern, castTypeName, dialect );
-	}
-
-	public VectorDdlType(int sqlTypeCode, boolean isLob, String typeNamePattern, String castTypeName, Dialect dialect) {
-		super( sqlTypeCode, isLob, typeNamePattern, castTypeName, dialect );
-	}
-
 	public VectorDdlType(int sqlTypeCode, String typeNamePattern, String castTypeName, Dialect dialect) {
 		super( sqlTypeCode, typeNamePattern, castTypeName, dialect );
-	}
-
-	public VectorDdlType(int sqlTypeCode, String typeNamePattern, Dialect dialect) {
-		super( sqlTypeCode, typeNamePattern, dialect );
 	}
 
 	@Override

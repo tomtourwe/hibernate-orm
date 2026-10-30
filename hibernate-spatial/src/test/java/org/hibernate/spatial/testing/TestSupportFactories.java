@@ -93,8 +93,4 @@ public class TestSupportFactories {
 		return testSupportFactoryClass.newInstance();
 	}
 
-	private ClassLoader getClassLoader() {
-		return this.getClass().getClassLoader();
-	}
-
 }

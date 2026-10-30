@@ -120,10 +120,6 @@ public class DomainResultCreationStateImpl
 		this.allowPositionalSelections = false;
 	}
 
-	public JdbcValuesMetadata getJdbcResultsMetadata() {
-		return jdbcResultsMetadata;
-	}
-
 	public void pushExplicitFetchMementoResolver(Function<Fetchable, FetchBuilder> resolver) {
 		fetchBuilderResolverStack.push( resolver );
 	}

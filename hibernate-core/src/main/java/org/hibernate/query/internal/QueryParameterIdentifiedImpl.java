@@ -41,10 +41,6 @@ public class QueryParameterIdentifiedImpl<T> extends AbstractQueryParameter<T> {
 		this.unnamedParameterId = unnamedParameterId;
 	}
 
-	public int getUnnamedParameterId() {
-		return unnamedParameterId;
-	}
-
 	@Override
 	@Nonnull
 	public NamedQueryMemento.ParameterMemento toMemento() {

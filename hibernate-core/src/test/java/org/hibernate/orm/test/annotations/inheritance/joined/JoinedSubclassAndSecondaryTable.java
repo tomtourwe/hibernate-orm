@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
@@ -154,14 +153,5 @@ public class JoinedSubclassAndSecondaryTable {
 					}
 				}
 		);
-	}
-
-	private long getTableRowCount(Session s, String tableName) {
-		// the type returned for count(*) in a native query depends on the dialect
-		// Oracle returns Types.NUMERIC, which is mapped to BigDecimal;
-		// H2 returns Types.BIGINT, which is mapped to BigInteger;
-		Object retVal = s.createNativeQuery( "select count(*) from " + tableName, Object.class ).uniqueResult();
-		assertTrue( Number.class.isInstance( retVal ) );
-		return ( (Number) retVal ).longValue();
 	}
 }

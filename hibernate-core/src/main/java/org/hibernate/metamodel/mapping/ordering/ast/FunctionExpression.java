@@ -38,14 +38,6 @@ public class FunctionExpression implements OrderingExpression, FunctionRenderer 
 				: new ArrayList<>( numberOfArguments );
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public List<OrderingExpression> getArguments() {
-		return arguments;
-	}
-
 	public void addArgument(OrderingExpression argument) {
 		arguments.add( argument );
 	}

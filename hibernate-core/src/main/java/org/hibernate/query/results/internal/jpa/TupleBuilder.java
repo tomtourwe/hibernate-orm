@@ -19,7 +19,7 @@ public class TupleBuilder extends AbstractMappingElementBuilder<Tuple> implement
 	private final ResultBuilder[] elementBuilders;
 
 	public TupleBuilder(TupleMapping tupleMapping, SessionFactoryImplementor sessionFactory) {
-		super( null, sessionFactory.getTypeConfiguration().getJavaTypeRegistry().resolveDescriptor( Tuple.class ), sessionFactory );
+		super( sessionFactory.getTypeConfiguration().getJavaTypeRegistry().resolveDescriptor( Tuple.class ), sessionFactory );
 
 		this.elementBuilders = new ResultBuilder[ tupleMapping.elements().length ];
 		final TupleMetadataBuilder metadataBuilder = new TupleMetadataBuilder( tupleMapping.elements().length );

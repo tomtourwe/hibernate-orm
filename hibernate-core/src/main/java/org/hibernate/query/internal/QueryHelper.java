@@ -5,7 +5,6 @@ import jakarta.persistence.criteria.CompoundSelection;
 import jakarta.annotation.Nullable;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.query.TupleTransformer;
-import org.hibernate.query.results.spi.ResultSetMapping;
 import org.hibernate.query.spi.HqlInterpretation;
 import org.hibernate.query.sqm.spi.SqmBindableType;
 import org.hibernate.query.sqm.spi.SqmPathSource;
@@ -243,26 +242,6 @@ public class QueryHelper {
 				elements[i] = selections.get( i ).getAlias();
 			}
 			return elements;
-		}
-	}
-
-	public static <R> Class<R> determineResultType(Class<R> explicitType, ResultSetMapping resultSetMapping) {
-		if ( explicitType != null ) {
-			return explicitType;
-		}
-
-		assert resultSetMapping.getResultBuilders() != null;
-		if ( resultSetMapping.getResultBuilders().isEmpty() ) {
-			//noinspection unchecked
-			return (Class<R>) Object.class;
-		}
-		else if ( resultSetMapping.getResultBuilders().size() > 1 ) {
-			//noinspection unchecked
-			return (Class<R>) Object[].class;
-		}
-		else {
-			//noinspection unchecked
-			return (Class<R>) resultSetMapping.getResultBuilders().get( 0 ).getJavaType();
 		}
 	}
 

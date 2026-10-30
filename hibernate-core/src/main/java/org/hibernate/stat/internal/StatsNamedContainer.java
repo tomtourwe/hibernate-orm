@@ -88,14 +88,4 @@ public final class StatsNamedContainer<V> {
 		}
 	}
 
-	public @Nullable V get(final String key) {
-		final Object o = map.get( key );
-		if ( o == NULL_TOKEN) {
-			return null;
-		}
-		else {
-			return (V) o;
-		}
-	}
-
 }

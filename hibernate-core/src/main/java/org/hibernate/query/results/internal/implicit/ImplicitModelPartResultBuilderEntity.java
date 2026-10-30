@@ -16,7 +16,7 @@ import org.hibernate.sql.results.jdbc.spi.JdbcValuesMetadata;
  * @author Steve Ebersole
  */
 public class ImplicitModelPartResultBuilderEntity
-		implements ImplicitModelPartResultBuilder, ResultBuilderEntityValued {
+		implements ResultBuilderEntityValued {
 
 	private final NavigablePath navigablePath;
 	private final EntityValuedModelPart modelPart;

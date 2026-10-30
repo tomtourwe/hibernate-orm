@@ -83,22 +83,6 @@ public final class JacksonIntegration {
 				: null;
 	}
 
-	public static @Nullable FormatMapper getJsonJacksonFormatMapperOrNull() {
-		return JACKSON_JSON_AVAILABLE
-				? new JacksonJsonFormatMapper()
-				: null;
-	}
-	public static @Nullable FormatMapper getJsonJackson3FormatMapperOrNull() {
-		return JACKSON3_JSON_AVAILABLE
-				? new Jackson3JsonFormatMapper()
-				: null;
-	}
-	public static @Nullable FormatMapper getOsonJacksonFormatMapperOrNull() {
-		return JACKSON_OSON_AVAILABLE
-				? new JacksonOsonFormatMapper()
-				: null;
-	}
-
 	/**
 	 * Checks that Oracle OSON extension available
 	 *

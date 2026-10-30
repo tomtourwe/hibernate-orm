@@ -137,10 +137,6 @@ public class PropertyAuditingData {
 		this.name = name;
 	}
 
-	public String getBeanName() {
-		return beanName;
-	}
-
 	public void setBeanName(String beanName) {
 		this.beanName = beanName;
 	}
@@ -307,28 +303,12 @@ public class PropertyAuditingData {
 		return value;
 	}
 
-	public void setValue(Value value) {
-		this.value = value;
-	}
-
-	public Type getPropertyType() {
-		return propertyType;
-	}
-
 	public void setPropertyType(Type propertyType) {
 		this.propertyType = propertyType;
 	}
 
-	public PropertyAccessStrategy getPropertyAccessStrategy() {
-		return propertyAccessStrategy;
-	}
-
 	public void setPropertyAccessStrategy(PropertyAccessStrategy propertyAccessStrategy) {
 		this.propertyAccessStrategy = propertyAccessStrategy;
-	}
-
-	public Type getVirtualPropertyType() {
-		return virtualPropertyType;
 	}
 
 	public void setVirtualPropertyType(Type virtualPropertyType) {

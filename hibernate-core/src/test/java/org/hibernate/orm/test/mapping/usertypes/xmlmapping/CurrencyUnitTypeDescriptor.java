@@ -49,7 +49,7 @@ public class CurrencyUnitTypeDescriptor extends AbstractClassJavaType<CurrencyUn
 			return null;
 		}
 		if ( currencyCode instanceof String ) {
-			return new AccountCurrencyUnit( currencyCode.toString(), 0 );
+			return new AccountCurrencyUnit( currencyCode.toString());
 		}
 		throw unknownWrap( currencyCode.getClass() );
 	}

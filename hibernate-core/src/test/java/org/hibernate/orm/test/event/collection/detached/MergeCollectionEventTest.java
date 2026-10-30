@@ -248,14 +248,6 @@ public class MergeCollectionEventTest {
 		assertEquals( expectedPairCount, analysis.pairs().get( phase ).size() );
 	}
 
-	private void checkListenerGraph(int index, Class<? extends AbstractCollectionEvent> expectedEventType) {
-		final AggregatedCollectionEventListener.EventEntry eventEntry
-				= collectionListenerIntegrator.getListener().getEventEntryList().get( index );
-		final AbstractCollectionEvent event = eventEntry.getEvent();
-
-		assertTyping( expectedEventType, event );
-	}
-
 
 	private boolean usesSharedCollectionLifecyclePreparation() {
 		return true;

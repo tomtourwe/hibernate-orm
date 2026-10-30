@@ -250,10 +250,6 @@ public class CompositeIdentifierSingularAttributeSourceManyToOneImpl
 		return "cascade".equals( keyManyToOneElement.getOnDelete().value() );
 	}
 
-	protected String getClassName() {
-		return sourceMappingDocument().qualifyClassName( keyManyToOneElement.getClazz() );
-	}
-
 	@Override
 	public ToolingHintContext getToolingHintContext() {
 		return toolingHintContext;

@@ -52,11 +52,4 @@ public interface AttributeMetadata<X, Y> {
 	 * @return The Hibernate property mapping
 	 */
 	Property getPropertyMapping();
-
-	/**
-	 * Is the attribute plural (a collection)?
-	 *
-	 * @return True if it is plural, false otherwise.
-	 */
-	boolean isPlural();
 }

@@ -117,19 +117,13 @@ public class TableBinder {
 
 	private static class AssociationTableNameSource implements ObjectNameSource {
 		private final String explicitName;
-		private final String logicalName;
 
 		private AssociationTableNameSource(String explicitName, String logicalName) {
 			this.explicitName = explicitName;
-			this.logicalName = logicalName;
 		}
 
 		public String getExplicitName() {
 			return explicitName;
-		}
-
-		public String getLogicalName() {
-			return logicalName;
 		}
 	}
 

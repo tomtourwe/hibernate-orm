@@ -1,11 +1,8 @@
 package org.hibernate.dialect.aggregate.internal;
 
 
-import java.util.Collections;
 import java.util.List;
 
-import org.hibernate.boot.model.relational.AuxiliaryDatabaseObject;
-import org.hibernate.boot.model.relational.Namespace;
 import org.hibernate.dialect.aggregate.spi.AggregateAuxiliaryObject;
 import org.hibernate.dialect.aggregate.spi.AggregateAuxiliaryObjectRequest;
 import org.hibernate.dialect.aggregate.spi.AggregateComponentAssignmentRequest;
@@ -152,14 +149,6 @@ public class AggregateSupportImpl extends StandardAggregateSupport {
 			SelectableMapping[] columnsToUpdate,
 			TypeConfiguration typeConfiguration) {
 		throw new UnsupportedOperationException( "Dialect does not support aggregateCustomWriteExpressionRenderer: " + getClass().getName() );
-	}
-
-	public List<AuxiliaryDatabaseObject> aggregateAuxiliaryDatabaseObjects(
-			Namespace namespace,
-			String aggregatePath,
-			AggregateColumn aggregateColumn,
-			List<Column> aggregatedColumns) {
-		return Collections.emptyList();
 	}
 
 	@Override

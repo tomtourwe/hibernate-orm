@@ -223,26 +223,8 @@ public class EntityUpdateAction extends EntityAction {
 	}
 
 	@Nullable
-	protected NaturalIdMapping getNaturalIdMapping() {
-		return getPersister().getNaturalIdMapping();
-	}
-
-	@Nullable
-	protected Object getPreviousNaturalIdValues() {
-		return previousNaturalIdValues;
-	}
-
-	@Nullable
 	public Object getRowId() {
 		return rowId;
-	}
-
-	protected void setLock(@Nullable SoftLock lock) {
-		this.lock = lock;
-	}
-
-	protected void setCacheEntry(@Nullable Object cacheEntry) {
-		this.cacheEntry = cacheEntry;
 	}
 
 	@Override

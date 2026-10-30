@@ -50,10 +50,6 @@ public abstract class AbstractLockHintTest {
 		private final String rawSql;
 		private final String expectedProcessedSql;
 
-		public SyntaxChecker(String template) {
-			this( template, "" );
-		}
-
 		public SyntaxChecker(String template, String aliasToLock) {
 			this.aliasToLock = aliasToLock;
 			rawSql = StringHelper.replace( template, "$HOLDER$", aliasToLock );

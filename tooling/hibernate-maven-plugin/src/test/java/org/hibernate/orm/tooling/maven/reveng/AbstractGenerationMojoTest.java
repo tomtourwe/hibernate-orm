@@ -23,11 +23,8 @@ public class AbstractGenerationMojoTest {
 	 * Concrete subclass for testing the abstract class.
 	 */
 	static class TestMojo extends AbstractGenerationMojo {
-		MetadataDescriptor lastDescriptor;
-
 		@Override
 		protected void executeExporter(MetadataDescriptor metadataDescriptor) throws MojoFailureException {
-			lastDescriptor = metadataDescriptor;
 		}
 	}
 

@@ -8,20 +8,6 @@ package org.hibernate.orm.test.serialization.entity;
  * @author Gail Badner
  */
 public class AnEntity {
-	private PK pk;
-
 	public AnEntity() {
-	}
-
-	public AnEntity(PK pk) {
-		this.pk = pk;
-	}
-
-	protected PK getPk() {
-		return pk;
-	}
-
-	protected void setPk(PK pk) {
-		this.pk = pk;
 	}
 }

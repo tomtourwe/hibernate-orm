@@ -5,7 +5,6 @@ import org.hibernate.Internal;
 import org.hibernate.MappingException;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.internal.util.collections.ArrayHelper;
 import org.hibernate.metamodel.mapping.DiscriminatorValue;
 import org.hibernate.metamodel.spi.ImplicitDiscriminatorStrategy;
 
@@ -19,8 +18,6 @@ import java.util.Map;
  */
 @Internal
 public class MetaType extends AbstractType {
-	public static final String[] REGISTRATION_KEYS = ArrayHelper.EMPTY_STRING_ARRAY;
-
 	private final Type valueType;
 	private final ImplicitDiscriminatorStrategy implicitValueStrategy;
 	private final Map<DiscriminatorValue,String> discriminatorValuesToEntityNameMap;
@@ -54,16 +51,8 @@ public class MetaType extends AbstractType {
 		return implicitValueStrategy;
 	}
 
-	public String[] getRegistrationKeys() {
-		return REGISTRATION_KEYS;
-	}
-
 	public Map<DiscriminatorValue, String> getDiscriminatorValuesToEntityNameMap() {
 		return discriminatorValuesToEntityNameMap;
-	}
-
-	public Map<String,Object> getEntityNameToDiscriminatorValueMap(){
-		return entityNameToDiscriminatorValueMap;
 	}
 
 	public int[] getSqlTypeCodes(MappingContext mappingContext) throws MappingException {
@@ -114,10 +103,6 @@ public class MetaType extends AbstractType {
 
 	public String toXMLString(Object value, SessionFactoryImplementor factory) throws HibernateException {
 		return (String) value; //value is the entity name
-	}
-
-	public Object fromXMLString(String xml, MappingContext mappingContext) throws HibernateException {
-		return xml; //xml is the entity name
 	}
 
 	@Override

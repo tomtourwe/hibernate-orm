@@ -20,76 +20,8 @@ public final class CharSequenceHelper {
 		}
 	}
 
-	public static CharSequence subSequence(CharSequence sequence) {
-		return subSequence(sequence, 0, sequence.length());
-	}
-
 	public static boolean isEmpty(CharSequence string) {
 		return string == null || string.length() == 0;
-	}
-
-	public static int lastIndexOf(CharSequence charSequence, char c) {
-		return lastIndexOf( charSequence, c, 0, charSequence.length() - 1 );
-	}
-
-	public static int lastIndexOf(CharSequence charSequence, char c, int fromIndex, int endIndex) {
-		if ( charSequence instanceof String string ) {
-			int idx = string.lastIndexOf( c, endIndex );
-			if ( idx < fromIndex ) {
-				return -1;
-			}
-			return idx;
-		}
-		else if ( charSequence instanceof SubSequence subSequence ) {
-			return subSequence.lastIndexOf( c, fromIndex, endIndex );
-		}
-		else {
-			return lastIndexOf( charSequence.toString(), c, fromIndex, endIndex );
-		}
-	}
-
-	public static int indexOf(CharSequence charSequence, char c) {
-		return indexOf( charSequence, c, 0 );
-	}
-
-	public static int indexOf(CharSequence charSequence, char c, int fromIndex) {
-		return indexOf( charSequence, c, fromIndex, charSequence.length() - 1 );
-	}
-
-	public static int indexOf(CharSequence charSequence, char c, int fromIndex, int endIndex) {
-		if ( charSequence instanceof String string ) {
-			int idx = string.indexOf( c, fromIndex );
-			if ( idx > endIndex ) {
-				return -1;
-			}
-			return idx;
-		}
-		else if ( charSequence instanceof SubSequence subSequence ) {
-			return subSequence.indexOf( c, fromIndex, endIndex );
-		}
-		else {
-			return indexOf( charSequence.toString(), c, fromIndex, endIndex );
-		}
-	}
-
-	public static int indexOf(CharSequence charSequence, String target, int fromIndex) {
-		return indexOf( charSequence, target, fromIndex, charSequence.length() - 1 );
-	}
-
-	public static int indexOf(CharSequence charSequence, String target, int fromIndex, int endIndex) {
-		if ( charSequence instanceof String string ) {
-			int idx = string.indexOf( target, fromIndex );
-			if ( idx > endIndex ) {
-				return -1;
-			}
-			return idx;
-		}
-		else if ( charSequence instanceof SubSequence subSequence ) {
-			return subSequence.indexOf( target, fromIndex, endIndex );
-		}
-		else {
-			return indexOf( charSequence.toString(), target, fromIndex, endIndex );
-		}
 	}
 
 	public static boolean regionMatchesIgnoreCase(

@@ -220,10 +220,6 @@ public interface EventListenerLogging extends BasicLogger {
 	void refreshing(String infoString);
 
 	@LogMessage(level = TRACE)
-	@Message(id = 90060043, value = "Refreshing transient %s")
-	void refreshingTransient(String infoString);
-
-	@LogMessage(level = TRACE)
 	@Message(id = 90060042, value = "Already refreshed")
 	void alreadyRefreshed();
 
@@ -266,12 +262,6 @@ public interface EventListenerLogging extends BasicLogger {
 	@LogMessage(level = TRACE)
 	@Message(id = 90060049, value = "Evicting collection %s")
 	void evictingCollection(String collectionInfo);
-
-	// Lock
-
-	@LogMessage(level = TRACE)
-	@Message(id = 90060064, value = "Reassociating transient instance: %s")
-	void reassociatingTransientInstance(String infoString);
 
 	// EntityState
 

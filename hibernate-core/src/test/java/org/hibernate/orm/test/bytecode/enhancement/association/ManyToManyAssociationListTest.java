@@ -51,11 +51,6 @@ public class ManyToManyAssociationListTest {
 		List<User> getUsers() {
 			return Collections.unmodifiableList( users );
 		}
-
-		void resetUsers() {
-			// this wouldn't trigger association management: users.clear();
-			users = new ArrayList<>();
-		}
 	}
 
 	@Entity
@@ -68,12 +63,6 @@ public class ManyToManyAssociationListTest {
 
 		@ManyToMany
 		List<Group> groups;
-
-		void addGroup(Group group) {
-			List<Group> groups = this.groups == null ? new ArrayList<>() : this.groups;
-			groups.add( group );
-			this.groups = groups;
-		}
 
 		List<Group> getGroups() {
 			return Collections.unmodifiableList( groups );

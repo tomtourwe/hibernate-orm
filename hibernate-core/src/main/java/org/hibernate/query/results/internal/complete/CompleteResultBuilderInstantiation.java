@@ -19,7 +19,7 @@ import java.util.List;
  * @author Steve Ebersole
  */
 public class CompleteResultBuilderInstantiation
-		implements CompleteResultBuilder, ResultBuilderInstantiationValued {
+		implements ResultBuilderInstantiationValued {
 
 	private final JavaType<?> javaType;
 	private final List<ResultBuilder> argumentResultBuilders;

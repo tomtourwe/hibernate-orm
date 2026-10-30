@@ -13,7 +13,7 @@ import static org.hibernate.internal.find.Helper.coerceId;
 /// GetReferenceOperation implementation for a [stateful session][org.hibernate.Session].
 ///
 /// @author Steve Ebersole
-public class StatefulGetReferenceOperation<T> implements GetReferenceOperation<T> {
+public class StatefulGetReferenceOperation<T> {
 	private final EntityPersister entityDescriptor;
 	private final StatefulLoadAccessContext loadAccessContext;
 
@@ -28,7 +28,6 @@ public class StatefulGetReferenceOperation<T> implements GetReferenceOperation<T
 		this.keyType = keyType;
 	}
 
-	@Override
 	public T performGetReference(Object key) {
 		loadAccessContext.checkOpenOrWaitingForAutoClose();
 		loadAccessContext.pulseTransactionCoordinator();

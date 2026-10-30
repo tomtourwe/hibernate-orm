@@ -595,26 +595,6 @@ public class BinderHelper {
 		}
 	}
 
-	/**
-	 * Retrieve the property by path in a recursive way
-	 */
-	public static Property findPropertyByName(Component component, String propertyName) {
-		try {
-			return isEmpty( propertyName )
-					? null // Do not expect to use a primary key for this case
-					: findProperty( component, propertyName, null );
-		}
-		catch (MappingException e) {
-			try {
-				// if we do not find it, try to check the identifier mapper
-				return findPropertyUsingIdMapper( component.getOwner(), propertyName );
-			}
-			catch (MappingException ee) {
-				return null;
-			}
-		}
-	}
-
 	private static Property findProperty(
 			PersistentClass associatedClass, String propertyName,
 			Property idProperty, String idName) {

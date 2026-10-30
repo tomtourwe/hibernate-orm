@@ -19,7 +19,6 @@ import org.hibernate.query.spi.DomainQueryExecutionContext;
 import org.hibernate.query.sqm.ComparisonOperator;
 import org.hibernate.query.sqm.internal.DomainParameterXref;
 import org.hibernate.query.sqm.mutation.internal.MultiTableSqmMutationConverter;
-import org.hibernate.query.sqm.mutation.internal.UpdateHandler;
 import org.hibernate.query.sqm.tree.spi.expression.SqmParameter;
 import org.hibernate.query.sqm.tree.spi.update.SqmSetClause;
 import org.hibernate.query.sqm.tree.spi.update.SqmUpdateStatement;
@@ -51,7 +50,7 @@ import org.hibernate.sql.results.internal.SqlSelectionImpl;
  *
  * @author Christian Beikov
  */
-public class CteUpdateHandler extends AbstractCteMutationHandler implements UpdateHandler {
+public class CteUpdateHandler extends AbstractCteMutationHandler {
 
 	private static final String UPDATE_RESULT_TABLE_NAME_PREFIX = "update_cte_";
 	private static final String INSERT_RESULT_TABLE_NAME_PREFIX = "insert_cte_";

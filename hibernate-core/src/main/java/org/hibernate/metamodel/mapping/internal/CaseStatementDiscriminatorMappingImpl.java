@@ -2,9 +2,7 @@ package org.hibernate.metamodel.mapping.internal;
 
 import jakarta.annotation.Nonnull;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import jakarta.annotation.Nullable;
 import org.hibernate.engine.FetchTiming;
@@ -26,7 +24,6 @@ import org.hibernate.sql.ast.spi.query.expression.QueryLiteral;
 import org.hibernate.sql.ast.spi.query.expression.SelfRenderingExpression;
 import org.hibernate.sql.ast.spi.query.from.LazyTableGroup;
 import org.hibernate.sql.ast.spi.query.from.TableGroup;
-import org.hibernate.sql.ast.spi.query.from.TableReference;
 import org.hibernate.sql.ast.spi.query.predicate.NullnessPredicate;
 import org.hibernate.sql.results.graph.DomainResult;
 import org.hibernate.sql.results.graph.DomainResultCreationState;
@@ -260,28 +257,6 @@ public class CaseStatementDiscriminatorMappingImpl extends AbstractDiscriminator
 
 		public CaseStatementDiscriminatorExpression(TableGroup entityTableGroup) {
 			this.entityTableGroup = entityTableGroup;
-		}
-
-		public List<TableReference> getUsedTableReferences() {
-			final ArrayList<TableReference> usedTableReferences =
-					new ArrayList<>( tableDiscriminatorDetailsMap.size() );
-			tableDiscriminatorDetailsMap.forEach(
-					(tableName, tableDiscriminatorDetails) -> {
-						// Ensure, we're not accidentally initializing a table group racy (concurrency) fashion
-						assert !(entityTableGroup instanceof LazyTableGroup lazyTableGroup)
-							|| lazyTableGroup.isInitialized();
-						final var tableReference = entityTableGroup.getTableReference(
-								entityTableGroup.getNavigablePath(),
-								tableName,
-								false
-						);
-
-						if ( tableReference != null ) {
-							usedTableReferences.add( tableReference );
-						}
-					}
-			);
-			return usedTableReferences;
 		}
 
 		@Override

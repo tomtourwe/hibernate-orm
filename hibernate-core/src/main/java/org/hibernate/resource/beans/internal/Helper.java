@@ -21,14 +21,6 @@ public final class Helper {
 	private Helper() {
 	}
 
-	public static String determineBeanCacheKey(Class<?> beanType) {
-		return beanType.getName();
-	}
-
-	public static String determineBeanCacheKey(String name, Class<?> beanType) {
-		return beanType.getName() + ':' + name;
-	}
-
 	public static boolean allowExtensionsInCdi(ServiceRegistry serviceRegistry) {
 		return serviceRegistry.requireService( ConfigurationService.class )
 				.getSetting( ALLOW_EXTENSIONS_IN_CDI, BOOLEAN, false );

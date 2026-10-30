@@ -79,17 +79,4 @@ public interface UrlMessageBundle {
 	@LogMessage( level = WARN )
 	@Message( value = "Expecting resource named by URL [%s] to be a directory, but it was not.  URL will be ignored", id = 10000004 )
 	void logFileIsNotDirectory(URL url);
-
-	/**
-	 * Access to the exception message used when a URL references names a file that does not exist.
-	 * <p>
-	 * TODO : detail when this is a warning {@link #logFileDoesNotExist} versus an exception...
-	 *
-	 * @param filePart The "file part" that we gleaned from the URL
-	 * @param url The given URL
-	 *
-	 * @return The message
-	 */
-	@Message( value = "File [%s] referenced by given URL [%s] does not exist", id = 10000005 )
-	String fileDoesNotExist(String filePart, URL url);
 }

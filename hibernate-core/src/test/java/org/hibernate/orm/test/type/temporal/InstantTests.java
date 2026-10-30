@@ -171,7 +171,7 @@ public class InstantTests extends AbstractJavaTimeTypeTests<Instant, InstantTest
 	}
 
 	public record InstantData(int year, int month, int day,
-							int hour, int minute, int second, int nanosecond) implements Data<Instant> {
+							int hour, int minute, int second, int nanosecond) {
 
 		public Instant asInstant() {
 			return OffsetDateTime.of( year, month, day, hour, minute, second, nanosecond, ZoneOffset.UTC ).toInstant();
@@ -181,7 +181,6 @@ public class InstantTests extends AbstractJavaTimeTypeTests<Instant, InstantTest
 			return Timestamp.from( asInstant() );
 		}
 
-		@Override
 		public Instant makeValue() {
 			return asInstant();
 		}
@@ -199,42 +198,6 @@ public class InstantTests extends AbstractJavaTimeTypeTests<Instant, InstantTest
 				nanosecond = 0;
 			}
 			return add( defaultTimeZone, new InstantData( year, month, day, hour, minute, second, nanosecond ) );
-		}
-	}
-
-	protected Instant createInstant(int year, int month, int day, int hour, int minute, int second, int nanosecond) {
-		return OffsetDateTime.of( year, month, day, hour, minute, second, nanosecond, ZoneOffset.UTC ).toInstant();
-	}
-
-	protected Timestamp createTimestamp(int year, int month, int day, int hour, int minute, int second, int nanosecond) {
-		return Timestamp.from( createInstant( year, month, day, hour, minute, second, nanosecond ) );
-	}
-
-	protected void setJdbcValueForNonHibernateWrite(
-			PreparedStatement statement,
-			int parameterIndex,
-			Instant instant,
-			SessionFactoryScope factoryScope) throws SQLException {
-		if ( factoryScope.getSessionFactory().getJdbcServices().getDialect().getTimeZoneSupport() == TimeZoneSupport.NATIVE ) {
-			// Oracle and H2 require reading/writing through OffsetDateTime to avoid TZ related miscalculations
-			statement.setObject( parameterIndex, instant.atOffset( ZoneOffset.UTC ) );
-		}
-		else {
-			statement.setTimestamp(
-					parameterIndex,
-					Timestamp.from( instant ),
-					Calendar.getInstance( TimeZone.getTimeZone( "UTC" ) )
-			);
-		}
-	}
-
-	protected Object getActualJdbcValue(ResultSet resultSet, int columnIndex, SessionFactoryScope factoryScope) throws SQLException {
-		if ( factoryScope.getSessionFactory().getJdbcServices().getDialect().getTimeZoneSupport() == TimeZoneSupport.NATIVE ) {
-			// Oracle and H2 require reading/writing through OffsetDateTime to avoid TZ related miscalculations
-			return Timestamp.from( resultSet.getObject( columnIndex, OffsetDateTime.class ).toInstant() );
-		}
-		else {
-			return resultSet.getTimestamp( columnIndex, Calendar.getInstance( TimeZone.getTimeZone( "UTC" ) ) );
 		}
 	}
 

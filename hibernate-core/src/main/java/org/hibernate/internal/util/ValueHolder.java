@@ -38,23 +38,10 @@ public class ValueHolder<T> {
 		this.valueInitializer = valueInitializer;
 	}
 
-	@SuppressWarnings( {"unchecked"})
-	public ValueHolder(T value) {
-		this( NO_DEFERRED_INITIALIZER );
-		this.value = value;
-	}
-
 	public T getValue() {
 		if ( value == null ) {
 			value = valueInitializer.initialize();
 		}
 		return value;
 	}
-
-	private static final DeferredInitializer NO_DEFERRED_INITIALIZER = new DeferredInitializer() {
-		@Override
-		public Void initialize() {
-			return null;
-		}
-	};
 }

@@ -581,7 +581,7 @@ class LeakingStatementCachingTest {
 
 		@Override
 		public ResultSet executeQuery(String sql) throws SQLException {
-			return new ResultSetWrapper( delegate.executeQuery( sql ), this );
+			return new ResultSetWrapper( delegate.executeQuery( sql ));
 		}
 
 		@Override
@@ -726,7 +726,7 @@ class LeakingStatementCachingTest {
 
 		@Override
 		public ResultSet getGeneratedKeys() throws SQLException {
-			return new ResultSetWrapper( delegate.getGeneratedKeys(), this );
+			return new ResultSetWrapper( delegate.getGeneratedKeys());
 		}
 
 		@Override
@@ -1239,7 +1239,7 @@ class LeakingStatementCachingTest {
 
 		@Override
 		public ResultSet getResultSet() throws SQLException {
-			return new ResultSetWrapper( delegate.getResultSet(), this );
+			return new ResultSetWrapper( delegate.getResultSet());
 		}
 
 		@Override
@@ -1309,7 +1309,7 @@ class LeakingStatementCachingTest {
 
 		@Override
 		public ResultSet getGeneratedKeys() throws SQLException {
-			return new ResultSetWrapper( delegate.getGeneratedKeys(), this );
+			return new ResultSetWrapper( delegate.getGeneratedKeys());
 		}
 
 		@Override
@@ -1446,11 +1446,9 @@ class LeakingStatementCachingTest {
 	private static class ResultSetWrapper implements ResultSet {
 
 		private final ResultSet delegate;
-		private final StatementWrapper owner;
 
-		private ResultSetWrapper(ResultSet delegate, StatementWrapper owner) {
+		private ResultSetWrapper(ResultSet delegate) {
 			this.delegate = delegate;
-			this.owner = owner;
 		}
 
 		@Override

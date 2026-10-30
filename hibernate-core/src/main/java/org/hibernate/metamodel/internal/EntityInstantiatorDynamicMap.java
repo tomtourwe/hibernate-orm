@@ -34,15 +34,6 @@ public class EntityInstantiatorDynamicMap
 		return generateDataMap();
 	}
 
-	@Override
-	protected boolean isSameRole(String type) {
-		return super.isSameRole( type ) || isPartOfHierarchy( type );
-	}
-
-	private boolean isPartOfHierarchy(String type) {
-		return entityRoleNames.contains( type );
-	}
-
 	public static final EntityNameResolver ENTITY_NAME_RESOLVER =
 			entity -> entity instanceof Map<?, ?> map ? extractEmbeddedEntityName( map ) : null;
 

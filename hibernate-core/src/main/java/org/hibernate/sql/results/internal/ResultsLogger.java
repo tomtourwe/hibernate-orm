@@ -30,14 +30,4 @@ public interface ResultsLogger extends BasicLogger {
 	Logger RESULTS_LOGGER = Logger.getLogger( LOGGER_NAME );
 	ResultsLogger RESULTS_MESSAGE_LOGGER = Logger.getMessageLogger( MethodHandles.lookup(), ResultsLogger.class, LOGGER_NAME, Locale.ROOT );
 
-	// todo (6.0) : make sure sql result processing classes use this logger
-
-	static String subLoggerName(String subName) {
-		return LOGGER_NAME + "." + subName;
-	}
-
-	static Logger subLogger(String subName) {
-		return Logger.getLogger( subLoggerName( subName ) );
-	}
-
 }

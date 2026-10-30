@@ -48,7 +48,7 @@ public class NamedProcedureCallDefinitionImpl implements NamedProcedureCallDefin
 	public NamedProcedureCallDefinitionImpl(@Nonnull NamedStoredProcedureQuery annotation) {
 		registeredName = annotation.name();
 		procedureName = annotation.procedureName();
-		hints = new QueryHintDefinition( registeredName, annotation.hints() ).getHintsMap();
+		hints = new QueryHintDefinition( annotation.hints() ).getHintsMap();
 
 		resultClasses = annotation.resultClasses();
 		resultSetMappings = annotation.resultSetMappings();

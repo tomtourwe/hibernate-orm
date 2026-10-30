@@ -38,17 +38,6 @@ public class ScriptTargetOutputToUrl extends AbstractScriptTargetOutput implemen
 		this.append = append;
 	}
 
-	/**
-	 * Constructs a ScriptTargetOutputToUrl instance
-	 * the bytes will be written to the end of the file rather than the beginning
-	 *
-	 * @param url The url to read from
-	 * @param charsetName The charset name
-	 */
-	public ScriptTargetOutputToUrl(URL url, String charsetName) {
-		this( url, charsetName, true );
-	}
-
 	@Override
 	protected Writer writer() {
 		if ( writer == null ) {

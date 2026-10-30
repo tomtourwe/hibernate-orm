@@ -591,8 +591,4 @@ public class TemporaryTable implements TemporaryTableDescriptor, Exportable, Con
 	public String getExportIdentifier() {
 		return getQualifiedTableName();
 	}
-
-	public Dialect getDialect() {
-		return this.dialect;
-	}
 }

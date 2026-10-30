@@ -22,15 +22,6 @@ public class AbstractJdbcOperationQueryInsert extends AbstractJdbcOperationQuery
 			String sql,
 			List<JdbcParameterBinder> parameterBinders,
 			Set<String> affectedTableNames,
-			String uniqueConstraintNameThatMayFail) {
-		super( sql, parameterBinders, affectedTableNames );
-		this.uniqueConstraintNameThatMayFail = uniqueConstraintNameThatMayFail;
-	}
-
-	public AbstractJdbcOperationQueryInsert(
-			String sql,
-			List<JdbcParameterBinder> parameterBinders,
-			Set<String> affectedTableNames,
 			Map<JdbcParameter, JdbcParameterBinding> appliedParameters,
 			String uniqueConstraintNameThatMayFail) {
 		super( sql, parameterBinders, affectedTableNames, appliedParameters );

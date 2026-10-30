@@ -73,21 +73,6 @@ public abstract class ReflectionTools {
 		return value;
 	}
 
-	public static Field getField(Class cls, PropertyData propertyData) {
-		Field field = null;
-		Class<?> clazz = cls;
-		while ( clazz != null && field == null ) {
-			try {
-				field = clazz.getDeclaredField( propertyData.getBeanName() );
-			}
-			catch ( Exception e ) {
-				// ignore
-			}
-			clazz = clazz.getSuperclass();
-		}
-		return field;
-	}
-
 	public static Class<?> getType(Class cls, PropertyData propertyData, ServiceRegistry serviceRegistry) {
 		PropertyAccess propertyAccess = getPropertyAccess( cls, propertyData.getBeanName(), propertyData.getAccessType(), serviceRegistry );
 		if ( propertyAccess.getGetter().getMember() instanceof Field field ) {

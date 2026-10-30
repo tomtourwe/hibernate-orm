@@ -14,11 +14,6 @@ public interface StatefulLoadAccessContext extends LoadAccessContext {
 	 */
 	SessionImplementor getSession();
 
-	@Override
-	default SessionImplementor getEntityHandler() {
-		return getSession();
-	}
-
 	/**
 	 * Callback to check whether the session is "active"
 	 */

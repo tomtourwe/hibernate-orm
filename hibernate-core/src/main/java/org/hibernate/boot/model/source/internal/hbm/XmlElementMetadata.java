@@ -11,138 +11,131 @@ public enum XmlElementMetadata {
 	/**
 	 * Describes the {@code <id/>} element
 	 */
-	ID( true, true ),
+	ID( true ),
 	/**
 	 * Describes the {@code <composite-id/>} element
 	 */
-	COMPOSITE_ID( false, true ),
+	COMPOSITE_ID( true ),
 	/**
 	 * Describes the {@code <discriminator/>} element
 	 */
-	DISCRIMINATOR( true, false ),
+	DISCRIMINATOR( false ),
 	/**
 	 * Describes the {@code <multi-tenancy/>} element
 	 */
-	MULTI_TENANCY( true, false ),
+	MULTI_TENANCY( false ),
 	/**
 	 * Describes the {@code <version/>} element
 	 */
-	VERSION( true, true ),
+	VERSION( true ),
 	/**
 	 * Describes the {@code <timestamp/>} element
 	 */
-	TIMESTAMP( true, true ),
-	/**
-	 * Describes the {@code <natural-id/>} element
-	 */
-	NATURAL_ID( false, false ),
+	TIMESTAMP( true ),
 	/**
 	 * Describes the {@code <properties/>} element
 	 */
-	PROPERTIES( false, true ),
+	PROPERTIES( true ),
 	/**
 	 * Describes the {@code <property/>} element
 	 */
-	PROPERTY( false, true ),
+	PROPERTY( true ),
 	/**
 	 * Describes the {@code <key-property/>} element
 	 */
-	KEY_PROPERTY( false, true ),
+	KEY_PROPERTY( true ),
 	/**
 	 * Describes the {@code <many-to-one/>} element
 	 */
-	MANY_TO_ONE( false, true ),
+	MANY_TO_ONE( true ),
 	/**
 	 * Describes the {@code <key-many-to-one/>} element
 	 */
-	KEY_MANY_TO_ONE( false, true ),
+	KEY_MANY_TO_ONE( true ),
 	/**
 	 * Describes the {@code <one-to-one/>} element
 	 */
-	ONE_TO_ONE( false, true ),
+	ONE_TO_ONE( true ),
 	/**
 	 * Describes the {@code <any/>} element
 	 */
-	ANY( false, true ),
+	ANY( true ),
 	/**
 	 * Describes the {@code <component/>} element
 	 */
-	COMPONENT( false, true ),
+	COMPONENT( true ),
 	/**
 	 * Describes the {@code <key/>} element
 	 */
-	KEY( false, false ),
+	KEY( false ),
 	/**
 	 * Describes the {@code <set/>} element
 	 */
-	SET( false, true ),
+	SET( true ),
 	/**
 	 * Describes the {@code <list/>} element
 	 */
-	LIST( false, true ),
+	LIST( true ),
 	/**
 	 * Describes the {@code <bag/>} element
 	 */
-	BAG( false, true ),
+	BAG( true ),
 	/**
 	 * Describes the {@code <id-bag/>} element
 	 */
-	ID_BAG( false, true ),
+	ID_BAG( true ),
 	/**
 	 * Describes the {@code <map/>} element
 	 */
-	MAP( false, true ),
+	MAP( true ),
 	/**
 	 * Describes the {@code <array/>} element
 	 */
-	ARRAY( false, true ),
+	ARRAY( true ),
 	/**
 	 * Describes the {@code <primitive-array/>} element
 	 */
-	PRIMITIVE_ARRAY( false, true ),
+	PRIMITIVE_ARRAY( true ),
 	/**
 	 * Describes the {@code <collection-id/>} element
 	 */
-	COLLECTION_ID( true, false ),
+	COLLECTION_ID( false ),
 	/**
 	 * Describes the {@code <element/>} element
 	 */
-	ELEMENT( false, false ),
+	ELEMENT( false ),
 	/**
 	 * Describes the {@code <many-to-many/>} element
 	 */
-	MANY_TO_MANY( false, false ),
+	MANY_TO_MANY( false ),
 	/**
 	 * Describes the {@code <many-to-any/>} element
 	 */
-	MANY_TO_ANY( false, false ),
+	MANY_TO_ANY( false ),
 	/**
 	 * Describes the {@code <map-key/>} element
 	 */
-	MAP_KEY( false, false ),
+	MAP_KEY( false ),
 	/**
 	 * Describes the {@code <map-key-many-to-many/>} element
 	 */
-	MAP_KEY_MANY_TO_MANY( false, false ),
+	MAP_KEY_MANY_TO_MANY( false ),
 
 	/**
 	 * Describes the {@code <index/>} element
 	 */
-	INDEX( false, false ),
+	INDEX( false ),
 	/**
 	 * Describes the {@code <index-many-to-many/>} element
 	 */
-	INDEX_MANY_TO_MANY( false, false ),
+	INDEX_MANY_TO_MANY( false ),
 	/**
 	 * Describes the {@code <list-index/>} element
 	 */
-	LIST_INDEX( true, false );
-
-	private final boolean inherentlySingleColumn;
+	LIST_INDEX( false );
 	private final boolean canBeNamed;
 
-	XmlElementMetadata(boolean inherentlySingleColumn, boolean canBeNamed) {
-		this.inherentlySingleColumn = inherentlySingleColumn;
+	XmlElementMetadata(boolean canBeNamed) {
 		this.canBeNamed = canBeNamed;
 	}
 
@@ -153,16 +146,6 @@ public enum XmlElementMetadata {
 	 */
 	public String getElementName() {
 		return name().toLowerCase(Locale.ROOT);
-	}
-
-	/**
-	 * Can this source, by nature, define just a single column/formula?
-	 *
-	 * @return {@code true} indicates that the source will refer to just a
-	 * single column.
-	 */
-	public boolean isInherentlySingleColumn() {
-		return inherentlySingleColumn;
 	}
 
 	/**

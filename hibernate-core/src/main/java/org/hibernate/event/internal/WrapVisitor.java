@@ -34,14 +34,12 @@ import jakarta.annotation.Nullable;
 public class WrapVisitor extends ProxyVisitor {
 
 	protected Object entity;
-	protected Object id;
 
 	private boolean substitute;
 
 	public WrapVisitor(@Nonnull Object entity, @Nullable Object id, @Nonnull EventSource session) {
 		super( session );
 		this.entity = entity;
-		this.id = id;
 	}
 
 	public boolean isSubstitutionRequired() {

@@ -21,7 +21,7 @@ import org.hibernate.sql.ast.spi.query.select.QuerySpec;
  *
  * @author Steve Ebersole
  */
-public interface OrderingExpression extends Node {
+public interface OrderingExpression {
 
 	SqlAstNode resolve(QuerySpec ast, TableGroup tableGroup, @Nullable String modelPartName, SqlAstCreationState creationState);
 

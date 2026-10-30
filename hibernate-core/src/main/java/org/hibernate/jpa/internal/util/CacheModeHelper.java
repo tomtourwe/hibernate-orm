@@ -46,20 +46,6 @@ public final class CacheModeHelper {
 		};
 	}
 
-	/**
-	 * Given a JPA {@link CacheStoreMode} and {@link CacheRetrieveMode}, determine the corresponding
-	 * legacy Hibernate {@link CacheMode}.
-	 *
-	 * @param storeMode The JPA shared-cache store mode.
-	 * @param retrieveMode The JPA shared-cache retrieve mode.
-	 *
-	 * @return Corresponding {@link CacheMode}, or null if both arguments are null.
-	 */
-	public static CacheMode effectiveCacheMode(CacheStoreMode storeMode, CacheRetrieveMode retrieveMode) {
-		return storeMode == null && retrieveMode == null ? null
-				: interpretCacheMode( storeMode, retrieveMode );
-	}
-
 	public static CacheStoreMode interpretCacheStoreMode(CacheMode cacheMode) {
 		if ( cacheMode == null ) {
 			cacheMode = DEFAULT_LEGACY_MODE;

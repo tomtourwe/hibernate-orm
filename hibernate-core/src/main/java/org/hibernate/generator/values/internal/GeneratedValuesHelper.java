@@ -58,18 +58,6 @@ import static org.hibernate.sql.results.jdbc.spi.JdbcValuesSourceProcessingOptio
 @Internal
 public class GeneratedValuesHelper {
 
-	public static GeneratedValues buildGeneratedValues(EntityPersister entityPersister, EventType timing) {
-		var mutationDelegate = entityPersister.getMutationDelegate( timing == EventType.INSERT ? INSERT : UPDATE );
-		final var mappingProducer = (GeneratedValuesMappingProducer) mutationDelegate.getGeneratedValuesMappingProducer();
-		final var resultBuilders = mappingProducer.getResultBuilders();
-		final List<ModelPart> generatedProperties = new ArrayList<>( resultBuilders.size() );
-		for ( var resultBuilder : resultBuilders ) {
-			generatedProperties.add( resultBuilder.getModelPart() );
-		}
-
-		return new GeneratedValuesImpl( generatedProperties );
-	}
-
 	/**
 	 * Reads the {@linkplain EntityPersister#getGeneratedProperties(EventType) generated values}
 	 * for the specified {@link ResultSet}.

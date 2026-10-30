@@ -121,10 +121,6 @@ public class ComponentType extends AbstractType
 		return isAggregate;
 	}
 
-	public boolean isKey() {
-		return isKey;
-	}
-
 	@Override
 	public int getColumnSpan(MappingContext mapping) throws MappingException {
 		int span = 0;

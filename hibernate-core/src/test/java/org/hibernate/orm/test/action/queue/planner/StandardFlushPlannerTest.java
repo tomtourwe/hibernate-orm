@@ -707,14 +707,6 @@ public class StandardFlushPlannerTest {
 		);
 	}
 
-	private GraphEdge createEdge(GroupNode from, GroupNode to, boolean breakable, long stableId) {
-		if (breakable) {
-			return GraphTestUtils.createBreakableEdge(from, to, 10);
-		} else {
-			return GraphTestUtils.createUnbreakableEdge(from, to);
-		}
-	}
-
 	private GraphEdge createEdge(GroupNode from, GroupNode to, boolean breakable, int breakCost) {
 		if (breakable) {
 			return GraphTestUtils.createBreakableEdge(from, to, breakCost);

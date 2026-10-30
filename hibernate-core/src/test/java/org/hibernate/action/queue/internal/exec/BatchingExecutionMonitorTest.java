@@ -73,8 +73,7 @@ class BatchingExecutionMonitorTest {
 		operation.setExecutionMonitor( executionMonitor );
 		final var completionHandler = mock( PostExecutionCallback.class );
 		final var mutationCompletion = new CollectionMutationCompletion(
-				new CollectionMutationId( 1 ),
-				null
+				new CollectionMutationId( 1 )
 		);
 		mutationCompletion.registerOperation( operation );
 		mutationCompletion.registerCompletionHandler( completionHandler );
@@ -126,8 +125,7 @@ class BatchingExecutionMonitorTest {
 		);
 		final var completionHandler = mock( PostExecutionCallback.class );
 		final var mutationCompletion = new CollectionMutationCompletion(
-				new CollectionMutationId( 1 ),
-				null
+				new CollectionMutationId( 1 )
 		);
 		mutationCompletion.registerOperation( operation );
 		mutationCompletion.registerCompletionHandler( completionHandler );
@@ -180,7 +178,7 @@ class BatchingExecutionMonitorTest {
 				shapeKey
 		);
 		final var completionHandler = mock( PostExecutionCallback.class );
-		final var completion = new CollectionMutationCompletion( new CollectionMutationId( 2 ), null );
+		final var completion = new CollectionMutationCompletion( new CollectionMutationId( 2 ));
 		completion.registerOperation( operation );
 		completion.registerCompletionHandler( completionHandler );
 		completion.seal( session );

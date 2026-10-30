@@ -134,21 +134,6 @@ public final class ReflectHelper {
 	}
 
 	/**
-	 * Determine if the given class implements the given interface.
-	 *
-	 * @param clazz The class to check
-	 * @param intf The interface to check it against.
-	 * @return True if the class does implement the interface, false otherwise.
-	 *
-	 * @deprecated No longer used
-	 */
-	@Deprecated(since = "7", forRemoval = true)
-	public static boolean implementsInterface(Class<?> clazz, Class<?> intf) {
-		assert intf.isInterface() : "Interface to check was not an interface";
-		return intf.isAssignableFrom( clazz );
-	}
-
-	/**
 	 * Perform resolution of a class name.
 	 * <p>
 	 * Here we first check the context classloader, if one, before delegating to
@@ -706,45 +691,6 @@ public final class ReflectHelper {
 		return setter; // might be null
 	}
 
-	public static Method setterMethodOrNullBySetterName(final Class<?> containerClass, final  String setterName, final Class<?> propertyType) {
-		Class<?> checkClass = containerClass;
-		Method setter = null;
-
-		// check containerClass, and then its super types (if any)
-		while ( setter == null && checkClass != null ) {
-			if ( checkClass.equals( Object.class ) ) {
-				break;
-			}
-			else {
-				setter = setterOrNullBySetterName( checkClass, setterName, propertyType );
-				// if no setter found yet, check all implemented interfaces
-				if ( setter == null ) {
-					setter = setterOrNullBySetterName( checkClass.getInterfaces(), setterName, propertyType );
-				}
-				else {
-					ensureAccessibility( setter );
-				}
-				checkClass = checkClass.getSuperclass();
-			}
-		}
-		return setter; // might be null
-	}
-
-	private static Method setterOrNullBySetterName(Class<?>[] interfaces, String setterName, Class<?> propertyType) {
-		Method setter = null;
-		for ( int i = 0; setter == null && i < interfaces.length; ++i ) {
-			final Class<?> anInterface = interfaces[i];
-			if ( !shouldSkipInterfaceCheck( anInterface ) ) {
-				setter = setterOrNullBySetterName( anInterface, setterName, propertyType );
-				if ( setter == null ) {
-					// if no setter found yet, check all implemented interfaces of interface
-					setter = setterOrNullBySetterName( anInterface.getInterfaces(), setterName, propertyType );
-				}
-			}
-		}
-		return setter;
-	}
-
 	private static boolean shouldSkipInterfaceCheck(final Class<?> anInterface) {
 		final String interfaceName = anInterface.getName();
 		//Skip checking any interface that we've added via bytecode enhancement:
@@ -758,22 +704,6 @@ public final class ReflectHelper {
 			return true;
 		}
 		return false;
-	}
-
-	private static Method setterOrNullBySetterName(Class<?> theClass, String setterName, Class<?> propertyType) {
-		Method potentialSetter = null;
-
-		for ( Method method : theClass.getDeclaredMethods() ) {
-			final String methodName = method.getName();
-			if ( method.getParameterCount() == 1 && methodName.equals( setterName ) ) {
-				potentialSetter = method;
-				if ( propertyType == null || method.getParameterTypes()[0].equals( propertyType ) ) {
-					break;
-				}
-			}
-		}
-
-		return potentialSetter;
 	}
 
 	public static Method findSetterMethod(final Class<?> containerClass, final String propertyName, final Class<?> propertyType) {
@@ -884,11 +814,6 @@ public final class ReflectHelper {
 		}
 
 		return null;
-	}
-
-	@Deprecated(forRemoval = true)
-	public static boolean isRecord(Class<?> declaringClass) {
-		return declaringClass.isRecord();
 	}
 
 	public static Class<?>[] getRecordComponentTypes(Class<?> javaType) {

@@ -53,24 +53,4 @@ public class EntityMappingData {
 			additionalDefinition.build( newMapping );
 		}
 	}
-
-	public boolean isRootEntity() {
-		return !mapping.getClazz().isEmpty();
-	}
-
-	public boolean isSubclassEntity() {
-		return !mapping.getSubclass().isEmpty();
-	}
-
-	public boolean isUnionSubclassEntity() {
-		return !mapping.getUnionSubclass().isEmpty();
-	}
-
-	public boolean isJoinedSubclassEntity() {
-		return !mapping.getJoinedSubclass().isEmpty();
-	}
-
-	public boolean isEntityTypeKnown() {
-		return !isRootEntity() && !isSubclassEntity() && !isUnionSubclassEntity() && !isJoinedSubclassEntity();
-	}
 }

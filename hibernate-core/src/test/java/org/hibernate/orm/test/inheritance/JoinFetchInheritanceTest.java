@@ -194,10 +194,6 @@ public class JoinFetchInheritanceTest {
 		}
 	}
 
-	private static void clearKittens(KittenContainer container) {
-		container.getKittens().clear();
-	}
-
 	@Entity( name = "Zoo" )
 	public static class Zoo {
 		@Id

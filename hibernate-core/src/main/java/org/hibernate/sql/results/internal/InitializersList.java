@@ -1,8 +1,6 @@
 package org.hibernate.sql.results.internal;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.hibernate.sql.results.graph.Initializer;
 import org.hibernate.sql.results.graph.entity.internal.EntityInitializerImpl;
@@ -21,15 +19,12 @@ public final class InitializersList {
 
 	private final Initializer<?>[] initializers;
 	private final Initializer<?>[] sortedForResolveInstance;
-	private final boolean hasCollectionInitializers;
 
 	private InitializersList(
 			Initializer<?>[] initializers,
-			Initializer<?>[] sortedForResolveInstance,
-			boolean hasCollectionInitializers) {
+			Initializer<?>[] sortedForResolveInstance) {
 		this.initializers = initializers;
 		this.sortedForResolveInstance = sortedForResolveInstance;
-		this.hasCollectionInitializers = hasCollectionInitializers;
 	}
 
 	public Initializer<?>[] getInitializers() {
@@ -40,15 +35,6 @@ public final class InitializersList {
 		return sortedForResolveInstance;
 	}
 
-	@Deprecated //for simpler migration to the new SPI
-	public List<Initializer<?>> asList() {
-		return Arrays.asList( initializers );
-	}
-
-	public int size() {
-		return initializers.length;
-	}
-
 	public static class Builder {
 		private final ArrayList<Initializer<?>> initializers;
 		int nonCollectionInitializersNum = 0;
@@ -56,10 +42,6 @@ public final class InitializersList {
 
 		public Builder() {
 			initializers = new ArrayList<>();
-		}
-
-		public Builder(int size) {
-			initializers = new ArrayList<>( size );
 		}
 
 		public void addInitializer(final Initializer<?> initializer) {
@@ -98,8 +80,7 @@ public final class InitializersList {
 			final boolean hasCollectionInitializers = ( nonCollectionInitializersNum != initializers.size() );
 			return new InitializersList(
 					originalSortInitializers,
-					sortedForResolveInstance,
-					hasCollectionInitializers
+					sortedForResolveInstance
 			);
 		}
 

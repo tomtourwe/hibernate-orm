@@ -21,7 +21,6 @@ import org.hibernate.query.sqm.internal.DomainParameterXref;
 import org.hibernate.query.sqm.internal.SqmJdbcExecutionContextAdapter;
 import org.hibernate.query.sqm.internal.SqmUtil;
 import org.hibernate.query.sqm.mutation.internal.MatchingIdSelectionHelper;
-import org.hibernate.query.sqm.mutation.internal.UpdateHandler;
 import org.hibernate.query.sqm.spi.SqmParameterMappingModelResolutionAccess;
 import org.hibernate.query.sqm.sql.spi.SqmTranslation;
 import org.hibernate.query.sqm.sql.spi.SqmTranslator;
@@ -74,7 +73,7 @@ import static org.hibernate.internal.util.NullnessUtil.castNonNull;
 /**
  * @author Steve Ebersole
  */
-public class InlineUpdateHandler extends AbstractInlineHandler implements UpdateHandler {
+public class InlineUpdateHandler extends AbstractInlineHandler {
 
 	private final Map<QueryParameterImplementor<?>, Map<SqmParameter<?>, List<JdbcParametersList>>> jdbcParamsXref;
 	private final Map<SqmParameter<?>, MappingModelExpressible<?>> resolvedParameterMappingModelTypes;
@@ -242,11 +241,6 @@ public class InlineUpdateHandler extends AbstractInlineHandler implements Update
 			@Nullable InsertSelectStatement nullableInsert,
 			Supplier<Consumer<SelectableConsumer>> tableKeyColumnVisitationSupplier
 	) {}
-
-	// For Hibernate Reactive
-	protected List<TableUpdater> getTableUpdaters() {
-		return tableUpdaters;
-	}
 
 	private TableUpdater createTableUpdater(
 			String tableExpression,

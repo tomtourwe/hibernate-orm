@@ -69,10 +69,6 @@ public interface BytecodeEnhancementLogging extends BasicLogger {
 	void weavingPersistentAttributeInterceptable(String className);
 
 	@LogMessage(level = TRACE)
-	@Message(id = 90009010, value = "mappedBy association for field [%s.%s] is [%s.%s]")
-	void mappedByAssociation(String ownerName, String fieldName, String targetEntityName, String targetFieldName);
-
-	@LogMessage(level = TRACE)
 	@Message(id = 90009011, value = "Persistent fields for entity %s: %s")
 	void persistentFieldsForEntity(String entityName, String orderedFields);
 

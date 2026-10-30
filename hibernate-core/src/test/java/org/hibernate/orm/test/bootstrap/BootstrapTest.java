@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Properties;
 import javax.sql.DataSource;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.FetchType;
 import org.hibernate.Interceptor;
 import org.hibernate.SessionFactory;
@@ -23,16 +22,8 @@ import org.hibernate.boot.registry.BootstrapServiceRegistry;
 import org.hibernate.boot.registry.BootstrapServiceRegistryBuilder;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.boot.spi.BootstrapContext;
 import org.hibernate.cache.spi.access.AccessType;
 import org.hibernate.cfg.AvailableSettings;
-import org.hibernate.engine.spi.SessionFactoryImplementor;
-import org.hibernate.event.internal.DefaultAutoFlushEventListener;
-import org.hibernate.event.internal.DefaultMergeEventListener;
-import org.hibernate.event.internal.DefaultPersistEventListener;
-import org.hibernate.event.service.spi.DuplicationStrategy;
-import org.hibernate.event.service.spi.EventListenerRegistry;
-import org.hibernate.event.spi.EventType;
 import org.hibernate.integrator.spi.Integrator;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl;
@@ -40,7 +31,6 @@ import org.hibernate.jpa.boot.internal.PersistenceUnitInfoDescriptor;
 import org.hibernate.orm.test.mapping.basic.bitset.BitSetType;
 import org.hibernate.orm.test.mapping.basic.bitset.BitSetUserType;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.spi.SessionFactoryServiceRegistry;
 
 import org.hibernate.testing.util.ServiceRegistryUtil;
 import org.hibernate.testing.orm.junit.JiraKey;
@@ -488,63 +478,6 @@ public class BootstrapTest {
 	public static class MyEntity {
 		@Id
 		private Long id;
-	}
-
-	//tag::bootstrap-event-listener-registration-example[]
-	public class MyIntegrator implements Integrator {
-
-		@Override
-		public void integrate(
-				Metadata metadata,
-				BootstrapContext bootstrapContext,
-				SessionFactoryImplementor sessionFactory) {
-
-			// As you might expect, an EventListenerRegistry is the thing with which event
-			// listeners are registered
-			// It is a service, so we look it up using the service registry
-			final EventListenerRegistry eventListenerRegistry = sessionFactory.getEventListenerRegistry();
-
-			// If you wish to have custom determination and handling of "duplicate" listeners,
-			// you would have to add an implementation of the
-			// org.hibernate.event.service.spi.DuplicationStrategy contract like this
-			eventListenerRegistry.addDuplicationStrategy(new CustomDuplicationStrategy());
-
-			// EventListenerRegistry defines 3 ways to register listeners:
-
-			// 1) This form overrides any existing registrations with
-			eventListenerRegistry.setListeners(EventType.AUTO_FLUSH,
-												DefaultAutoFlushEventListener.class);
-
-			// 2) This form adds the specified listener(s) to the beginning of the listener chain
-			eventListenerRegistry.prependListeners(EventType.PERSIST,
-													DefaultPersistEventListener.class);
-
-			// 3) This form adds the specified listener(s) to the end of the listener chain
-			eventListenerRegistry.appendListeners(EventType.MERGE,
-												DefaultMergeEventListener.class);
-		}
-
-		@Override
-		public void disintegrate(
-				SessionFactoryImplementor sessionFactory,
-				SessionFactoryServiceRegistry serviceRegistry) {
-
-		}
-	}
-	//end::bootstrap-event-listener-registration-example[]
-
-	public static class CustomDuplicationStrategy implements DuplicationStrategy {
-
-		@Override
-		public boolean areMatch(@Nonnull Object listener, @Nonnull Object original) {
-			return false;
-		}
-
-		@Override
-		@Nonnull
-		public Action getAction() {
-			throw new UnsupportedOperationException();
-		}
 	}
 
 	public static class CustomSessionFactoryInterceptor implements Interceptor {}

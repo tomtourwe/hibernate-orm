@@ -1022,10 +1022,6 @@ public class TableBasedInsertHandler extends AbstractMutationHandler implements 
 		}
 	}
 
-	public SqmInsertStatement<?> getSqmInsertStatement() {
-		return (SqmInsertStatement<?>) getSqmStatement();
-	}
-
 	@Override
 	public int execute(JdbcParameterBindings jdbcParameterBindings, DomainQueryExecutionContext context) {
 		if ( LOG.isTraceEnabled() ) {

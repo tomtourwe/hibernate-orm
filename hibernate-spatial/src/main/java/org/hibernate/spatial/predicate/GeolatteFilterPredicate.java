@@ -13,22 +13,16 @@ import org.geolatte.geom.PositionSequenceBuilders;
 import org.geolatte.geom.crs.CoordinateReferenceSystem;
 
 /**
- * {@link JTSFilterPredicate}, but for geolatte-geom.
+ * {@code JTSFilterPredicate}, but for geolatte-geom.
  *
  * @deprecated Use {@link org.hibernate.spatial.criteria.GeolatteSpatialCriteriaBuilder GeolatteSpatialCriteriaBuilder} instead
  */
 @Deprecated(since = "6.2")
 public class GeolatteFilterPredicate {
 
-	private final Expression<? extends Geometry> geometry;
-	private final Expression<? extends Geometry> filter;
-
 	public GeolatteFilterPredicate(
 			CriteriaBuilder criteriaBuilder, Expression<? extends Geometry> geometry,
 			Expression<? extends Geometry> filter) {
-
-		this.geometry = geometry;
-		this.filter = filter;
 	}
 
 	public GeolatteFilterPredicate(

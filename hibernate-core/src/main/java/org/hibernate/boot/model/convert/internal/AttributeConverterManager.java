@@ -36,10 +36,6 @@ public class AttributeConverterManager implements ConverterAutoApplyHandler {
 	private Map<Class<?>, ConverterDescriptor<?,?>> attributeConverterDescriptorsByClass;
 	private Map<Type, RegisteredConversion> registeredConversionsByDomainType;
 
-	public RegisteredConversion findRegisteredConversion(Class<?> domainType) {
-		return registeredConversionsByDomainType == null ? null : registeredConversionsByDomainType.get( domainType );
-	}
-
 	public void addConverter(ConverterDescriptor<?,?> descriptor) {
 		final var converterClass = descriptor.getAttributeConverterClass();
 		if ( BOOT_LOGGER.isTraceEnabled() ) {

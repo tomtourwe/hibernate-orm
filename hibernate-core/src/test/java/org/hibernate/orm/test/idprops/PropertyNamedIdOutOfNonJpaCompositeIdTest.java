@@ -106,19 +106,6 @@ public class PropertyNamedIdOutOfNonJpaCompositeIdTest {
 		public PersonId() {
 		}
 
-		public PersonId(String name, int index) {
-			setName( name );
-			setIndex( index );
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public int getIndex() {
-			return index;
-		}
-
 		public void setName(String name) {
 			this.name = name;
 		}

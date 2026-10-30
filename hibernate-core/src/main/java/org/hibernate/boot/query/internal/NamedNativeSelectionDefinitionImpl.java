@@ -187,17 +187,6 @@ public class NamedNativeSelectionDefinitionImpl<R> extends AbstractNamedSelectio
 		);
 	}
 
-	/// Build a definition from JPA's [jakarta.persistence.NamedNativeQuery] annotation.
-	///
-	/// @param annotation The annotation.
-	/// @param location Where the annotation was found.
-	@Nonnull
-	public static NamedNativeSelectionDefinitionImpl<?> from(
-			@Nonnull jakarta.persistence.NamedNativeQuery annotation,
-			@Nullable AnnotationTarget location) {
-		return from( annotation, location, annotation.resultSetMapping() );
-	}
-
 	@Nonnull
 	public static NamedNativeSelectionDefinitionImpl<?> from(
 			@Nonnull jakarta.persistence.NamedNativeQuery annotation,

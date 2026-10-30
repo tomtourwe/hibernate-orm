@@ -71,7 +71,7 @@ public class LocalXsdResolver {
 	public static Schema resolveLocalXsdSchema(String schemaResourceName) {
 		final URL url = resolveLocalXsdUrl( schemaResourceName );
 		if ( url == null ) {
-			throw new XsdException( "Unable to locate schema [" + schemaResourceName + "] via classpath", schemaResourceName );
+			throw new XsdException( "Unable to locate schema [" + schemaResourceName + "] via classpath");
 		}
 		try {
 			final var schemaStream = url.openStream();
@@ -80,7 +80,7 @@ public class LocalXsdResolver {
 						.newSchema( new StreamSource( url.openStream() ) );
 			}
 			catch ( SAXException | IOException e ) {
-				throw new XsdException( "Unable to load schema [" + schemaResourceName + "]", e, schemaResourceName );
+				throw new XsdException( "Unable to load schema [" + schemaResourceName + "]", e);
 			}
 			finally {
 				try {
@@ -92,7 +92,7 @@ public class LocalXsdResolver {
 			}
 		}
 		catch ( IOException e ) {
-			throw new XsdException( "Stream error handling schema url [" + url.toExternalForm() + "]", schemaResourceName );
+			throw new XsdException( "Stream error handling schema url [" + url.toExternalForm() + "]");
 		}
 	}
 

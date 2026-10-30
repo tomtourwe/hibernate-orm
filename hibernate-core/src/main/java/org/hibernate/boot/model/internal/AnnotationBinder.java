@@ -21,7 +21,6 @@ import org.hibernate.boot.model.NamedEntityGraphDefinition;
 import org.hibernate.boot.model.convert.spi.RegisteredConversion;
 import org.hibernate.boot.models.HibernateAnnotations;
 import org.hibernate.boot.models.JpaAnnotations;
-import org.hibernate.boot.registry.classloading.spi.ClassLoaderService;
 import org.hibernate.boot.spi.InFlightMetadataCollector.CollectionTypeRegistrationDescriptor;
 import org.hibernate.boot.spi.MetadataBuildingContext;
 import org.hibernate.models.spi.AnnotationTarget;
@@ -133,19 +132,6 @@ public final class AnnotationBinder {
 
 	private static ModelsContext modelsContext(MetadataBuildingContext context) {
 		return context.getBootstrapContext().getModelsContext();
-	}
-
-	public static void bindPackage(ClassLoaderService cls, String packageName, MetadataBuildingContext context) {
-		final var packageDetails = modelsContext( context ).getClassDetailsRegistry()
-				.resolveExplicitPackageDetails( packageName );
-		bindDescriptor( packageDetails, context );
-	}
-
-	public static void bindModule(String moduleName, MetadataBuildingContext context) {
-		final var moduleDetails = modelsContext( context ).getModuleDetailsRegistry()
-				.resolveModuleDetails( moduleName );
-
-		bindDescriptor( moduleDetails, context );
 	}
 
 	public static void bindDescriptor(AnnotationTarget descriptor, MetadataBuildingContext context) {
@@ -462,21 +448,6 @@ public final class AnnotationBinder {
 
 	public static void bindFetchProfilesForDescriptor(AnnotationTarget descriptor, MetadataBuildingContext context) {
 		bindFetchProfiles( descriptor, context );
-	}
-
-	public static void bindFetchProfilesForPackage(String packageName, MetadataBuildingContext context) {
-		final var packageInfoClassDetails =
-				context.getMetadataCollector().getClassDetailsRegistry()
-						.findPackageDetails( packageName );
-		if ( packageInfoClassDetails != null ) {
-			bindFetchProfiles( packageInfoClassDetails, context );
-		}
-	}
-
-	public static void bindFetchProfilesForModule(String moduleName, MetadataBuildingContext context) {
-		final var moduleDetails = modelsContext( context ).getModuleDetailsRegistry()
-				.resolveModuleDetails( moduleName );
-		bindFetchProfiles( moduleDetails, context );
 	}
 
 	private static void bindFetchProfiles(AnnotationTarget annotatedElement, MetadataBuildingContext context) {

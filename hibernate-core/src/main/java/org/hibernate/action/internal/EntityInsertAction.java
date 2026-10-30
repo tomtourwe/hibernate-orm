@@ -65,15 +65,6 @@ public class EntityInsertAction extends AbstractEntityInsertAction {
 		this.version = version;
 	}
 
-	@Nullable
-	protected Object getCacheEntry() {
-		return cacheEntry;
-	}
-
-	protected void setCacheEntry(@Nullable Object cacheEntry) {
-		this.cacheEntry = cacheEntry;
-	}
-
 	@Override
 	public boolean isEarlyInsert() {
 		return false;

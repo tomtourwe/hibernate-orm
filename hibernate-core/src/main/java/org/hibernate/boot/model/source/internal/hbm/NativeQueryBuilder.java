@@ -2,7 +2,6 @@ package org.hibernate.boot.model.source.internal.hbm;
 
 import org.hibernate.boot.query.NamedNativeQueryDefinition;
 import org.hibernate.boot.query.internal.NamedNativeSelectionDefinitionImpl;
-import org.hibernate.models.spi.AnnotationTarget;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,10 +23,6 @@ class NativeQueryBuilder<E> extends AbstractNamedQueryBuilder<E, NativeQueryBuil
 	private Map<String, String> parameterTypes;
 	private Integer firstResult;
 	private Integer maxResults;
-
-	public NativeQueryBuilder(String name, AnnotationTarget location) {
-		super( name, location );
-	}
 
 	public NativeQueryBuilder(String name) {
 		super( name, null );
@@ -101,11 +96,6 @@ class NativeQueryBuilder<E> extends AbstractNamedQueryBuilder<E, NativeQueryBuil
 		}
 		this.querySpaces.add( space );
 		return getThis();
-	}
-
-	public NativeQueryBuilder<E> setQuerySpaces(Set<String> spaces) {
-		this.querySpaces = spaces;
-		return this;
 	}
 
 	public NativeQueryBuilder<E> setResultSetMappingName(String resultSetMappingName) {

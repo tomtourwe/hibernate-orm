@@ -430,26 +430,6 @@ public class EntityValuedPathInterpretation<T> extends AbstractSqmPathInterpreta
 		return false;
 	}
 
-	public EntityValuedPathInterpretation(
-			Expression sqlExpression,
-			NavigablePath navigablePath,
-			TableGroup tableGroup,
-			EntityValuedModelPart mapping) {
-		this( sqlExpression, navigablePath, tableGroup, mapping,
-				mapping instanceof ValuedModelPart valuedModelPart
-						? determineAffectedTableName( tableGroup, valuedModelPart )
-						: null );
-	}
-
-	public EntityValuedPathInterpretation(
-			Expression sqlExpression,
-			NavigablePath navigablePath,
-			TableGroup tableGroup,
-			EntityValuedModelPart mapping,
-			@Nullable String affectedTableName) {
-		this( sqlExpression, navigablePath, tableGroup, mapping, affectedTableName, mapping );
-	}
-
 	private EntityValuedPathInterpretation(
 			Expression sqlExpression,
 			NavigablePath navigablePath,

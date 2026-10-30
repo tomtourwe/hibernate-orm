@@ -24,8 +24,6 @@ import jakarta.persistence.JoinTable;
 public interface PropertyHolder {
 	String getClassName();
 
-	String getEntityOwnerClassName();
-
 	Table getTable();
 
 	void addProperty(Property prop, MemberDetails memberDetails, ClassDetails declaringClass);

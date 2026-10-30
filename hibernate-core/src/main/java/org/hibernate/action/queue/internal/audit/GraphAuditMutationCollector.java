@@ -55,10 +55,6 @@ public class GraphAuditMutationCollector {
 		changeSet.addCollectionChange( collectionPersister, collection, ownerId, originalSnapshot, mutationSupport );
 	}
 
-	public boolean hasWork() {
-		return !changeSet.isEmpty();
-	}
-
 	public void executeAuditMutations(SharedSessionContractImplementor session) {
 		if ( changeSet.isEmpty() ) {
 			return;

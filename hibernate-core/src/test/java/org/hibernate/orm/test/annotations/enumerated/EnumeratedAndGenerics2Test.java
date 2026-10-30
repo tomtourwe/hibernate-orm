@@ -51,16 +51,12 @@ public class EnumeratedAndGenerics2Test {
 		);
 	}
 
-	public interface EnumBase {
-		String name();
+	public enum TestEnum {
+		BAR
 	}
 
-	public enum TestEnum implements EnumBase {
-		FOO, BAR
-	}
-
-	public enum AnotherTestEnum implements EnumBase {
-		ONE, TWO
+	public enum AnotherTestEnum {
+		TWO
 	}
 
 	@MappedSuperclass

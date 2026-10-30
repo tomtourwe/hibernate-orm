@@ -110,7 +110,6 @@ public class CacheableEntityGraphTest {
 	}
 
 	public enum TagType {
-		FOO,
-		BAR
+		FOO
 	}
 }

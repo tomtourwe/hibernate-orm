@@ -24,13 +24,6 @@ import org.hibernate.event.spi.EventSource;
 @Internal
 public final class CollectionMutationActionLowering {
 	public static void lower(
-			CollectionMutationInput input,
-			EventSource session,
-			Consumer<CollectionAction> actionConsumer) {
-		lower( List.of( input ), session, actionConsumer );
-	}
-
-	public static void lower(
 			List<CollectionMutationInput> inputs,
 			EventSource session,
 			Consumer<CollectionAction> actionConsumer) {

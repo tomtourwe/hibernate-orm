@@ -60,20 +60,6 @@ public class GraphParsing {
 		return getGraphParsingStrategy( sessionFactory ).parse( graphText, sessionFactory );
 	}
 
-	public static <T> RootGraphImplementor<T> visit(
-			EntityDomainType<T> rootType,
-			LegacyGraphLanguageParser.AttributeListContext attributeListContext,
-			SessionFactoryImplementor sessionFactory) {
-		return visit( rootType, attributeListContext, sessionFactory.getJpaMetamodel()::findEntityType );
-	}
-
-	public static <T> RootGraphImplementor<T> visit(
-			EntityDomainType<T> rootType,
-			LegacyGraphLanguageParser.AttributeListContext attributeListContext,
-			GraphParserEntityNameResolver entityNameResolver) {
-		return visit( null, rootType, attributeListContext, entityNameResolver );
-	}
-
 	@Deprecated(forRemoval = true)
 	public static @Nonnull LegacyGraphLanguageParser.GraphContext parseLegacyGraphText(String graphText) {
 		final var lexer = new GraphLanguageLexer( CharStreams.fromString( graphText ) );

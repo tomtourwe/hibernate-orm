@@ -11,8 +11,6 @@ import org.hibernate.HibernateException;
  */
 public class EntityActionVetoException extends HibernateException {
 
-	private final EntityAction entityAction;
-
 	/**
 	 * Constructs an {@code EntityActionVetoException}
 	 *
@@ -21,16 +19,9 @@ public class EntityActionVetoException extends HibernateException {
 	 */
 	public EntityActionVetoException(@Nonnull String message, @Nonnull EntityAction entityAction) {
 		super( message );
-		this.entityAction = entityAction;
 	}
 
 	public EntityActionVetoException(@Nonnull EntityAction entityAction) {
 		super( "Action was vetoed: " + entityAction );
-		this.entityAction = entityAction;
-	}
-
-	@Nonnull
-	public EntityAction getEntityAction() {
-		return entityAction;
 	}
 }

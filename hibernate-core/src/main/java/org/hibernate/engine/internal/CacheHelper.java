@@ -106,16 +106,6 @@ public final class CacheHelper {
 		}
 	}
 
-	public static void readingFromCache(
-			@Nonnull EntityPersister persister,
-			@Nonnull Consumer<EntityDataAccess> action) {
-		if ( persister.canReadFromCache() ) {
-			final var cache = persister.getCacheAccessStrategy();
-			assert cache != null;
-			action.accept( cache );
-		}
-	}
-
 	public static <T> T readingFromCache(
 			@Nonnull EntityPersister persister,
 			@Nonnull Function<EntityDataAccess, T> action,

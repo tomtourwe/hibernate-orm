@@ -1,8 +1,6 @@
 package org.hibernate.orm.test.type.temporal;
 
-import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.testing.jdbc.SharedDriverManagerConnectionProvider;
-import org.junit.jupiter.api.Assumptions;
 
 import java.time.ZoneId;
 import java.util.TimeZone;
@@ -74,15 +72,5 @@ public class Timezones {
 			TimeZone.setDefault( timeZoneBefore );
 			SharedDriverManagerConnectionProvider.getInstance().onDefaultTimeZoneChange();
 		}
-	}
-
-	public static void assumeNoJdbcTimeZone(Environment env) {
-		Assumptions.assumeTrue(
-				env.hibernateJdbcTimeZone() == null,
-				"Tests with native read/writes are only relevant when not using " + AvailableSettings.JDBC_TIME_ZONE
-				+ ", because the expectations do not take that time zone into account."
-				+ " When this property is set, we only test that a write by Hibernate followed by "
-				+ " a read by Hibernate returns the same value."
-		);
 	}
 }

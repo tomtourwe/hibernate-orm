@@ -243,16 +243,6 @@ public abstract class BaseNaturalIdLoadAccessImpl<T> implements NaturalIdLoadOpt
 	}
 
 	@Nonnull
-	protected StatefulLoadAccessContext getContext() {
-		return context;
-	}
-
-	@Nonnull
-	public EntityMappingType getEntityDescriptor() {
-		return entityDescriptor;
-	}
-
-	@Nonnull
 	protected EntityPersister entityPersister() {
 		return entityDescriptor.getEntityPersister();
 	}

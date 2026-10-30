@@ -10,7 +10,7 @@ import org.hibernate.query.SortDirection;
  *
  * @author Steve Ebersole
  */
-public class OrderingSpecification implements Node {
+public class OrderingSpecification {
 	private final OrderingExpression orderingExpression;
 
 	@Nullable private String collation;
@@ -54,9 +54,5 @@ public class OrderingSpecification implements Node {
 
 	public String getOrderByValue() {
 		return orderByValue;
-	}
-
-	public void setOrderByValue(String orderByValue) {
-		this.orderByValue = orderByValue;
 	}
 }

@@ -12,7 +12,6 @@ import org.hibernate.query.results.spi.ResultBuilder;
 import org.hibernate.query.results.internal.complete.CompleteResultBuilderInstantiation;
 import org.hibernate.type.descriptor.java.JavaType;
 
-import static java.util.Collections.unmodifiableList;
 import static org.hibernate.internal.util.collections.CollectionHelper.arrayList;
 
 /**
@@ -32,10 +31,6 @@ public class ResultMementoInstantiationStandard implements ResultMementoInstanti
 
 	public JavaType<?> getInstantiatedJavaType() {
 		return instantiatedJtd;
-	}
-
-	public List<ArgumentMemento> getArgumentMementos() {
-		return unmodifiableList( argumentMementos );
 	}
 
 	@Override

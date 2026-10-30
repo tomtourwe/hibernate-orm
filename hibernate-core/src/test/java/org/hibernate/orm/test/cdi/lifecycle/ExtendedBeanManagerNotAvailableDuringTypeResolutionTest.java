@@ -16,8 +16,6 @@ import org.hibernate.testing.orm.junit.JiraKey;
 import org.hibernate.testing.util.ServiceRegistryUtil;
 import org.junit.jupiter.api.Test;
 
-import jakarta.enterprise.inject.spi.BeanManager;
-
 @JiraKey(value = "HHH-15068")
 public class ExtendedBeanManagerNotAvailableDuringTypeResolutionTest {
 
@@ -110,10 +108,6 @@ public class ExtendedBeanManagerNotAvailableDuringTypeResolutionTest {
 		public void registerLifecycleListener(LifecycleListener lifecycleListener) {
 			assert this.lifecycleListener == null;
 			this.lifecycleListener = lifecycleListener;
-		}
-
-		public void notify(BeanManager ready) {
-			lifecycleListener.beanManagerInitialized( ready );
 		}
 	}
 }

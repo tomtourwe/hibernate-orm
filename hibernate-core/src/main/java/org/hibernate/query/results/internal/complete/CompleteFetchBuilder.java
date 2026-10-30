@@ -8,8 +8,7 @@ import org.hibernate.sql.results.graph.Fetchable;
 /**
  * @author Steve Ebersole
  */
-public interface CompleteFetchBuilder extends FetchBuilder, ModelPartReference {
-	@Override
+public interface CompleteFetchBuilder extends FetchBuilder {
 	Fetchable getReferencedPart();
 
 	List<String> getColumnAliases();

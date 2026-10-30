@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.SelectionQuery;
 
 public class EventManager {
 
@@ -94,64 +89,6 @@ public class EventManager {
 		return result;
 	}
 
-	/**
-	 * Call setEntity() on a cacheable query - see FORGE-265
-	 */
-	public List<Event> listEventsOfOrganizer(Person organizer) {
-
-		Session session = sessionFactory.getCurrentSession();
-
-		try {
-			session.beginTransaction();
-
-			SelectionQuery<Event> query = session.createSelectionQuery( "from Event ev where ev.organizer = :organizer", Event.class );
-
-			query.setCacheable( true );
-			query.setParameter( "organizer", organizer );
-			List<Event> result = query.list();
-
-			session.getTransaction().commit();
-
-			return result;
-		}
-		catch (Exception e){
-			if(session.getTransaction().isActive()){
-				session.getTransaction().rollback();
-			}
-			throw e;
-		}
-	}
-
-	/**
-	 * Use a Criteria query - see FORGE-247
-	 */
-	public List<Event> listEventsWithCriteria() {
-		Session session = sessionFactory.getCurrentSession();
-
-		try {
-			session.beginTransaction();
-
-			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-			CriteriaQuery<Event> criteria = criteriaBuilder.createQuery( Event.class );
-			criteria.from( Event.class );
-
-			List<Event> result = session.createSelectionQuery( criteria ).setCacheable( true ).list();
-//			List result = session.createCriteria( Event.class )
-//					.setCacheable( true )
-//					.list();
-
-			session.getTransaction().commit();
-
-			return result;
-		}
-		catch (Exception e){
-			if(session.getTransaction().isActive()){
-				session.getTransaction().rollback();
-			}
-			throw e;
-		}
-	}
-
 	public void addPersonToEvent(Long personId, Long eventId) {
 
 		Session session = sessionFactory.getCurrentSession();
@@ -163,29 +100,6 @@ public class EventManager {
 		aPerson.getEvents().add(anEvent);
 
 		session.getTransaction().commit();
-	}
-
-	public Long addPersonToAccount(Long personId, Account account) {
-		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
-		Person aPerson = session.getReference(Person.class, personId);
-		account.setPerson(aPerson);
-
-		session.persist(account);
-
-		session.getTransaction().commit();
-		return account.getId();
-	}
-
-	public Account getAccount(Long accountId) {
-		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
-		Account account = session.getReference(Account.class, accountId);
-
-		session.getTransaction().commit();
-		return account;
 	}
 
 	public void addEmailToPerson(Long personId, String emailAddress) {
@@ -222,37 +136,5 @@ public class EventManager {
 		aPerson.addTalisman(talisman);
 
 		session.getTransaction().commit();
-	}
-
-	public Long createHolidayCalendar() {
-
-		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
-		// delete all existing calendars
-		List<HolidayCalendar> calendars = session.createSelectionQuery("from HolidayCalendar", HolidayCalendar.class).setCacheable(true).list();
-		for (ListIterator<HolidayCalendar> li = calendars.listIterator(); li.hasNext(); ) {
-			session.remove(li.next());
-		}
-
-		HolidayCalendar calendar = new HolidayCalendar();
-		calendar.init();
-
-		session.persist(calendar);
-
-		session.getTransaction().commit();
-		return calendar.getId();
-	}
-
-	public HolidayCalendar getHolidayCalendar() {
-		Session session = sessionFactory.getCurrentSession();
-
-		session.beginTransaction();
-
-		List<HolidayCalendar> calendars = session.createSelectionQuery("from HolidayCalendar", HolidayCalendar.class).setCacheable(true).list();
-
-		session.getTransaction().commit();
-
-		return calendars.isEmpty() ? null : calendars.get(0);
 	}
 }

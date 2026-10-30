@@ -107,10 +107,6 @@ public class RowProcessingStateStandardImpl extends BaseExecutionContext impleme
 		return jdbcValues.getPosition();
 	}
 
-	public boolean isBeforeFirst() {
-		return jdbcValues.isBeforeFirst( this );
-	}
-
 	public void beforeFirst() {
 		jdbcValues.beforeFirst( this );
 	}
@@ -133,10 +129,6 @@ public class RowProcessingStateStandardImpl extends BaseExecutionContext impleme
 
 	public void afterLast() {
 		jdbcValues.afterLast( this );
-	}
-
-	public boolean isAfterLast() {
-		return jdbcValues.isAfterLast( this );
 	}
 
 	@Override

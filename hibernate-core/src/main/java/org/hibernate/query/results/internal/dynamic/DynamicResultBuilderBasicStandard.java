@@ -43,16 +43,6 @@ public class DynamicResultBuilderBasicStandard implements DynamicResultBuilderBa
 		this.explicitJavaType = null;
 	}
 
-	public DynamicResultBuilderBasicStandard(int columnPosition) {
-		assert columnPosition > 0;
-		this.columnName = "c" + columnPosition;
-		this.columnPosition = columnPosition;
-		this.resultAlias = columnName;
-
-		this.explicitType = null;
-		this.explicitJavaType = null;
-	}
-
 	public DynamicResultBuilderBasicStandard(String columnName, String resultAlias, JavaType<?> explicitJavaType) {
 		assert columnName != null;
 		this.columnName = columnName;
@@ -98,10 +88,6 @@ public class DynamicResultBuilderBasicStandard implements DynamicResultBuilderBa
 			return explicitType.getJavaType();
 		}
 		return null;
-	}
-
-	public String getColumnName() {
-		return columnName;
 	}
 
 	@Override

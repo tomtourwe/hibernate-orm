@@ -20,8 +20,6 @@ public final class IdentityMap<K,V> implements Map<K,V> {
 
 	private final LinkedHashMap<IdentityKey<K>,V> map;
 
-	private transient Entry<K,V>[] entryArray = null;
-
 	/**
 	 * Return a new instance of this class, with iteration
 	 * order defined as the order in which entries were added
@@ -40,17 +38,6 @@ public final class IdentityMap<K,V> implements Map<K,V> {
 	 */
 	private IdentityMap(LinkedHashMap<IdentityKey<K>,V> underlyingMap) {
 		map = underlyingMap;
-	}
-
-	/**
-	 * Return the map entries (as instances of {@code Map.Entry} in a collection that
-	 * is safe from concurrent modification). That is, we may safely add new instances
-	 * to the underlying {@code Map} during iteration of the {@code entries()}.
-	 *
-	 * @param map The map of entries
-	 */
-	public static <K,V> Entry<K,V>[] concurrentEntries(Map<K,V> map) {
-		return ( (IdentityMap<K,V>) map ).entryArray();
 	}
 
 	public static <K,V> void onEachKey(Map<K,V> map, Consumer<K> consumer) {
@@ -99,13 +86,11 @@ public final class IdentityMap<K,V> implements Map<K,V> {
 
 	@Override
 	public V put(K key, V value) {
-		this.entryArray = null;
 		return map.put( new IdentityKey<>( key ), value );
 	}
 
 	@Override
 	public V remove(Object key) {
-		this.entryArray = null;
 		return map.remove( new IdentityKey<>( key ) );
 	}
 
@@ -118,7 +103,6 @@ public final class IdentityMap<K,V> implements Map<K,V> {
 
 	@Override
 	public void clear() {
-		entryArray = null;
 		map.clear();
 	}
 
@@ -141,20 +125,6 @@ public final class IdentityMap<K,V> implements Map<K,V> {
 			set.add( new IdentityMapEntry<>( entry.getKey().key, entry.getValue() ) );
 		}
 		return set;
-	}
-
-	public Entry<K,V>[] entryArray() {
-		if ( entryArray == null ) {
-			//noinspection unchecked
-			entryArray = new Entry[ map.size() ];
-			final var iterator = map.entrySet().iterator();
-			int i = 0;
-			while ( iterator.hasNext() ) {
-				final var entry = iterator.next();
-				entryArray[i++] = new IdentityMapEntry<>( entry.getKey().key, entry.getValue() );
-			}
-		}
-		return entryArray;
 	}
 
 	@Override

@@ -7,7 +7,6 @@ import java.util.List;
 
 import jakarta.annotation.Nullable;
 import org.hibernate.mapping.Value;
-import org.hibernate.metamodel.mapping.EmbeddableMappingType;
 import org.hibernate.metamodel.mapping.JdbcMapping;
 import org.hibernate.metamodel.mapping.SelectableConsumer;
 import org.hibernate.metamodel.mapping.SelectableMapping;
@@ -18,8 +17,6 @@ import org.hibernate.type.CompositeType;
 import org.hibernate.type.EntityType;
 import org.hibernate.type.Type;
 import org.hibernate.type.MappingContext;
-
-import static org.hibernate.internal.util.collections.CollectionHelper.arrayList;
 
 /**
  * @author Christian Beikov
@@ -77,17 +74,6 @@ public class SelectableMappingsImpl implements SelectableMappings {
 		}
 
 		return new SelectableMappingsImpl( selectableMappings );
-	}
-
-	public static SelectableMappings from(EmbeddableMappingType embeddableMappingType) {
-		final int propertySpan = embeddableMappingType.getNumberOfAttributeMappings();
-		final List<SelectableMapping> selectableMappings = arrayList( propertySpan );
-		embeddableMappingType.forEachAttributeMapping(
-				(index, attributeMapping) -> attributeMapping.forEachSelectable(
-						(columnIndex, selection) -> selectableMappings.add( selection )
-				)
-		);
-		return new SelectableMappingsImpl( selectableMappings.toArray( new SelectableMapping[0] ) );
 	}
 
 	@Nonnull

@@ -10,10 +10,8 @@ import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
 import org.hibernate.Filter;
-import org.hibernate.engine.spi.LoadQueryInfluencers;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.mapping.FilterConfiguration;
-import org.hibernate.metamodel.mapping.Restrictable;
 import org.hibernate.persister.entity.EntityNameUse;
 import org.hibernate.persister.filter.FilterAliasGenerator;
 import org.hibernate.sql.Template;
@@ -24,10 +22,8 @@ import org.hibernate.sql.ast.spi.query.predicate.Predicate;
 
 import static org.hibernate.internal.util.NullnessUtil.castNonNull;
 import static org.hibernate.internal.FilterImpl.MARKER;
-import static org.hibernate.internal.util.StringHelper.isNotEmpty;
 import static org.hibernate.internal.util.StringHelper.replace;
 import static org.hibernate.internal.util.StringHelper.safeInterning;
-import static org.hibernate.internal.util.collections.CollectionHelper.isNotEmpty;
 
 /**
  * Utility methods for dealing with {@linkplain FilterConfiguration filters}.
@@ -145,24 +141,6 @@ public class FilterHelper {
 		return false;
 	}
 
-	public static void applyBaseRestrictions(
-			@Nonnull Consumer<Predicate> predicateConsumer,
-			@Nonnull Restrictable restrictable,
-			@Nonnull TableGroup rootTableGroup,
-			boolean useIdentificationVariable,
-			@Nonnull LoadQueryInfluencers loadQueryInfluencers,
-			@Nonnull SqlAstCreationState astCreationState) {
-		restrictable.applyBaseRestrictions(
-				predicateConsumer,
-				rootTableGroup,
-				useIdentificationVariable,
-				loadQueryInfluencers.getEnabledFilters(),
-				astCreationState.applyOnlyLoadByKeyFilters(),
-				null,
-				astCreationState
-		);
-	}
-
 	public void applyEnabledFilters(
 			@Nonnull Consumer<Predicate> predicateConsumer,
 			@Nullable FilterAliasGenerator aliasGenerator,
@@ -201,27 +179,6 @@ public class FilterHelper {
 
 		return filterPredicate.isEmpty() ? null : filterPredicate;
 
-	}
-
-	@Nonnull
-	public String render(@Nullable FilterAliasGenerator aliasGenerator, @Nonnull Map<String, Filter> enabledFilters) {
-		final var buffer = new StringBuilder();
-		render( buffer, aliasGenerator, enabledFilters );
-		return buffer.toString();
-	}
-
-	public void render(@Nonnull StringBuilder buffer, @Nullable FilterAliasGenerator aliasGenerator, @Nonnull Map<String, Filter> enabledFilters) {
-		if ( isNotEmpty( filterNames ) ) {
-			for ( int i = 0, max = filterNames.length; i < max; i++ ) {
-				if ( enabledFilters.containsKey( filterNames[i] )
-						&& isNotEmpty( filterConditions[i] ) ) {
-					if ( !buffer.isEmpty() ) {
-						buffer.append( " and " );
-					}
-					buffer.append( render( aliasGenerator, i, null, null ) );
-				}
-			}
-		}
 	}
 
 	@Nonnull

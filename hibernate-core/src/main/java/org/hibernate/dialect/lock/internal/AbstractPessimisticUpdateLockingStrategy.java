@@ -116,8 +116,4 @@ public abstract class AbstractPessimisticUpdateLockingStrategy implements Lockin
 		}
 		return update.toStatementString();
 	}
-
-	protected LockMode getLockMode() {
-		return lockMode;
-	}
 }

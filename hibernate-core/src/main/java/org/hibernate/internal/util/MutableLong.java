@@ -13,31 +13,11 @@ public class MutableLong {
 	public MutableLong() {
 	}
 
-	public MutableLong(long value) {
-		this.value = value;
-	}
-
-	public MutableLong deepCopy() {
-		return new MutableLong( value );
-	}
-
-	public long getAndIncrement() {
-		return value++;
-	}
-
-	public long incrementAndGet() {
-		return ++value;
-	}
-
 	public long get() {
 		return value;
 	}
 
 	public void set(long value) {
 		this.value = value;
-	}
-
-	public void increase() {
-		++value;
 	}
 }

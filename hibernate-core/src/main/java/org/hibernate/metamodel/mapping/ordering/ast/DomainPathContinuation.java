@@ -17,23 +17,14 @@ public class DomainPathContinuation extends AbstractDomainPath {
 	protected final NavigablePath navigablePath;
 	protected final ModelPart referencedModelPart;
 
-	private final DomainPath lhs;
-
-	public DomainPathContinuation(NavigablePath navigablePath, DomainPath lhs, ModelPart referencedModelPart) {
+	public DomainPathContinuation(NavigablePath navigablePath, ModelPart referencedModelPart) {
 		this.navigablePath = navigablePath;
-		this.lhs = lhs;
 		this.referencedModelPart = referencedModelPart;
 	}
 
 	@Override
 	public NavigablePath getNavigablePath() {
 		return navigablePath;
-	}
-
-	@Nonnull
-	@Override
-	public DomainPath getLhs() {
-		return lhs;
 	}
 
 	@Override
@@ -57,7 +48,6 @@ public class DomainPathContinuation extends AbstractDomainPath {
 
 			return new DomainPathContinuation(
 					navigablePath.append( name ),
-					this,
 					subPart
 			);
 		}

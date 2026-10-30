@@ -1,5 +1,6 @@
 package org.hibernate.build.aspects;
 
+import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.hibernate.build.OrmBuildDetails;
 
@@ -10,7 +11,7 @@ import java.util.Map;
  *
  * @author Steve Ebersole
  */
-public class ModuleAspect implements Aspect {
+public class ModuleAspect implements Plugin<Project> {
 	@Override
 	public void apply(Project target) {
 		target.getPluginManager().apply( "base" );

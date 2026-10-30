@@ -69,10 +69,6 @@ public abstract class AbstractCollectionBatchLoader implements CollectionBatchLo
 		return sessionFactory;
 	}
 
-	public int getKeyJdbcCount() {
-		return keyJdbcCount;
-	}
-
 	abstract void initializeKeys(@Nonnull Object key, @Nonnull Object[] keysToInitialize, @Nonnull SharedSessionContractImplementor session);
 
 	@Nonnull

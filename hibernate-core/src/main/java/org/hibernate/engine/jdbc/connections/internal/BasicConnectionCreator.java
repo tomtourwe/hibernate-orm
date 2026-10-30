@@ -140,11 +140,4 @@ public abstract class BasicConnectionCreator implements ConnectionCreator {
 
 	protected abstract Connection makeConnection(String url, Properties connectionProps);
 
-	/**
-	 * Exposed for testing purposes only.
-	 */
-	public Properties getConnectionProperties() {
-		return new Properties( connectionProps );
-	}
-
 }

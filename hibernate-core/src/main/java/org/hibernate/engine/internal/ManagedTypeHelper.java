@@ -128,16 +128,6 @@ public final class ManagedTypeHelper {
 	}
 
 	/**
-	 * @return true if and only if the entity implements {@see CompositeOwner}
-	 */
-	public static boolean isCompositeOwner(final Object entity) {
-		if ( entity instanceof PrimeAmongSecondarySupertypes t ) {
-			return t.asCompositeOwner() != null;
-		}
-		return false;
-	}
-
-	/**
 	 * @return true if and only if the entity implements {@see CompositeTracker}
 	 */
 	public static boolean isCompositeTracker(final @Nullable Object entity) {
@@ -353,17 +343,6 @@ public final class ManagedTypeHelper {
 			}
 		}
 		throw new ClassCastException( "Object of type '" + entity.getClass() + "' can't be cast to SelfDirtinessTracker" );
-	}
-
-	/**
-	 * Cast the object to an HibernateProxy, or return null in case it is not an instance of HibernateProxy
-	 * @param entity the entity to cast
-	 * @return the same instance after casting or null if it is not an instance of HibernateProxy
-	 */
-	public static HibernateProxy asHibernateProxyOrNull(final Object entity) {
-		return entity instanceof PrimeAmongSecondarySupertypes ?
-				( (PrimeAmongSecondarySupertypes) entity ).asHibernateProxy() :
-				null;
 	}
 
 	private static final class TypeMeta {

@@ -10,7 +10,6 @@ import org.hibernate.action.queue.internal.PreparedCollectionMutation;
 import org.hibernate.action.queue.spi.CollectionMutationId;
 import org.hibernate.action.queue.spi.bind.PostExecutionCallback;
 import org.hibernate.action.queue.spi.plan.FlushOperation;
-import org.hibernate.collection.spi.PersistentCollection;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.engine.internal.FlushProcessingContext;
 import org.hibernate.persister.collection.CollectionPersister;
@@ -43,7 +42,6 @@ public final class CollectionMutationCompletion {
 	}
 
 	private final CollectionMutationId id;
-	private final PersistentCollection<?> collection;
 	private final List<PostExecutionCallback> completionHandlers = new ArrayList<>();
 	private final Map<FlushOperation, Boolean> fixupReservations = new IdentityHashMap<>();
 
@@ -58,10 +56,8 @@ public final class CollectionMutationCompletion {
 	private boolean flushSuccessRequired;
 
 	public CollectionMutationCompletion(
-			CollectionMutationId id,
-			PersistentCollection<?> collection) {
+			CollectionMutationId id) {
 		this.id = id;
-		this.collection = collection;
 		state = State.REGISTERING;
 	}
 
@@ -71,34 +67,6 @@ public final class CollectionMutationCompletion {
 
 	public State getState() {
 		return state;
-	}
-
-	public Kind getKind() {
-		return kind;
-	}
-
-	public PersistentCollection<?> getCollection() {
-		return collection;
-	}
-
-	public CollectionPersister getPersister() {
-		return persister;
-	}
-
-	public Object getKey() {
-		return key;
-	}
-
-	public Object getAffectedOwner() {
-		return affectedOwner;
-	}
-
-	public Object getAffectedOwnerId() {
-		return affectedOwnerId;
-	}
-
-	public int getObligationCount() {
-		return obligationCount;
 	}
 
 	public void configure(PreparedCollectionMutation mutation) {

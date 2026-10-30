@@ -1,12 +1,9 @@
 package org.hibernate.query.sqm.spi;
 
-import java.util.List;
-
 import jakarta.annotation.Nullable;
 import org.hibernate.Internal;
 import org.hibernate.metamodel.mapping.CollectionPart;
 import org.hibernate.metamodel.model.domain.PluralPersistentAttribute;
-import org.hibernate.query.criteria.JpaPredicate;
 import org.hibernate.query.sqm.tree.spi.domain.SqmPath;
 import org.hibernate.query.sqm.tree.spi.predicate.SqmJunctionPredicate;
 import org.hibernate.query.sqm.tree.spi.predicate.SqmPredicate;
@@ -16,8 +13,6 @@ import org.hibernate.spi.NavigablePath;
 import jakarta.persistence.criteria.Predicate;
 
 import java.util.concurrent.atomic.AtomicLong;
-
-import static org.hibernate.internal.util.collections.CollectionHelper.isEmpty;
 
 /**
  * @author Steve Ebersole
@@ -103,45 +98,6 @@ public class SqmCreationHelper {
 
 	public static NavigablePath buildSubNavigablePath(SqmPath<?> lhs, String subNavigable, @Nullable String alias) {
 		return buildSubNavigablePath( buildParentNavigablePath( lhs, subNavigable ), subNavigable, alias );
-	}
-
-	@Nullable
-	public static SqmPredicate combinePredicates(@Nullable SqmPredicate baseRestriction, @Nullable List<Predicate> incomingRestrictions) {
-		if ( incomingRestrictions == null || incomingRestrictions.isEmpty() ) {
-			return baseRestriction;
-		}
-
-		SqmPredicate combined = combinePredicates( null, baseRestriction );
-		for ( int i = 0; i < incomingRestrictions.size(); i++ ) {
-			combined = combinePredicates( combined, (SqmPredicate) incomingRestrictions.get(i) );
-		}
-		return combined;
-	}
-
-	@Nullable
-	public static SqmPredicate combinePredicates(@Nullable SqmPredicate baseRestriction, @Nullable JpaPredicate... incomingRestrictions) {
-		if ( isEmpty( incomingRestrictions ) ) {
-			return baseRestriction;
-		}
-
-		SqmPredicate combined = combinePredicates( null, baseRestriction );
-		for ( int i = 0; i < incomingRestrictions.length; i++ ) {
-			combined = combinePredicates( combined, incomingRestrictions[i] );
-		}
-		return combined;
-	}
-
-	@Nullable
-	public static SqmPredicate combinePredicates(@Nullable SqmPredicate baseRestriction, @Nullable Predicate... incomingRestrictions) {
-		if ( isEmpty( incomingRestrictions ) ) {
-			return baseRestriction;
-		}
-
-		SqmPredicate combined = combinePredicates( null, baseRestriction );
-		for ( int i = 0; i < incomingRestrictions.length; i++ ) {
-			combined = combinePredicates( combined, incomingRestrictions[i] );
-		}
-		return combined;
 	}
 
 

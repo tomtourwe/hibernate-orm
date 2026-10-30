@@ -31,10 +31,6 @@ public class HANALockingSupport extends LockingSupportParameterized implements L
 		return new HANALockingSupport( supportsWait, supportsSkipLocked );
 	}
 
-	public HANALockingSupport(boolean supportsSkipLocked) {
-		this( false, supportsSkipLocked );
-	}
-
 	private final boolean supportsWait;
 	private final boolean supportsSkipLocked;
 

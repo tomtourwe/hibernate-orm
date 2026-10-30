@@ -22,12 +22,10 @@ import static java.util.Objects.requireNonNull;
  */
 public final class AggregateColumnDescriptorAdapter implements AggregateColumnDescriptor {
 	private final Column column;
-	private final Namespace namespace;
 	private final List<AggregateColumnDescriptor> components;
 
 	private AggregateColumnDescriptorAdapter(Column column, Namespace namespace) {
 		this.column = column;
-		this.namespace = namespace;
 		this.components = column instanceof AggregateColumn aggregateColumn
 				? descriptors( aggregateColumn.getComponent().getAggregatedColumns(), namespace )
 				: List.of();
@@ -73,10 +71,6 @@ public final class AggregateColumnDescriptorAdapter implements AggregateColumnDe
 		return descriptors.stream()
 				.map( descriptor -> ((AggregateColumnDescriptorAdapter) descriptor).column )
 				.toList();
-	}
-
-	public Namespace namespace() {
-		return namespace;
 	}
 
 	@Override

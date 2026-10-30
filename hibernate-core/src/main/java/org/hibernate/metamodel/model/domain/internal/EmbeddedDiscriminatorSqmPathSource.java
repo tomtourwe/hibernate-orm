@@ -26,7 +26,6 @@ public class EmbeddedDiscriminatorSqmPathSource<D> extends AbstractDiscriminator
 				PathHelper.append( lhs, this, intermediatePathSource ),
 				pathModel,
 				lhs,
-				(EmbeddableDomainType<D>) embeddableDomainType,
 				lhs.nodeBuilder()
 		);
 	}

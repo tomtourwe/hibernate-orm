@@ -94,7 +94,6 @@ public class TestTools {
 	public interface MapBuilder<K,E> {
 		MapBuilder<K,E> add(K key, E value);
 		Set<Map.Entry<K,E>> entries();
-		Map<K,E> map();
 	}
 
 	private static class MashMapBuilderImpl<K,E> implements MapBuilder<K,E> {
@@ -109,11 +108,6 @@ public class TestTools {
 		@Override
 		public Set<Map.Entry<K, E>> entries() {
 			return hashMap.entrySet();
-		}
-
-		@Override
-		public Map<K, E> map() {
-			return hashMap;
 		}
 	}
 }

@@ -15,7 +15,6 @@ import org.hibernate.mapping.Selectable;
 import org.hibernate.mapping.Set;
 import org.hibernate.mapping.SimpleValue;
 import org.hibernate.tool.reveng.internal.export.common.DefaultValueVisitor;
-import org.hibernate.tool.reveng.internal.util.NameConverter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -571,13 +570,6 @@ abstract public class BasicPOJOClass implements POJOClass {
 	 */
 	public String getPropertyName(Property p) {
 		return beanCapitalize( p.getName() );
-	}
-
-
-	// get the "opposite" collectionnae for a property. Currently a "hack" that just uses the same naming algorithm as in reveng, will fail on more general models!
-	public String getCollectionNameFor(Property property) {
-		String str = getPropertyName(property);
-		return NameConverter.simplePluralize(str);
 	}
 
 

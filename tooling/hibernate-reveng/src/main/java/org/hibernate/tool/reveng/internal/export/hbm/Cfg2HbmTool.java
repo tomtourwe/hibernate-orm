@@ -195,20 +195,12 @@ public class Cfg2HbmTool {
 		return getFilteredIdentifierGeneratorProperties(this.getIdentifierGeneratorProperties(property), props).keySet();
 	}
 
-	public boolean isOneToMany(Property property) {
-		return isOneToMany(property.getValue());
-	}
-
 	public boolean isOneToMany(Value value) {
 		if(value instanceof Collection) {
 			return ( (Collection)value ).isOneToMany();
 		}
 		else
 			return value instanceof OneToMany;
-	}
-
-	public boolean isManyToMany(Property property) {
-		return isManyToMany(property.getValue());
 	}
 
 	public boolean isManyToMany(Value value) {
@@ -221,20 +213,12 @@ public class Cfg2HbmTool {
 		return property.getValue() instanceof Collection;
 	}
 
-	public boolean isOneToManyCollection(Property property) {
-		return isCollection(property) && ((Collection)property.getValue()).isOneToMany();
-	}
-
 	public boolean isSimpleValue(Property property) {
 		return (property.getValue() instanceof SimpleValue);
 	}
 
 	public boolean isManyToOne(Property property) {
 		return isManyToOne(property.getValue());
-	}
-
-	public boolean isManyToAny(Property property) {
-		return isManyToAny(property.getValue());
 	}
 
 	public boolean isManyToAny(Value value) {
@@ -248,20 +232,6 @@ public class Cfg2HbmTool {
 
 	public boolean isOneToOne(Property property) {
 		return (property.getValue() instanceof OneToOne);
-	}
-
-	public boolean isTemporalValue(Property property) {
-		if(property.getValue() instanceof SimpleValue) {
-			String typeName = ((SimpleValue)property.getValue()).getTypeName();
-			if("date".equals(typeName) || "java.sql.Date".equals(typeName)) {
-				return true;
-			}
-			else if ("timestamp".equals(typeName) || "java.sql.Timestamp".equals(typeName)) {
-				return true;
-			}
-			else return "time".equals(typeName) || "java.sql.Time".equals(typeName);
-		}
-		return false;
 	}
 
 	public boolean isNamedQueries(Metadata md) {

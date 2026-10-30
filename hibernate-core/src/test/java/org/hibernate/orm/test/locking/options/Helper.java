@@ -99,14 +99,6 @@ public class Helper {
 		String getTableName();
 		String getTableAlias();
 		String getKeyColumnName();
-
-		default String getKeyColumnReference() {
-			return getKeyColumnReference( getTableAlias() );
-		}
-
-		default String getKeyColumnReference(String tableAlias) {
-			return tableAlias + "." + getKeyColumnName();
-		}
 	}
 
 	public enum Table implements TableInformation {

@@ -188,20 +188,6 @@ public class ValidateConstraintTests implements ServiceRegistryProducer {
 		);
 	}
 
-	private void updateSchema(
-			Metadata schema,
-			HibernateSchemaManagementTool schemaTooling,
-			ServiceRegistryImplementor registry) {
-		SchemaManagementToolCoordinator.performDatabaseAction(
-				Action.UPDATE,
-				schema,
-				schemaTooling,
-				registry,
-				new Options( registry ),
-				ContributableMatcher.ALL
-		);
-	}
-
 	private static void createSchema(
 			Metadata schema,
 			HibernateSchemaManagementTool schemaTooling,

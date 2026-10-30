@@ -3,7 +3,6 @@ package org.hibernate.tool.reveng.internal.export.common;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.spi.MetadataImplementor;
 import org.hibernate.internal.util.ReflectHelper;
-import org.hibernate.internal.util.StringHelper;
 import org.hibernate.tool.reveng.api.export.ArtifactCollector;
 import org.hibernate.tool.reveng.api.export.Exporter;
 import org.hibernate.tool.reveng.api.export.ExporterConstants;
@@ -197,19 +196,8 @@ public abstract class AbstractExporter implements Exporter, ExporterConstants {
 		return vh;
 	}
 
-	protected File getFileForClassName(File baseDir, String className, String extension) {
-		String filename = StringHelper.unqualify(className) + extension;
-		String packagename = StringHelper.qualifier(className);
-		return new File(getDirForPackage(baseDir, packagename), filename);
-	}
-
 	protected Metadata buildMetadata() {
 		return getMetadataDescriptor().createMetadata();
-	}
-
-	private File getDirForPackage(File baseDir, String packageName) {
-		String p = packageName == null ? "" : packageName;
-		return new File( baseDir, p.replace('.', File.separatorChar) );
 	}
 
 	private String toString(Object[] a) {

@@ -122,26 +122,6 @@ public class BootstrapServiceRegistryImpl
 	 * Do not use directly generally speaking.  Use {@link org.hibernate.boot.registry.BootstrapServiceRegistryBuilder}
 	 * instead.
 	 *
-	 * @param classLoaderService The ClassLoaderService to use
-	 * @param strategySelector The StrategySelector to use
-	 * @param integratorService The IntegratorService to use
-	 *
-	 * @see org.hibernate.boot.registry.BootstrapServiceRegistryBuilder
-	 */
-	public BootstrapServiceRegistryImpl(
-			ClassLoaderService classLoaderService,
-			StrategySelector strategySelector,
-			IntegratorService integratorService) {
-		this( true, classLoaderService, strategySelector, integratorService );
-	}
-
-
-	/**
-	 * Constructs a BootstrapServiceRegistryImpl.
-	 *
-	 * Do not use directly generally speaking.  Use {@link org.hibernate.boot.registry.BootstrapServiceRegistryBuilder}
-	 * instead.
-	 *
 	 * @param autoCloseRegistry See discussion on
 	 * {@link org.hibernate.boot.registry.BootstrapServiceRegistryBuilder#disableAutoClose}
 	 * @param classLoaderService The ClassLoaderService to use

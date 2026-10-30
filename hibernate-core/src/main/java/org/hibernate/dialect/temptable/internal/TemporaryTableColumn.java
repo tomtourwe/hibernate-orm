@@ -66,10 +66,6 @@ public class TemporaryTableColumn implements TemporaryTableColumnDescriptor, Sql
 		return jdbcMapping;
 	}
 
-	public String getDefaultValue() {
-		return null;
-	}
-
 	@Override
 	public String getSqlTypeDefinition() {
 		return sqlTypeName;
@@ -88,10 +84,6 @@ public class TemporaryTableColumn implements TemporaryTableColumnDescriptor, Sql
 	@Override
 	public boolean isPrimaryKey() {
 		return primaryKey;
-	}
-
-	public @Nullable String getColumnDefinition() {
-		return sqlTypeName;
 	}
 
 	@Override

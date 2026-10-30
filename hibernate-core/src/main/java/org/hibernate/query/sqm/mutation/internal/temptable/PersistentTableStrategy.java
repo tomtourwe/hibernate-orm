@@ -164,8 +164,4 @@ public abstract class PersistentTableStrategy {
 	public TemporaryTable getTemporaryTable() {
 		return temporaryTable;
 	}
-
-	public SessionFactoryImplementor getSessionFactory() {
-		return sessionFactory;
-	}
 }

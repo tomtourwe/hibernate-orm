@@ -327,11 +327,6 @@ public class ComponentPropertyHolder extends AbstractPropertyHolder {
 		return component.getComponentClassName();
 	}
 
-	@Override
-	public String getEntityOwnerClassName() {
-		return component.getOwner().getClassName();
-	}
-
 	public AggregateColumn getAggregateColumn() {
 		final var aggregateColumn = component.getAggregateColumn();
 		return aggregateColumn != null ? aggregateColumn : component.getParentAggregateColumn();

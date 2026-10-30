@@ -80,12 +80,6 @@ public class ManagedResourcesBuilder {
 		return this;
 	}
 
-	public ManagedResourcesBuilder addResources(ManagedResources resources) {
-		addNonXmlResources( resources );
-		resources.getXmlMappingBindings().forEach( this::addXmlBinding );
-		return this;
-	}
-
 	/// Copy retained handles and registrations when replacing an XML batch.
 	public ManagedResourcesBuilder addNonXmlResources(ManagedResources resources) {
 		resources.getAnnotatedClassReferences().forEach( this::addClass );

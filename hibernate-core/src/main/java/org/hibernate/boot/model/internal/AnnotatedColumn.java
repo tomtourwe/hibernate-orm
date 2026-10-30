@@ -101,32 +101,8 @@ public class AnnotatedColumn {
 		return logicalColumnName;
 	}
 
-	public String getSqlType() {
-		return sqlType;
-	}
-
-	public Long getLength() {
-		return length;
-	}
-
-	public Integer getPrecision() {
-		return precision;
-	}
-
-	public Integer getScale() {
-		return scale;
-	}
-
-	public Integer getArrayLength() {
-		return arrayLength;
-	}
-
 	public void setArrayLength(Integer arrayLength) {
 		this.arrayLength = arrayLength;
-	}
-
-	public boolean isUnique() {
-		return unique;
 	}
 
 	public boolean isFormula() {
@@ -193,10 +169,6 @@ public class AnnotatedColumn {
 		return isFormula() || mappingColumn.isNullable();
 	}
 
-	public String getDefaultValue() {
-		return defaultValue;
-	}
-
 	public void setDefaultValue(String defaultValue) {
 		this.defaultValue = defaultValue;
 	}
@@ -207,18 +179,6 @@ public class AnnotatedColumn {
 
 	public void addCheckConstraint(String name, String constraint, String options) {
 		checkConstraints.add( new CheckConstraint( name, constraint, options ) );
-	}
-
-//	public String getComment() {
-//		return comment;
-//	}
-
-//	public void setComment(String comment) {
-//		this.comment = comment;
-//	}
-
-	public String getGeneratedAs() {
-		return generatedAs;
 	}
 
 	private void setGeneratedAs(String as) {

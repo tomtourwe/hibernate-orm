@@ -17,7 +17,7 @@ import java.util.List;
  * @author Christian Beikov
  */
 public class DelayedFetchBuilderBasicPart
-		implements CompleteFetchBuilder, FetchBuilderBasicValued, ModelPartReferenceBasic {
+		implements CompleteFetchBuilder, FetchBuilderBasicValued {
 	private final NavigablePath navigablePath;
 	private final BasicValuedModelPart referencedModelPart;
 	private final boolean isEnhancedForLazyLoading;
@@ -36,7 +36,6 @@ public class DelayedFetchBuilderBasicPart
 		return this;
 	}
 
-	@Override
 	public NavigablePath getNavigablePath() {
 		return navigablePath;
 	}

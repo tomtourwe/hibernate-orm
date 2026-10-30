@@ -45,10 +45,6 @@ public class BatchBuilderImpl implements BatchBuilder {
 		this.globalBatchSize = globalBatchSize;
 	}
 
-	public int getJdbcBatchSize() {
-		return globalBatchSize;
-	}
-
 	private int batchSize(Integer explicitBatchSize) {
 		return explicitBatchSize == null
 				? globalBatchSize

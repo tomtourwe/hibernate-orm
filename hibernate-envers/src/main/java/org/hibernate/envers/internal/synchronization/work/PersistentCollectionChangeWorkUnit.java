@@ -89,10 +89,6 @@ public class PersistentCollectionChangeWorkUnit extends AbstractAuditWorkUnit im
 		}
 	}
 
-	public String getReferencingPropertyName() {
-		return referencingPropertyName;
-	}
-
 	public List<PersistentCollectionChangeData> getCollectionChanges() {
 		return collectionChanges;
 	}

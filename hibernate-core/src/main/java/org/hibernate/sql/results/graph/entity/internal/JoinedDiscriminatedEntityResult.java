@@ -60,14 +60,6 @@ public class JoinedDiscriminatedEntityResult<T> extends AbstractDiscriminatedEnt
 		return entityMappingType.isAffectedByEnabledFilters( loadQueryInfluencers, true );
 	}
 
-	protected List<EntityResultImpl<?>> getConcreteEntityResults() {
-		return concreteEntityResults;
-	}
-
-	protected BitSet getAffectedByFilters() {
-		return affectedByFilters;
-	}
-
 	@Override
 	public String getResultVariable() {
 		return resultVariable;

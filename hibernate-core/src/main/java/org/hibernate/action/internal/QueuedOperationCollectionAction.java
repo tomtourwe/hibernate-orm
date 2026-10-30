@@ -20,22 +20,6 @@ import org.hibernate.persister.collection.CollectionPersister;
  */
 public final class QueuedOperationCollectionAction extends CollectionAction {
 
-	/**
-	 * Constructs a CollectionUpdateAction
-	 *  @param collection The collection to update
-	 * @param persister The collection persister
-	 * @param id The collection key
-	 * @param session The session
-	 */
-	public QueuedOperationCollectionAction(
-			final @Nonnull PersistentCollection<?> collection,
-			final @Nonnull CollectionPersister persister,
-			final @Nonnull Object id,
-			final @Nonnull EventSource session) {
-		super( persister, collection, id, session );
-		assert collection != null;
-	}
-
 	/// Creates the legacy queued-work lowering of an already-prepared semantic mutation.
 	///
 	/// @since 8.0

@@ -1,7 +1,6 @@
 package org.hibernate.boot.model.source.internal.hbm;
 
 import org.hibernate.boot.query.internal.NamedHqlSelectionDefinitionImpl;
-import org.hibernate.models.spi.AnnotationTarget;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,10 +19,6 @@ public class HqlQueryBuilder<E> extends AbstractNamedQueryBuilder<E, HqlQueryBui
 
 	private Map<String, String> parameterTypes;
 
-	public HqlQueryBuilder(String name, AnnotationTarget location) {
-		super( name, location );
-	}
-
 	public HqlQueryBuilder(String name) {
 		super( name, null );
 	}
@@ -33,17 +28,9 @@ public class HqlQueryBuilder<E> extends AbstractNamedQueryBuilder<E, HqlQueryBui
 		return this;
 	}
 
-	public String getHqlString() {
-		return hqlString;
-	}
-
 	public HqlQueryBuilder<E> setHqlString(String hqlString) {
 		this.hqlString = hqlString;
 		return this;
-	}
-
-	public String getEntityGraphName() {
-		return entityGraphName;
 	}
 
 	public HqlQueryBuilder<E> setEntityGraphName(String entityGraphName) {

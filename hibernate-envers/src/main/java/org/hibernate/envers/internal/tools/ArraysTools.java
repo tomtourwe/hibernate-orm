@@ -6,16 +6,6 @@ import java.util.Map;
  * @author Adam Warski (adam at warski dot org)
  */
 public abstract class ArraysTools {
-	public static <T> boolean arrayIncludesInstanceOf(T[] array, Class<?> cls) {
-		for ( T obj : array ) {
-			if ( cls.isAssignableFrom( obj.getClass() ) ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	public static boolean arraysEqual(Object[] array1, Object[] array2) {
 		if ( array1 == null ) {
 			return array2 == null;

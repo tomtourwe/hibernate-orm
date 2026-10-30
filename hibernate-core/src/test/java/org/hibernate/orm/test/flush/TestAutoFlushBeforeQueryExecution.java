@@ -234,13 +234,8 @@ public class TestAutoFlushBeforeQueryExecution implements BootstrapServiceRegist
 	public static class InitializingPreUpdateEventListener implements PreUpdateEventListener {
 		public static final InitializingPreUpdateEventListener INSTANCE = new InitializingPreUpdateEventListener();
 
-		private boolean executed = false;
-		private boolean foundAny = false;
-
 		@Override
 		public boolean onPreUpdate(@Nonnull PreUpdateEvent event) {
-			executed = true;
-
 			final Object[] oldValues = event.getOldState();
 			final String[] properties = event.getPersister().getPropertyNames();
 
@@ -249,7 +244,6 @@ public class TestAutoFlushBeforeQueryExecution implements BootstrapServiceRegist
 				if ( oldValues != null && oldValues[i] != null ) {
 					if ( ! Hibernate.isInitialized( oldValues[i] ) ) {
 						// force any proxies and/or collections to initialize to illustrate HHH-2763
-						foundAny = true;
 						Hibernate.initialize( oldValues );
 					}
 				}

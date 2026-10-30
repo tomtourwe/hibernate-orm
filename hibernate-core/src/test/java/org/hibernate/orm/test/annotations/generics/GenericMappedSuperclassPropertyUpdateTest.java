@@ -72,13 +72,11 @@ public class GenericMappedSuperclassPropertyUpdateTest implements SessionFactory
 	static class UpdateContext {
 		final CriteriaUpdate<SpecificEntity> query;
 		final Root<SpecificEntity> root;
-		final Long id;
 		final SpecificEntity relative;
 
 		UpdateContext(CriteriaUpdate<SpecificEntity> query, Root<SpecificEntity> root, Long id, SpecificEntity relative) {
 			this.query = query;
 			this.root = root;
-			this.id = id;
 			this.relative = relative;
 		}
 	}

@@ -2,7 +2,6 @@ package org.hibernate.orm.test.boot.jaxb;
 
 import java.io.InputStream;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -32,17 +31,6 @@ public class JaxbHelper {
 
 	public boolean isValidationEnabled() {
 		return validationEnabled;
-	}
-
-	public static <T> T withStaxEventReader(InputStream inputStream, ClassLoaderService cls, Function<XMLEventReader,T> action) {
-		final XMLEventReader reader = createReader( inputStream, cls );
-		final T applied = action.apply( reader );
-		try {
-			reader.close();
-		}
-		catch (XMLStreamException ignore) {
-		}
-		return applied;
 	}
 
 	public static void withStaxEventReader(InputStream inputStream, ClassLoaderService cls, Consumer<XMLEventReader> action) {

@@ -23,10 +23,6 @@ class ColumnDiscrimnatorWithSchemaTest {
 	private ColumnDiscrimnatorWithSchemaTest() {
 	}
 
-	static ColumnDiscrimnatorWithSchemaTest createColumnDiscrimnatorWithSchemaTest() {
-		return new ColumnDiscrimnatorWithSchemaTest();
-	}
-
 	@Test
 	void testIt(SessionFactoryScope scope) {
 		scope.inTransaction( entityManager -> {

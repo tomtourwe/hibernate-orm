@@ -1,7 +1,6 @@
 package org.hibernate.sql;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Internal;
@@ -28,11 +27,6 @@ public class InFragment {
 	 */
 	public InFragment addValue(Object value) {
 		values.add( value );
-		return this;
-	}
-
-	public InFragment addValues(Object[] values) {
-		Collections.addAll( this.values, values );
 		return this;
 	}
 

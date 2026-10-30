@@ -51,18 +51,6 @@ public class StatefulOptions extends CommonOptions implements SessionCreationOpt
 		return this;
 	}
 
-	/**
-	 * Apply Jakarta Persistence creation options to this collector.
-	 */
-	public StatefulOptions apply(EntityManager.CreationOption... options) {
-		if ( options != null ) {
-			for ( var option : options ) {
-				apply( option );
-			}
-		}
-		return this;
-	}
-
 	@Override
 	public boolean shouldAutoJoinTransactions() {
 		return autoJoinTransactions;

@@ -296,13 +296,6 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 		void clear();
 
 		/**
-		 * Returns type of eviction algorithm (strategy).
-		 *
-		 * @return type of eviction algorithm
-		 */
-		Eviction strategy();
-
-		/**
 		 * Returns true if batching threshold has expired, false otherwise.
 		 * <p>
 		 * Note that this method is potentially invoked without holding a lock on Segment.
@@ -402,11 +395,6 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 				removed++;
 			}
 			accessQueueSize.addAndGet(-removed);
-		}
-
-		@Override
-		public Eviction strategy() {
-			return Eviction.LRU;
 		}
 
 		private boolean isAboveThreshold() {
@@ -1019,11 +1007,6 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 			accessQueueSize.addAndGet(-removed);
 		}
 
-		@Override
-		public Eviction strategy() {
-			return Eviction.LIRS;
-		}
-
 		/**
 		 * Returns the entry at the bottom of the stack.
 		 */
@@ -1116,13 +1099,6 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 		transient int modCount;
 
 		/**
-		 * The table is rehashed when its size exceeds this threshold.
-		 * (The value of this field is always {@code (int)(capacity *
-		 * loadFactor)}.)
-		 */
-		transient int threshold;
-
-		/**
 		 * The per-segment table.
 		 */
 		transient volatile HashEntry<K, V>[] table;
@@ -1157,7 +1133,6 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 		 * Call only while holding lock or in constructor.
 		 */
 		void setTable(HashEntry<K, V>[] newTable) {
-			threshold = (int) ( newTable.length * loadFactor );
 			table = newTable;
 		}
 
@@ -1491,21 +1466,6 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 	}
 
 	/**
-	 * Creates a new, empty map with the specified maximum capacity, load factor, concurrency
-	 * level and LRU eviction policy.
-	 *
-	 * @param capacity is the upper bound capacity for the number of elements in this map
-	 * @param concurrencyLevel the estimated number of concurrently updating threads. The implementation performs
-	 * internal sizing to try to accommodate this many threads.
-	 *
-	 * @throws IllegalArgumentException if the initial capacity is negative or the load factor or concurrencyLevel are
-	 * nonpositive.
-	 */
-	public BoundedConcurrentHashMap(int capacity, int concurrencyLevel) {
-		this( capacity, concurrencyLevel, Eviction.LRU );
-	}
-
-	/**
 	 * @return {@code true} if this map contains no key-value mappings
 	 */
 	@Override
@@ -1706,27 +1666,6 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 			}
 		}
 		return found;
-	}
-
-	/**
-	 * Legacy method testing if some key maps into the specified value
-	 * in this table.  This method is identical in functionality to
-	 * {@link #containsValue}, and exists solely to ensure
-	 * full compatibility with class {@link java.util.Hashtable},
-	 * which supported this method prior to introduction of the
-	 * Java Collections framework.
-	 *
-	 * @param value a value to search for
-	 *
-	 * @return {@code true} if and only if some key maps to the
-	 * {@code value} argument in this table as
-	 * determined by the {@code equals} method;
-	 * {@code false} otherwise
-	 *
-	 * @throws NullPointerException if the specified value is null
-	 */
-	public boolean contains(Object value) {
-		return containsValue( value );
 	}
 
 	/**

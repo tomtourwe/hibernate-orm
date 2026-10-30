@@ -53,21 +53,9 @@ public class BeanInfoHelper {
 	private final Class<?> beanClass;
 	private final Class<?> stopClass;
 
-	public BeanInfoHelper(Class<?> beanClass) {
-		this( beanClass, Object.class );
-	}
-
 	public BeanInfoHelper(Class<?> beanClass, Class<?> stopClass) {
 		this.beanClass = beanClass;
 		this.stopClass = stopClass;
-	}
-
-	public void applyToBeanInfo(Object bean, BeanInfoDelegate delegate) {
-		if ( ! beanClass.isInstance( bean ) ) {
-			throw new BeanIntrospectionException( "Bean [" + bean + "] was not of declared bean type [" + beanClass.getName() + "]" );
-		}
-
-		visitBeanInfo( beanClass, stopClass, delegate );
 	}
 
 	public static void visitBeanInfo(Class<?> beanClass, BeanInfoDelegate delegate) {

@@ -25,7 +25,7 @@ import static org.hibernate.sql.ast.spi.creation.SqlExpressionResolver.createCol
 /**
  * @author Steve Ebersole
  */
-public class CompleteFetchBuilderBasicPart implements CompleteFetchBuilder, FetchBuilderBasicValued, ModelPartReferenceBasic {
+public class CompleteFetchBuilderBasicPart implements CompleteFetchBuilder, FetchBuilderBasicValued {
 	private final NavigablePath navigablePath;
 	private final BasicValuedModelPart referencedModelPart;
 	private final String selectionAlias;
@@ -44,7 +44,6 @@ public class CompleteFetchBuilderBasicPart implements CompleteFetchBuilder, Fetc
 		return this;
 	}
 
-	@Override
 	public NavigablePath getNavigablePath() {
 		return navigablePath;
 	}

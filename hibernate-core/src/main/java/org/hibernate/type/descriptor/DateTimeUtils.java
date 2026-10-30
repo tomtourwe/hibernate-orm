@@ -147,24 +147,6 @@ public final class DateTimeUtils {
 		);
 	}
 
-	public static void appendAsTimestampWithNanos(
-			SqlAppender appender,
-			TemporalAccessor temporalAccessor,
-			boolean supportsOffset,
-			TimeZone jdbcTimeZone,
-			boolean allowZforZeroOffset) {
-		appendAsTimestamp(
-				appender,
-				temporalAccessor,
-				supportsOffset,
-				jdbcTimeZone,
-				DATE_TIME_FORMATTER_TIMESTAMP_WITH_MICROS,
-				allowZforZeroOffset
-						? DATE_TIME_FORMATTER_TIMESTAMP_WITH_NANOS_AND_OFFSET
-						: DATE_TIME_FORMATTER_TIMESTAMP_WITH_NANOS_AND_OFFSET_NOZ
-		);
-	}
-
 	public static void appendAsTimestampWithMicros(
 			SqlAppender appender,
 			TemporalAccessor temporalAccessor,
@@ -177,24 +159,6 @@ public final class DateTimeUtils {
 				jdbcTimeZone,
 				DATE_TIME_FORMATTER_TIMESTAMP_WITH_MICROS,
 				DATE_TIME_FORMATTER_TIMESTAMP_WITH_MICROS_AND_OFFSET
-		);
-	}
-
-	public static void appendAsTimestampWithMicros(
-			SqlAppender appender,
-			TemporalAccessor temporalAccessor,
-			boolean supportsOffset,
-			TimeZone jdbcTimeZone,
-			boolean allowZforZeroOffset) {
-		appendAsTimestamp(
-				appender,
-				temporalAccessor,
-				supportsOffset,
-				jdbcTimeZone,
-				DATE_TIME_FORMATTER_TIMESTAMP_WITH_MICROS,
-				allowZforZeroOffset
-						? DATE_TIME_FORMATTER_TIMESTAMP_WITH_MICROS_AND_OFFSET
-						: DATE_TIME_FORMATTER_TIMESTAMP_WITH_MICROS_AND_OFFSET_NOZ
 		);
 	}
 
@@ -347,14 +311,6 @@ public final class DateTimeUtils {
 		appender.appendSql( LOCAL_DATE_FORMAT.get().format( date ) );
 	}
 
-	/**
-	 * @deprecated Use {@link #appendAsLocalTime(SqlAppender, Date)} instead
-	 */
-	@Deprecated
-	public static void appendAsTime(SqlAppender appender, java.util.Date date) {
-		appendAsLocalTime( appender, date );
-	}
-
 	public static void appendAsTime(SqlAppender appender, java.util.Date date, TimeZone jdbcTimeZone) {
 		final SimpleDateFormat simpleDateFormat = TIME_WITH_OFFSET_FORMAT.get();
 		final TimeZone originalTimeZone = simpleDateFormat.getTimeZone();
@@ -396,14 +352,6 @@ public final class DateTimeUtils {
 		finally {
 			simpleDateFormat.setTimeZone( originalTimeZone );
 		}
-	}
-
-	/**
-	 * @deprecated Use {@link #appendAsLocalTime(SqlAppender, Calendar)} instead
-	 */
-	@Deprecated
-	public static void appendAsTime(SqlAppender appender, java.util.Calendar calendar) {
-		appendAsLocalTime( appender, calendar );
 	}
 
 	public static void appendAsTime(SqlAppender appender, java.util.Calendar calendar, TimeZone jdbcTimeZone) {
@@ -459,29 +407,6 @@ public final class DateTimeUtils {
 				ChronoField.NANO_OF_SECOND,
 				truncateToPrecision( temporal.get( ChronoField.NANO_OF_SECOND ), precision )
 		);
-	}
-
-	/**
-	 * Do the same conversion that databases do when they encounter a timestamp with a higher precision
-	 * than what is supported by a column, which is to round the excess fractions.
-	 *
-	 * @deprecated Use {@link #adjustToDefaultPrecision(Temporal, Dialect)} instead
-	 */
-	@Deprecated(forRemoval = true, since = "6.6.1")
-	public static <T extends Temporal> T roundToDefaultPrecision(T temporal, Dialect d) {
-		final int defaultTimestampPrecision = d.getTypeSizingProfile().defaultTimestampPrecision();
-		if ( defaultTimestampPrecision >= 9 || !temporal.isSupported( ChronoField.NANO_OF_SECOND ) ) {
-			return temporal;
-		}
-		//noinspection unchecked
-		return (T) temporal.with(
-				ChronoField.NANO_OF_SECOND,
-				roundToPrecision( temporal.get( ChronoField.NANO_OF_SECOND ), defaultTimestampPrecision )
-		);
-	}
-
-	public static <T extends Temporal> T doubleRoundToSecondPrecision(T temporal, int maxPrecision, int precision) {
-		return roundToSecondPrecision( roundToSecondPrecision( temporal, maxPrecision ), precision );
 	}
 
 	public static <T extends Temporal> T roundToSecondPrecision(T temporal, int precision) {

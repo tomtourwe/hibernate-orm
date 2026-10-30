@@ -16,10 +16,6 @@ import java.util.Locale;
 public class FeatureMismatchException extends EnhancementException {
 	public enum Feature { DIRTY_CHECK, ASSOCIATION_MANAGEMENT }
 
-	private final String className;
-	private final Feature mismatchedFeature;
-	private final boolean previousValue;
-
 	public FeatureMismatchException(
 			String className,
 			Feature mismatchedFeature,
@@ -31,21 +27,6 @@ public class FeatureMismatchException extends EnhancementException {
 				className,
 				decode( previousValue )
 		) );
-		this.className = className;
-		this.mismatchedFeature = mismatchedFeature;
-		this.previousValue = previousValue;
-	}
-
-	public String getClassName() {
-		return className;
-	}
-
-	public Feature getMismatchedFeature() {
-		return mismatchedFeature;
-	}
-
-	public boolean wasPreviouslyEnabled() {
-		return previousValue;
 	}
 
 	public static void checkFeatureEnablement(

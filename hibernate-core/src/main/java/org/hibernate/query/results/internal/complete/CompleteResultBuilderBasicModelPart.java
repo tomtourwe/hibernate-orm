@@ -3,6 +3,7 @@ package org.hibernate.query.results.internal.complete;
 import org.hibernate.metamodel.mapping.BasicValuedModelPart;
 import org.hibernate.query.results.spi.ResultBuilder;
 import org.hibernate.query.results.internal.DomainResultCreationStateImpl;
+import org.hibernate.query.results.spi.ResultBuilderBasicValued;
 import org.hibernate.spi.NavigablePath;
 import org.hibernate.sql.ast.spi.query.select.SqlSelection;
 import org.hibernate.sql.ast.spi.query.from.TableReference;
@@ -19,7 +20,7 @@ import static org.hibernate.query.results.internal.ResultsHelper.resolveSqlExpre
  * @author Steve Ebersole
  */
 public class CompleteResultBuilderBasicModelPart
-		implements CompleteResultBuilderBasicValued, ModelPartReferenceBasic {
+		implements ResultBuilderBasicValued {
 	private final NavigablePath navigablePath;
 	private final BasicValuedModelPart modelPart;
 	private final String columnAlias;
@@ -38,12 +39,10 @@ public class CompleteResultBuilderBasicModelPart
 		return modelPart.getExpressibleJavaType().getJavaTypeClass();
 	}
 
-	@Override
 	public NavigablePath getNavigablePath() {
 		return navigablePath;
 	}
 
-	@Override
 	public BasicValuedModelPart getReferencedPart() {
 		return modelPart;
 	}

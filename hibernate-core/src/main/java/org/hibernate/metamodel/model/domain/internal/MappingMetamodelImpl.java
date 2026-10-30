@@ -330,10 +330,6 @@ public class MappingMetamodelImpl
 		return this;
 	}
 
-	public ServiceRegistry getServiceRegistry() {
-		return jpaMetamodel.getServiceRegistry();
-	}
-
 	@Override
 	public void forEachEntityDescriptor(Consumer<EntityPersister> action) {
 		for ( var value : entityPersisterMap.values() ) {

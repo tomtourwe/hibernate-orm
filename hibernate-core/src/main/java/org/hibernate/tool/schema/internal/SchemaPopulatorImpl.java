@@ -3,11 +3,8 @@ package org.hibernate.tool.schema.internal;
 import org.hibernate.Internal;
 import org.hibernate.boot.registry.classloading.spi.ClassLoaderService;
 import org.hibernate.dialect.Dialect;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.spi.ServiceRegistryImplementor;
 import org.hibernate.tool.schema.spi.ExecutionOptions;
 import org.hibernate.tool.schema.spi.GenerationTarget;
-import org.hibernate.tool.schema.spi.SchemaManagementTool;
 import org.hibernate.tool.schema.spi.SchemaPopulator;
 import org.hibernate.tool.schema.spi.SqlScriptCommandExtractor;
 import org.hibernate.tool.schema.spi.TargetDescriptor;
@@ -26,17 +23,6 @@ public class SchemaPopulatorImpl extends AbstractSchemaPopulator implements Sche
 
 	public SchemaPopulatorImpl(HibernateSchemaManagementTool tool) {
 		this.tool = tool;
-	}
-
-	public SchemaPopulatorImpl(ServiceRegistry serviceRegistry) {
-		if ( serviceRegistry.getService( SchemaManagementTool.class )
-				instanceof HibernateSchemaManagementTool schemaManagementTool ) {
-			tool = schemaManagementTool;
-		}
-		else {
-			tool = new HibernateSchemaManagementTool();
-			tool.injectServices( (ServiceRegistryImplementor) serviceRegistry );
-		}
 	}
 
 	@Override

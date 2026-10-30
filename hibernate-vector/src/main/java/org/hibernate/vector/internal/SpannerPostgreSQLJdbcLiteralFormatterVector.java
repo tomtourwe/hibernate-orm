@@ -12,10 +12,6 @@ public class SpannerPostgreSQLJdbcLiteralFormatterVector<T> extends BasicJdbcLit
 	private final JdbcLiteralFormatter<Object> elementFormatter;
 	private final String baseType;
 
-	public SpannerPostgreSQLJdbcLiteralFormatterVector(JavaType<T> javaType, JdbcLiteralFormatter<?> elementFormatter) {
-		this(javaType, elementFormatter, (javaType.getJavaTypeClass() == Double[].class || javaType.getJavaTypeClass() == double[].class) ? "float8" : "float4");
-	}
-
 	public SpannerPostgreSQLJdbcLiteralFormatterVector(JavaType<T> javaType, JdbcLiteralFormatter<?> elementFormatter, String baseType) {
 		super( javaType );
 		//noinspection unchecked

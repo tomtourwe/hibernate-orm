@@ -39,7 +39,7 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
  * called. If {@code close()} is called on a session managed by this class, it will be automatically
  * unbound.
  * <p>
- * Additionally, the static {@link #bind} and {@link #unbind} methods are provided to allow application
+ * Additionally, the static {@code bind} and {@link #unbind} methods are provided to allow application
  * code to explicitly control opening and closing of these sessions.  This, with some from of interception,
  * is the preferred approach.  It also allows easy framework integration and one possible approach for
  * implementing long-sessions.
@@ -104,15 +104,6 @@ public class ThreadLocalSessionContext extends AbstractCurrentSessionContext {
 	}
 
 	/**
-	 * Getter for property 'factory'.
-	 *
-	 * @return Value for property 'factory'.
-	 */
-	protected SessionFactoryImplementor getFactory() {
-		return factory();
-	}
-
-	/**
 	 * Strictly provided for sub-classing purposes; specifically to allow long-session
 	 * support.
 	 * <p>
@@ -169,15 +160,6 @@ public class ThreadLocalSessionContext extends AbstractCurrentSessionContext {
 		// yuck!  need this for proper serialization/deserialization handling...
 		wrapper.setWrapped( wrapped );
 		return wrapped;
-	}
-
-	/**
-	 * Associates the given session with the current thread of execution.
-	 *
-	 * @param session The session to bind.
-	 */
-	public static void bind(Session session) {
-		doBind( session, session.getSessionFactory() );
 	}
 
 	private static void terminateOrphanedSession(Session orphan) {

@@ -19,7 +19,7 @@ public class FkDomainPathContinuation extends DomainPathContinuation {
 			NavigablePath navigablePath,
 			DomainPath lhs,
 			ToOneAttributeMapping referencedModelPart) {
-		super( navigablePath, lhs, referencedModelPart );
+		super( navigablePath, referencedModelPart );
 		this.possiblePaths = referencedModelPart.getTargetKeyPropertyNames();
 	}
 
@@ -28,7 +28,7 @@ public class FkDomainPathContinuation extends DomainPathContinuation {
 			DomainPath lhs,
 			ModelPart referencedModelPart,
 			Set<String> possiblePaths) {
-		super( navigablePath, lhs, referencedModelPart );
+		super( navigablePath, referencedModelPart );
 		this.possiblePaths = possiblePaths;
 	}
 

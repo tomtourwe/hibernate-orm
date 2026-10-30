@@ -45,14 +45,6 @@ public class SuperTypesEnhancementTest {
 				.map( Arguments::of );
 	}
 
-	private static Stream<Arguments> interfaces() {
-		return Arrays.stream( PrimeAmongSecondarySupertypes.class.getDeclaredMethods() )
-				// need to filter out methods added by jacoco
-				.filter( method -> !method.isSynthetic() )
-				.map( m -> m.getReturnType() )
-				.map( e -> Arguments.of( e ) );
-	}
-
 	@ParameterizedTest
 	@MethodSource("superTypeMethods")
 	public void testNamingConventions(Method m) {

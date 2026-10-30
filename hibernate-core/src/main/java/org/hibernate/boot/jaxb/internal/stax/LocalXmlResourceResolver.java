@@ -225,9 +225,5 @@ public class LocalXmlResourceResolver implements javax.xml.stream.XMLResolver {
 
 			return false;
 		}
-
-		public URL getMappedLocalUrl() {
-			return localSchemaUrl;
-		}
 	}
 }

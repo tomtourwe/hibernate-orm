@@ -693,25 +693,6 @@ public class PluralAttributeMappingImpl
 		}
 	}
 
-	/**
-	 * For Hibernate Reactive
-	 */
-	protected Fetch buildDelayedCollectionFetch(
-			NavigablePath fetchedPath,
-			PluralAttributeMapping fetchedAttribute,
-			FetchParent fetchParent,
-			DomainResult<?> collectionKeyResult,
-			boolean unfetched) {
-		return buildDelayedCollectionFetch(
-				fetchedPath,
-				fetchedAttribute,
-				fetchParent,
-				collectionKeyResult,
-				unfetched,
-				org.hibernate.engine.spi.FetchOptions.NONE
-		);
-	}
-
 	protected Fetch buildDelayedCollectionFetch(
 			NavigablePath fetchedPath,
 			PluralAttributeMapping fetchedAttribute,
@@ -726,23 +707,6 @@ public class PluralAttributeMappingImpl
 				collectionKeyResult,
 				unfetched,
 				fetchOptions
-		);
-	}
-
-	/**
-	 * For Hibernate Reactive
-	 */
-	protected Fetch buildSelectEagerCollectionFetch(
-			NavigablePath fetchedPath,
-			PluralAttributeMapping fetchedAttribute,
-			DomainResult<?> collectionKeyDomainResult,
-			FetchParent fetchParent) {
-		return buildSelectEagerCollectionFetch(
-				fetchedPath,
-				fetchedAttribute,
-				collectionKeyDomainResult,
-				fetchParent,
-				org.hibernate.engine.spi.FetchOptions.NONE
 		);
 	}
 

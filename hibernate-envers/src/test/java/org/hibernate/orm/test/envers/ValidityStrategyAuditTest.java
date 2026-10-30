@@ -2,13 +2,11 @@ package org.hibernate.orm.test.envers;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.configuration.EnversSettings;
-import org.hibernate.envers.strategy.internal.ValidityAuditStrategy;
 
 import org.hibernate.testing.orm.junit.EntityManagerFactoryScope;
 import org.hibernate.testing.orm.junit.Jpa;
@@ -35,15 +33,6 @@ import static org.junit.Assert.fail;
 		@Setting(name = EnversSettings.AUDIT_STRATEGY, value = "org.hibernate.envers.strategy.ValidityAuditStrategy")
 })
 public class ValidityStrategyAuditTest {
-	protected void addConfigOptions(Map options) {
-		//tag::envers-audited-validity-configuration-example[]
-		options.put(
-			EnversSettings.AUDIT_STRATEGY,
-			ValidityAuditStrategy.class.getName()
-		);
-		//end::envers-audited-validity-configuration-example[]
-	}
-
 	@Test
 	public void test(EntityManagerFactoryScope scope) {
 		scope.inTransaction( entityManager -> {

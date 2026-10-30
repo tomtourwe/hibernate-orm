@@ -25,15 +25,6 @@ public class SqlTypedMappingImpl implements SqlTypedMapping {
 
 	public SqlTypedMappingImpl(
 			@Nullable Long length,
-			@Nullable Integer precision,
-			@Nullable Integer scale,
-			@Nullable Integer temporalPrecision,
-			JdbcMapping jdbcMapping) {
-		this( length, null, precision, scale, temporalPrecision, jdbcMapping );
-	}
-
-	public SqlTypedMappingImpl(
-			@Nullable Long length,
 			@Nullable Integer arrayLength,
 			@Nullable Integer precision,
 			@Nullable Integer scale,

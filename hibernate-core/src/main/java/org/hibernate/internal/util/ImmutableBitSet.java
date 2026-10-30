@@ -38,10 +38,6 @@ public class ImmutableBitSet {
 		return wordIndex < words.length && ( ( words[wordIndex] & ( 1L << bitIndex ) ) != 0 );
 	}
 
-	public boolean isEmpty() {
-		return this == EMPTY;
-	}
-
 	public boolean contains(ImmutableBitSet set) {
 		if ( words.length < set.words.length ) {
 			return false;

@@ -598,10 +598,6 @@ public class ResultSetMappingProcessor implements SQLQueryParser.ParserContext {
 		return alias2CollectionSuffix.get( alias );
 	}
 
-	public String getOwnerAlias(String alias) {
-		return alias2OwnerAlias.get( alias );
-	}
-
 	@Override
 	public Map<String, String[]> getPropertyResultsMap(String alias) {
 		final var collectionMap = collectionPropertyResultMaps.get( alias );

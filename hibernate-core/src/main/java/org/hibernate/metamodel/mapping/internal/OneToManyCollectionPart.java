@@ -73,15 +73,6 @@ public class OneToManyCollectionPart extends AbstractEntityCollectionPart implem
 						: null;
 	}
 
-	/**
-	 * For Hibernate Reactive
-	 */
-	protected OneToManyCollectionPart(OneToManyCollectionPart original) {
-		super( original );
-		this.mapKeyPropertyName = original.mapKeyPropertyName;
-		this.fetchAssociationKey = original.fetchAssociationKey;
-	}
-
 	@Override
 	public Cardinality getCardinality() {
 		return Cardinality.ONE_TO_MANY;

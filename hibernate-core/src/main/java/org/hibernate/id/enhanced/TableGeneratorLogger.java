@@ -55,11 +55,6 @@ public interface TableGeneratorLogger extends BasicLogger {
 	void unableToUpdateHiValue(String tableName, @Cause SQLException e);
 
 	@LogMessage(level = INFO)
-	@Message(value = "Forcing table use for sequence-style generator due to pooled optimizer selection where db does not support pooled sequences",
-			id = 90107)
-	void forcingTableUse();
-
-	@LogMessage(level = INFO)
 	@Message(value = "Explicit segment value for id generator [%s.%s] suggested; using default [%s]", id = 90110)
 	void usingDefaultIdGeneratorSegmentValue(String tableName, String segmentColumnName, String defaultToUse);
 

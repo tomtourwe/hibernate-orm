@@ -39,10 +39,6 @@ public class MariaDBLockingSupport implements LockingSupport, LockingSupport.Met
 		this.waitType = NONE;
 	}
 
-	public MariaDBLockingSupport(boolean supportsSkipLocked, boolean supportsWait) {
-		this( supportsSkipLocked, supportsWait, supportsWait );
-	}
-
 	public MariaDBLockingSupport(DatabaseVersion databaseVersion) {
 		this( databaseVersion.isSameOrAfter( 10, 6 ), true, true );
 	}

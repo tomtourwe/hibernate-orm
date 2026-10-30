@@ -54,14 +54,4 @@ public class NClobProxy extends ClobProxy implements NClob, NClobImplementer {
 	public static NClob generateProxy(Reader reader, long length) {
 		return new NClobProxy( reader, length );
 	}
-
-	/**
-	 * Determines the appropriate class loader to which the generated proxy
-	 * should be scoped.
-	 *
-	 * @return The class loader appropriate for proxy construction.
-	 */
-	protected static ClassLoader getProxyClassLoader() {
-		return NClobImplementer.class.getClassLoader();
-	}
 }

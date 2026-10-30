@@ -8,7 +8,6 @@ import org.hibernate.LockOptions;
 import org.hibernate.ObjectDeletedException;
 import org.hibernate.engine.internal.CacheHelper.CacheLock;
 import org.hibernate.engine.spi.EntityEntry;
-import org.hibernate.engine.spi.LoadQueryInfluencers;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.engine.spi.SubselectFetch;
@@ -137,22 +136,6 @@ public class LoaderHelper {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Determine if the influencers associated with the given Session indicate read-only
-	 */
-	@Nullable
-	public static Boolean getReadOnlyFromLoadQueryInfluencers(@Nonnull SharedSessionContractImplementor session) {
-		return getReadOnlyFromLoadQueryInfluencers( session.getLoadQueryInfluencers() );
-	}
-
-	/**
-	 * Determine if given influencers indicate read-only
-	 */
-	@Nullable
-	public static Boolean getReadOnlyFromLoadQueryInfluencers(@Nullable LoadQueryInfluencers influencers) {
-		return influencers == null ? null : influencers.getReadOnly();
 	}
 
 	/**

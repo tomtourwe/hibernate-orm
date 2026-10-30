@@ -59,42 +59,6 @@ public class AnyKeyPart implements BasicValuedModelPart, FetchOptions {
 			String table,
 			String column,
 			SelectablePath selectablePath,
-			String customReadExpression,
-			String customWriteExpression,
-			Long length,
-			Integer precision,
-			Integer scale,
-			boolean nullable,
-			boolean insertable,
-			boolean updateable,
-			boolean partitioned,
-			JdbcMapping jdbcMapping) {
-		this(
-				navigableRole,
-				anyPart,
-				table,
-					column,
-					selectablePath,
-					customReadExpression,
-					customWriteExpression,
-					length,
-					null,
-					precision,
-				scale,
-				nullable,
-				insertable,
-				updateable,
-				partitioned,
-				jdbcMapping
-		);
-	}
-
-	public AnyKeyPart(
-			NavigableRole navigableRole,
-			DiscriminatedAssociationModelPart anyPart,
-			String table,
-			String column,
-			SelectablePath selectablePath,
 			@Nullable String customReadExpression,
 			@Nullable String customWriteExpression,
 			@Nullable Long length,

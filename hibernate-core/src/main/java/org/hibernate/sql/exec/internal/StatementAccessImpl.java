@@ -41,18 +41,4 @@ public class StatementAccessImpl implements StatementAccess {
 		}
 		return jdbcStatement;
 	}
-
-	public void release() {
-		if ( jdbcStatement != null ) {
-			try {
-				jdbcStatement.close();
-				logicalConnection.getResourceRegistry().release( jdbcStatement );
-			}
-			catch (SQLException e) {
-				throw factory.getJdbcServices()
-						.getSqlExceptionHelper()
-						.convert( e, "Unable to release JDBC Statement" );
-			}
-		}
-	}
 }

@@ -124,21 +124,10 @@ public class RevisionInfoConfiguration {
 	}
 
 	/**
-	 * The full entity name for the revision entity.
-	 */
-	public String getRevisionInfoEntityName() {
-		return revisionInfoEntityName;
-	}
-
-	/**
 	 * The query name for the revision entity.
 	 */
 	public String getRevisionInfoQueryName() {
 		return revisionInfoQueryName;
-	}
-
-	public String getRevisionInfoPropertyType() {
-		return revisionPropType;
 	}
 
 	public Class<?> getRevisionInfoClass() {

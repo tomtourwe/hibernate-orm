@@ -79,10 +79,6 @@ public class ResultMementoBasicStandard implements ResultMementoBasic {
 		}
 	}
 
-	public String getColumnName() {
-		return explicitColumnName;
-	}
-
 
 
 	private static <T> ResultBuilderBasicValued resolveBuilder(
@@ -160,11 +156,6 @@ public class ResultMementoBasicStandard implements ResultMementoBasic {
 			Type[] typeArguments,
 			TypeConfiguration typeConfiguration) {
 		return typeConfiguration.standardBasicTypeForJavaType( typeArguments[1] );
-	}
-
-	private ResultMementoBasicStandard(String explicitColumnName, ResultBuilderBasicValued builder) {
-		this.explicitColumnName = explicitColumnName;
-		this.builder = builder;
 	}
 
 	public ResultMementoBasicStandard(

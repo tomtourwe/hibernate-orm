@@ -15,7 +15,6 @@ import org.hibernate.tool.reveng.internal.export.java.Cfg2JavaTool;
 import org.hibernate.tool.reveng.internal.export.java.ComponentPOJOClass;
 import org.hibernate.tool.reveng.internal.export.java.POJOClass;
 import org.hibernate.tool.reveng.internal.core.binder.TypeUtils;
-import org.hibernate.type.Type;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -203,14 +202,6 @@ public final class DocHelper {
 	}
 
 	/**
-	 * return a Map which has List of POJOClass as value keyed by package name
-	 * as String.
-	 */
-	public Map<String, List<POJOClass>> getClassesByPackage() {
-		return classesByPackage;
-	}
-
-	/**
 	 * Returns a list with all the schemas.
 	 *
 	 * @return a list with all the schemas.
@@ -301,23 +292,6 @@ public final class DocHelper {
 		String qualifiedSchemaName = getQualifiedSchemaName(table);
 
 		return qualifiedSchemaName + '.' + table.getName();
-	}
-
-	public String getPropertyType(Property p) {
-		Value v = p.getValue();
-		Type t;
-		String propertyString = "N/D";
-		try {
-			t = v.getType();
-			propertyString = t.getReturnedClass().getName();
-
-		}
-		catch (Exception ex) {
-			// TODO we should try to get the value from value here
-			// Eat Exception??
-		}
-
-		return propertyString;
 	}
 
 	/**
@@ -453,13 +427,6 @@ public final class DocHelper {
 		else {
 			return Collections.emptyList();
 		}
-	}
-
-	public List<Property> getOrderedProperties(POJOClass pojoClass) {
-		List<Property> orderedProperties = getAllProperties(pojoClass);
-		orderedProperties.sort(PROPERTY_COMPARATOR);
-
-		return orderedProperties;
 	}
 
 	public List<Property> getSimpleProperties(POJOClass pojoClass) {

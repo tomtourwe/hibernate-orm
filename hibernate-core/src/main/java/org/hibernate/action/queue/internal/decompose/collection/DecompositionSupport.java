@@ -18,12 +18,6 @@ import org.hibernate.event.spi.PostCollectionRemoveEvent;
 import org.hibernate.event.spi.PostCollectionRemoveEventListener;
 import org.hibernate.event.spi.PostCollectionUpdateEvent;
 import org.hibernate.event.spi.PostCollectionUpdateEventListener;
-import org.hibernate.event.spi.PreCollectionRecreateEvent;
-import org.hibernate.event.spi.PreCollectionRecreateEventListener;
-import org.hibernate.event.spi.PreCollectionRemoveEvent;
-import org.hibernate.event.spi.PreCollectionRemoveEventListener;
-import org.hibernate.event.spi.PreCollectionUpdateEvent;
-import org.hibernate.event.spi.PreCollectionUpdateEventListener;
 import org.hibernate.persister.collection.CollectionPersister;
 
 import java.util.List;
@@ -75,19 +69,6 @@ public class DecompositionSupport {
 		}
 	}
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Recreate events
-
-	public static void firePreRecreate(
-			CollectionPersister persister,
-			PersistentCollection<?> collection,
-			SharedSessionContractImplementor session) {
-		getListenerGroups( session ).eventListenerGroup_PRE_COLLECTION_RECREATE.fireLazyEventOnEachListener(
-				() -> new PreCollectionRecreateEvent( persister, collection, (EventSource) session ),
-				PreCollectionRecreateEventListener::onPreRecreateCollection
-		);
-	}
-
 	public static void firePostRecreate(
 			CollectionPersister persister,
 			PersistentCollection<?> collection,
@@ -100,20 +81,6 @@ public class DecompositionSupport {
 		);
 	}
 
-
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Update events
-
-	public static void firePreUpdate(
-			CollectionPersister persister,
-			PersistentCollection<?> collection,
-			SharedSessionContractImplementor session) {
-		getListenerGroups( session ).eventListenerGroup_PRE_COLLECTION_UPDATE.fireLazyEventOnEachListener(
-				() -> new PreCollectionUpdateEvent( persister, collection, (EventSource) session ),
-				PreCollectionUpdateEventListener::onPreUpdateCollection
-		);
-	}
-
 	public static void firePostUpdate(
 			CollectionPersister persister,
 			PersistentCollection<?> collection,
@@ -123,17 +90,6 @@ public class DecompositionSupport {
 		getListenerGroups( session ).eventListenerGroup_POST_COLLECTION_UPDATE.fireLazyEventOnEachListener(
 				() -> new PostCollectionUpdateEvent( persister, collection, (EventSource) session, affectedOwner, affectedOwnerId ),
 				PostCollectionUpdateEventListener::onPostUpdateCollection
-		);
-	}
-
-	public static void firePreRemove(
-			CollectionPersister persister,
-			PersistentCollection<?> collection,
-			Object affectedOwner,
-			SharedSessionContractImplementor session) {
-		getListenerGroups( session ).eventListenerGroup_PRE_COLLECTION_REMOVE.fireLazyEventOnEachListener(
-				() -> new PreCollectionRemoveEvent( persister, collection, (EventSource) session, affectedOwner ),
-				PreCollectionRemoveEventListener::onPreRemoveCollection
 		);
 	}
 

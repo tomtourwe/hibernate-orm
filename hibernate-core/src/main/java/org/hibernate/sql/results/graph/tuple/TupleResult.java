@@ -2,7 +2,6 @@ package org.hibernate.sql.results.graph.tuple;
 
 import java.util.BitSet;
 
-import org.hibernate.Internal;
 import org.hibernate.spi.NavigablePath;
 import org.hibernate.sql.results.graph.AssemblerCreationState;
 import org.hibernate.sql.results.graph.DomainResult;
@@ -55,14 +54,6 @@ public class TupleResult<T> implements DomainResult<T>, BasicResultGraphNode<T> 
 	@Override
 	public NavigablePath getNavigablePath() {
 		return navigablePath;
-	}
-
-	/**
-	 * For testing purposes only
-	 */
-	@Internal
-	public DomainResultAssembler<T> getAssembler() {
-		return assembler;
 	}
 
 	@Override

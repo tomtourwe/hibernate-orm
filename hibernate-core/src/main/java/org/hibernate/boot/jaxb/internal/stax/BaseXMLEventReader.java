@@ -31,13 +31,6 @@ public abstract class BaseXMLEventReader extends EventReaderDelegate {
 	 */
 	protected abstract XMLEvent internalNextEvent() throws XMLStreamException;
 
-	/**
-	 * @return The XMLEvent returned by the last call to {@link #internalNextEvent()}
-	 */
-	protected final XMLEvent getPreviousEvent() {
-		return this.previousEvent;
-	}
-
 	@Override
 	public final XMLEvent nextEvent() throws XMLStreamException {
 		this.previousEvent = this.internalNextEvent();

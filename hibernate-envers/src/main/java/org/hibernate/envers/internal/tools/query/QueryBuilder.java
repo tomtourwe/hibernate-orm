@@ -36,7 +36,6 @@ import org.hibernate.type.BasicType;
  * @author Adam Warski (adam at warski dot org)
  */
 public class QueryBuilder {
-	private final String entityName;
 	private final String alias;
 
 	/**
@@ -91,7 +90,6 @@ public class QueryBuilder {
 			MutableInteger aliasCounter,
 			MutableInteger paramCounter,
 			SessionFactoryImplementor sessionFactory) {
-		this.entityName = entityName;
 		this.alias = alias;
 		this.aliasCounter = aliasCounter;
 		this.paramCounter = paramCounter;
@@ -111,29 +109,6 @@ public class QueryBuilder {
 		orderFragments = new ArrayList<>();
 
 		addFrom( entityName, alias, true );
-	}
-
-	// Only for deep copy purpose.
-	private QueryBuilder(QueryBuilder other) {
-		this.entityName = other.entityName;
-		this.alias = other.alias;
-		this.sessionFactory = other.sessionFactory;
-		this.revisionType = other.revisionType;
-		this.aliasCounter = other.aliasCounter.deepCopy();
-		this.paramCounter = other.paramCounter.deepCopy();
-		for (final Parameters params : other.parameters) {
-			this.parameters.add( params.deepCopy() );
-		}
-
-		froms = new ArrayList<>( other.froms );
-		orders = new ArrayList<>( other.orders );
-		projections = new ArrayList<>( other.projections );
-		projectionQueryParamValues = new HashMap<>( other.projectionQueryParamValues );
-		orderFragments = new ArrayList<>( other.orderFragments );
-	}
-
-	public QueryBuilder deepCopy() {
-		return new QueryBuilder( this );
 	}
 
 	/**

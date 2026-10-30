@@ -31,12 +31,6 @@ public class PluralAttributePath extends AbstractDomainPath {
 		return navigablePath;
 	}
 
-	@Nullable
-	@Override
-	public DomainPath getLhs() {
-		return null;
-	}
-
 	@Override
 	public PluralAttributeMapping getReferenceModelPart() {
 		return pluralAttributeMapping;
@@ -55,7 +49,7 @@ public class PluralAttributePath extends AbstractDomainPath {
 				return new CollectionPartPath( this, collectionPart );
 			}
 			else if ( subPart instanceof EmbeddableValuedModelPart ) {
-				return new DomainPathContinuation( navigablePath.append( name ), this, subPart );
+				return new DomainPathContinuation( navigablePath.append( name ), subPart );
 			}
 			else if ( subPart instanceof ToOneAttributeMapping toOneMapping ) {
 				return new FkDomainPathContinuation( navigablePath.append( name ), this, toOneMapping );
@@ -77,7 +71,6 @@ public class PluralAttributePath extends AbstractDomainPath {
 						// create the CollectionSubPath to use as the `lhs` for the element sub-path
 						new CollectionPartPath( this, (CollectionPart) elementDescriptor )
 								.getNavigablePath().append( name ),
-						this,
 						elementSubPart
 				);
 			}
@@ -90,7 +83,6 @@ public class PluralAttributePath extends AbstractDomainPath {
 						// create the CollectionSubPath to use as the `lhs` for the element sub-path
 						new CollectionPartPath( this, (CollectionPart) indexDescriptor )
 								.getNavigablePath().append( name ),
-						this,
 						indexSubPart
 				);
 			}

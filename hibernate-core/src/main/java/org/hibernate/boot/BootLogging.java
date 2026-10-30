@@ -185,10 +185,6 @@ public interface BootLogging extends BasicLogger {
 	void attemptingToDetermineComponentClassByReflection(String role);
 
 	@LogMessage(level = TRACE)
-	@Message(id = 160166, value = "Mapped collection: %s")
-	void mappedCollection(String role);
-
-	@LogMessage(level = TRACE)
 	@Message(id = 160167, value = "Mapping collection: %s -> %s")
 	void mappingCollectionToTable(String role, String tableName);
 
@@ -203,10 +199,6 @@ public interface BootLogging extends BasicLogger {
 	@LogMessage(level = TRACE)
 	@Message(id = 160170, value = "Binding named native query '%s' to [%s]")
 	void bindingNamedNativeQuery(String queryName, String bindingTarget);
-
-	@LogMessage(level = TRACE)
-	@Message(id = 160171, value = "Binding SQL result set mapping '%s' to [%s]")
-	void bindingSqlResultSetMapping(String name, String target);
 
 	@LogMessage(level = TRACE)
 	@Message(id = 160172, value = "Bound named stored procedure query: %s => %s")
@@ -286,12 +278,6 @@ public interface BootLogging extends BasicLogger {
 	@Message(id = 160191, value = "Inferring implicit @DiscriminatorColumn using defaults for: %s")
 	void inferringImplicitDiscriminatorForJoined(String className);
 
-	// GeneratorBinder
-
-	@LogMessage(level = TRACE)
-	@Message(id = 160192, value = "Added generator with name: %s, strategy: %s")
-	void addedGenerator(String name, String strategy);
-
 	@LogMessage(level = TRACE)
 	@Message(id = 160193, value = "Added sequence generator with name: %s")
 	void addedSequenceGenerator(String name);
@@ -323,10 +309,6 @@ public interface BootLogging extends BasicLogger {
 	@Message(id = 160204, value = "cfg.xml document did not define namespaces; wrapping in custom event reader to introduce namespace information")
 	void cfgXmlDocumentDidNotDefineNamespaces();
 
-	@LogMessage(level = DEBUG)
-	@Message(id = 160212, value = "Unable to adjust relative <jar-file/> URL [%s] relative to root URL [%s]")
-	void unableToAdjustRelativeJarFileUrl(String filePart, String rootPath, @Cause Throwable e);
-
 	@LogMessage(level = TRACE)
 	@Message(id = 160213, value = "JAR URL from URL Entry: %s >> %s")
 	void jarUrlFromUrlEntry(String url, String jarUrl);
@@ -354,14 +336,6 @@ public interface BootLogging extends BasicLogger {
 	@LogMessage(level = TRACE)
 	@Message(id = 160222, value = "Injecting JPA temp ClassLoader [%s] into BootstrapContext; was [%s]")
 	void injectingJpaTempClassLoader(Object newLoader, Object oldLoader);
-
-	@LogMessage(level = TRACE)
-	@Message(id = 160223, value = "Injecting ScanOptions [%s] into BootstrapContext; was [%s]")
-	void injectingScanOptions(Object newOptions, Object oldOptions);
-
-	@LogMessage(level = TRACE)
-	@Message(id = 160224, value = "Injecting ScanEnvironment [%s] into BootstrapContext; was [%s]")
-	void injectingScanEnvironment(Object newEnv, Object oldEnv);
 
 	@LogMessage(level = TRACE)
 	@Message(id = 160225, value = "Injecting Scanner [%s] into BootstrapContext; was [%s]")
@@ -420,10 +394,6 @@ public interface BootLogging extends BasicLogger {
 	@LogMessage(level = TRACE)
 	@Message(id = 160238, value = "Indexing mapping document [%s] for purpose of building entity hierarchy ordering")
 	void indexingMappingDocumentForHierarchyOrdering(String mappingDocumentName);
-
-	@LogMessage(level = DEBUG)
-	@Message(id = 160239, value = "Applying filter definition with condition: %s")
-	void applyingFilterDefinitionCondition(String condition);
 
 	@LogMessage(level = TRACE)
 	@Message(id = 160240, value = "Processed filter definition: %s")

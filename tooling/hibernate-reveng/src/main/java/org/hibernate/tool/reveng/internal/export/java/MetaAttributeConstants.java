@@ -9,5 +9,4 @@ public interface MetaAttributeConstants {
 	static final String CLASS_DESCRIPTION = "class-description";
 	static final String IMPLEMENTS = "implements";
 	static final String EXTENDS = "extends";
-	static final String GEN_PROPERTY = "gen-property"; // in templates.
 }

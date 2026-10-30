@@ -8,7 +8,6 @@ import org.hibernate.mapping.Property;
 import org.hibernate.metamodel.AttributeClassification;
 import org.hibernate.metamodel.model.domain.ManagedDomainType;
 import org.hibernate.metamodel.model.domain.internal.MapMember;
-import org.hibernate.type.CollectionType;
 
 /**
  * @author Steve Ebersole
@@ -79,10 +78,6 @@ public abstract class BaseAttributeMetadata<X, Y> implements AttributeMetadata<X
 
 	public ManagedDomainType<X> getOwnerType() {
 		return ownerType;
-	}
-
-	public boolean isPlural() {
-		return propertyMapping.getType() instanceof CollectionType;
 	}
 
 	public Property getPropertyMapping() {

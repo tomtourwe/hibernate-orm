@@ -7,9 +7,4 @@ import org.hibernate.engine.spi.StatelessSessionImplementor;
 /// @author Steve Ebersole
 public interface StatelessLoadAccessContext extends LoadAccessContext {
 	StatelessSessionImplementor getStatelessSession();
-
-	@Override
-	default StatelessSessionImplementor getEntityHandler() {
-		return getStatelessSession();
-	}
 }

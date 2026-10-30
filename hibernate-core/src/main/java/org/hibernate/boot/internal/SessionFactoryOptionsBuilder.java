@@ -26,7 +26,6 @@ import org.hibernate.GraphParserMode;
 import org.hibernate.HibernateException;
 import org.hibernate.Interceptor;
 import org.hibernate.LockOptions;
-import org.hibernate.Remove;
 import org.hibernate.SessionEventListener;
 import org.hibernate.SessionFactoryObserver;
 import org.hibernate.audit.AuditStrategy;
@@ -1916,21 +1915,8 @@ public class SessionFactoryOptionsBuilder implements SessionFactoryOptions {
 		mutableJpaCompliance().setClosedCompliance( enabled );
 	}
 
-	public void enableJpaProxyCompliance(boolean enabled) {
-		mutableJpaCompliance().setProxyCompliance( enabled );
-	}
-
-	public void enableJpaCachingCompliance(boolean enabled) {
-		mutableJpaCompliance().setCachingCompliance( enabled );
-	}
-
 	public void enableJpaOrderByMappingCompliance(boolean enabled) {
 		mutableJpaCompliance().setOrderByMappingCompliance( enabled );
-	}
-
-	@Remove
-	public void enableGeneratorNameScopeCompliance(boolean enabled) {
-		mutableJpaCompliance().setGeneratorNameScopeCompliance( enabled );
 	}
 
 

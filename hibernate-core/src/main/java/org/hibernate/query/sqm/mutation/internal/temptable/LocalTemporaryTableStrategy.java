@@ -61,8 +61,4 @@ public class LocalTemporaryTableStrategy {
 	public boolean isDropIdTables() {
 		return dropIdTables;
 	}
-
-	public SessionFactoryImplementor getSessionFactory() {
-		return sessionFactory;
-	}
 }

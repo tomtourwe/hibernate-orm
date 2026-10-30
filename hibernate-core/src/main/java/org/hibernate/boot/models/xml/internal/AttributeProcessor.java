@@ -48,14 +48,6 @@ public class AttributeProcessor {
 			JaxbNaturalId jaxbNaturalId,
 			MutableClassDetails mutableClassDetails,
 			AccessType classAccessType,
-			XmlDocumentContext xmlDocumentContext) {
-		processNaturalId( jaxbNaturalId, mutableClassDetails, classAccessType, null, xmlDocumentContext );
-	}
-
-	public static void processNaturalId(
-			JaxbNaturalId jaxbNaturalId,
-			MutableClassDetails mutableClassDetails,
-			AccessType classAccessType,
 			MemberAdjuster memberAdjuster,
 			XmlDocumentContext xmlDocumentContext) {
 		if ( jaxbNaturalId == null ) {

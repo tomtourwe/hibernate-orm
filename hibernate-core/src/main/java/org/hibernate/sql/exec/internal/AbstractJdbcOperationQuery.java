@@ -12,8 +12,6 @@ import org.hibernate.sql.exec.spi.JdbcParameterBinding;
 import org.hibernate.sql.exec.spi.JdbcParameterBindings;
 import org.hibernate.type.descriptor.java.JavaType;
 
-import static java.util.Collections.emptyMap;
-
 /**
  * Executable JDBC command
  *
@@ -24,13 +22,6 @@ public class AbstractJdbcOperationQuery implements JdbcOperationQuery {
 	protected final List<JdbcParameterBinder> parameterBinders;
 	protected final Set<String> affectedTableNames;
 	protected final Map<JdbcParameter, JdbcParameterBinding> appliedParameters;
-
-	public AbstractJdbcOperationQuery(
-			String sql,
-			List<JdbcParameterBinder> parameterBinders,
-			Set<String> affectedTableNames) {
-		this( sql, parameterBinders, affectedTableNames, emptyMap() );
-	}
 
 	public AbstractJdbcOperationQuery(
 			String sql,

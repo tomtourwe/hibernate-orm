@@ -62,26 +62,6 @@ public record ForeignKey(
 		NON_UNIQUE
 	}
 
-	/// Check if this foreign key targets a unique constraint (either primary key or unique key)
-	public boolean targetsUniqueConstraint() {
-		return targetType == TargetType.PRIMARY_KEY || targetType == TargetType.UNIQUE_KEY;
-	}
-
-	@Override
-	public String getConstrainedTableName() {
-		return keyTable;
-	}
-
-	@Override
-	public SelectableMappings getConstrainedColumnMappings() {
-		return keyColumns;
-	}
-
-	@Override
-	public boolean isNullable() {
-		return nullable;
-	}
-
 	@Override
 	public Deferrability getDeferrability() {
 		return deferrability;

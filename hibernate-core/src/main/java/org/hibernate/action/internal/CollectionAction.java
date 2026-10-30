@@ -84,14 +84,6 @@ public abstract class CollectionAction implements ComparableExecutable {
 		return lifecyclePrepared;
 	}
 
-	/// The queue-neutral interpretation frozen before this action was lowered.
-	///
-	/// @since 8.0
-	@Nullable
-	public final CollectionMutationInterpretation getCollectionMutationInterpretation() {
-		return interpretation;
-	}
-
 	/// Return the interpretation after verifying that the collection still has
 	/// the structural state from which it was produced.
 	@Nullable

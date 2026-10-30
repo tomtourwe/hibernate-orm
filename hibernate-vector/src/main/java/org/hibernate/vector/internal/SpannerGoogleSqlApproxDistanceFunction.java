@@ -1,7 +1,6 @@
 package org.hibernate.vector.internal;
 
 import java.util.List;
-import java.util.Locale;
 
 import org.hibernate.metamodel.model.domain.ReturnableType;
 import org.hibernate.query.sqm.function.AbstractSqmSelfRenderingFunctionDescriptor;
@@ -31,10 +30,6 @@ import org.hibernate.type.spi.TypeConfiguration;
 public class SpannerGoogleSqlApproxDistanceFunction extends AbstractSqmSelfRenderingFunctionDescriptor {
 
 	private final String spannerFunctionName;
-
-	public SpannerGoogleSqlApproxDistanceFunction(String functionName, TypeConfiguration typeConfiguration) {
-		this( functionName, functionName.toUpperCase( Locale.ROOT ), typeConfiguration );
-	}
 
 	public SpannerGoogleSqlApproxDistanceFunction(String hqlName, String spannerFunctionName, TypeConfiguration typeConfiguration) {
 		super(

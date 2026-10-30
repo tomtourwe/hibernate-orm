@@ -19,22 +19,8 @@ public class MutableInteger {
 		this.value = value;
 	}
 
-	public MutableInteger deepCopy() {
-		return new MutableInteger( value );
-	}
-
 	public int getAndIncrement() {
 		return value++;
-	}
-
-	public int getAndIncrementBy(int i) {
-		final int local = value;
-		value += i;
-		return local;
-	}
-
-	public int incrementAndGet() {
-		return ++value;
 	}
 
 	public int get() {
@@ -45,27 +31,11 @@ public class MutableInteger {
 		this.value = value;
 	}
 
-	public void increase() {
-		++value;
-	}
-
 	public void increment() {
 		++value;
 	}
 
-	public void incrementBy(int i) {
-		value += i;
-	}
-
-	public void increase(int i) {
-		value += i;
-	}
-
 	public void plus(int i) {
 		value += i;
-	}
-
-	public void minus(int i) {
-		value -= i;
 	}
 }

@@ -8,6 +8,7 @@ import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.query.IllegalSelectQueryException;
 import org.hibernate.query.internal.MutationQueryImpl;
 import org.hibernate.query.internal.QueryHelper;
+import org.hibernate.query.named.spi.NamedMutationMemento;
 import org.hibernate.query.named.spi.NamedSqmQueryMemento;
 import org.hibernate.query.spi.HqlInterpretation;
 import org.hibernate.query.spi.MutationQueryImplementor;
@@ -24,7 +25,7 @@ import java.util.Map;
  */
 public class HqlMutationMementoImpl<T>
 		extends AbstractQueryMemento<T>
-		implements SqmMutationMemento<T>, Serializable {
+		implements NamedSqmQueryMemento<T>, NamedMutationMemento<T>, Serializable {
 	private final String hqlString;
 	private final @Nullable Map<String, String> parameterTypes;
 

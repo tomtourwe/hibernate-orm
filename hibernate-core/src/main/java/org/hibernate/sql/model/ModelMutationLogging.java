@@ -54,10 +54,6 @@ public interface ModelMutationLogging extends BasicLogger {
 	void updateOperationSql(int index, String sql);
 
 	@LogMessage(level = TRACE)
-	@Message(id = 90005106, value = " Delete (%s): %s")
-	void deleteOperationSql(int index, String sql);
-
-	@LogMessage(level = TRACE)
 	@Message(id = 90005107, value = "Static SQL for collection: %s")
 	void staticSqlForCollection(String role);
 

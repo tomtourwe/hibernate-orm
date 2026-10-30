@@ -12,10 +12,6 @@ public class SpannerJdbcLiteralFormatterVector<T> extends BasicJdbcLiteralFormat
 	private final JdbcLiteralFormatter<Object> elementFormatter;
 	private final String baseType;
 
-	public SpannerJdbcLiteralFormatterVector(JavaType<T> javaType, JdbcLiteralFormatter<?> elementFormatter) {
-		this(javaType, elementFormatter, (javaType.getJavaTypeClass() == Double[].class || javaType.getJavaTypeClass() == double[].class) ? "FLOAT64" : "FLOAT32");
-	}
-
 	public SpannerJdbcLiteralFormatterVector(JavaType<T> javaType, JdbcLiteralFormatter<?> elementFormatter, String baseType) {
 		super( javaType );
 		//noinspection unchecked

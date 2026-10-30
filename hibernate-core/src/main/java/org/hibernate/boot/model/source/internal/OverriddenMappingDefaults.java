@@ -226,32 +226,6 @@ public class OverriddenMappingDefaults implements EffectiveMappingDefaults {
 			return this;
 		}
 
-		public Builder setImplicitlyQuoteIdentifiers(boolean implicitlyQuoteIdentifiers) {
-			this.implicitlyQuoteIdentifiers = implicitlyQuoteIdentifiers;
-			return this;
-		}
-
-		public Builder setImplicitIdColumnName(String implicitIdColumnName) {
-			if ( StringHelper.isNotEmpty( implicitIdColumnName ) ) {
-				this.implicitIdColumnName = implicitIdColumnName;
-			}
-			return this;
-		}
-
-		public Builder setImplicitTenantIdColumnName(String implicitTenantIdColumnName) {
-			if ( StringHelper.isNotEmpty( implicitTenantIdColumnName ) ) {
-				this.implicitTenantIdColumnName = implicitTenantIdColumnName;
-			}
-			return this;
-		}
-
-		public Builder setImplicitDiscriminatorColumnName(String implicitDiscriminatorColumnName) {
-			if ( StringHelper.isNotEmpty( implicitDiscriminatorColumnName ) ) {
-				this.implicitDiscriminatorColumnName = implicitDiscriminatorColumnName;
-			}
-			return this;
-		}
-
 		public Builder setImplicitPackageName(String implicitPackageName) {
 			if ( StringHelper.isNotEmpty( implicitPackageName ) ) {
 				this.implicitPackageName = implicitPackageName;
@@ -293,22 +267,6 @@ public class OverriddenMappingDefaults implements EffectiveMappingDefaults {
 		public Builder setPluralAttributesImplicitlyLazy(boolean pluralAttributesImplicitlyLazy) {
 			this.pluralAttributesImplicitlyLazy = pluralAttributesImplicitlyLazy;
 			return this;
-		}
-
-		public Builder setImplicitCacheAccessType(AccessType implicitCacheAccessType) {
-			if ( implicitCacheAccessType != null ) {
-				this.implicitCacheAccessType = implicitCacheAccessType;
-			}
-			return this;
-		}
-
-		/**
-		 * @deprecated Use {@link org.hibernate.annotations.DefaultListSemantics} on a package or module.
-		 * Scheduled for removal in 9.0.
-		 */
-		@Deprecated(since = "8.0", forRemoval = true)
-		public CollectionClassification getImplicitListClassification() {
-			return implicitListClassification;
 		}
 
 		/**

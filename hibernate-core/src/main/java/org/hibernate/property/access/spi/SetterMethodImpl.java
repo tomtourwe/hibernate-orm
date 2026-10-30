@@ -105,10 +105,6 @@ public class SetterMethodImpl implements Setter {
 		}
 	}
 
-	public Class<?> getContainerClass() {
-		return containerClass;
-	}
-
 	@Override
 	public String getMethodName() {
 		return setterMethod.getName();

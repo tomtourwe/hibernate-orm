@@ -46,10 +46,6 @@ public class JoinFormulaImplicitJoinTest {
 		});
 	}
 
-	protected int entityCount() {
-		return 5;
-	}
-
 	@Test
 	public void testImplicitJoin(EntityManagerFactoryScope scope) {
 		scope.inTransaction(entityManager -> {

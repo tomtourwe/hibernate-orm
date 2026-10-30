@@ -33,10 +33,6 @@ public abstract class AbstractDynamicMapInstantiator implements Instantiator {
 			&& roleName.equals( map.get( TYPE_KEY ) );
 	}
 
-	protected boolean isSameRole(String type) {
-		return roleName.equals( type );
-	}
-
 	@Override
 	public boolean isSameClass(Object object) {
 		return isInstance( object );

@@ -106,21 +106,8 @@ public class QueryWithLiteralsInSelectExpressionTest {
 	}
 
 	public static class MyEntityDTO {
-		private String name;
-		private String surname;
-		private boolean active;
 
 		public MyEntityDTO() {
-		}
-
-		public MyEntityDTO(String name, String surname) {
-			this.name = name;
-			this.surname = surname;
-		}
-
-		public MyEntityDTO(String name, boolean active) {
-			this.name = name;
-			this.active = active;
 		}
 	}
 

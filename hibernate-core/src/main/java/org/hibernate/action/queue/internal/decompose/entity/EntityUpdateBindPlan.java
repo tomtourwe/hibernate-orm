@@ -372,31 +372,6 @@ public class EntityUpdateBindPlan implements BindPlan, OperationResultChecker {
 		}
 	}
 
-	protected void decomposeAttributeForRestriction(
-			Object value,
-			JdbcValueBindings jdbcValueBindings,
-			AttributeMapping attribute,
-			SharedSessionContractImplementor session) {
-		assert !attribute.isPluralAttributeMapping();
-
-		attribute.decompose(
-				value,
-				0,
-				jdbcValueBindings,
-				null,
-				(valueIndex, bindings, noop, jdbcValue, selectableMapping) -> {
-					if ( selectableMapping.isUpdateable() && !selectableMapping.isFormula() && jdbcValue != null ) {
-						bindings.bindValue(
-								jdbcValue,
-								( selectableMapping.getSelectionExpression() ),
-								ParameterUsage.RESTRICT
-						);
-					}
-				},
-				session
-		);
-	}
-
 	protected void applyPartitionedSelectionRestrictions(
 			JdbcValueBindings jdbcValueBindings,
 			SharedSessionContractImplementor session) {

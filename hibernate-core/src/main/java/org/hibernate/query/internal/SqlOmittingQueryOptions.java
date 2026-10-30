@@ -32,14 +32,6 @@ public class SqlOmittingQueryOptions extends DelegatingQueryOptions {
 		this.originalLimit = unwrappedLimit( queryOptions );
 	}
 
-	public SqlOmittingQueryOptions(QueryOptions queryOptions, boolean omitLimit, boolean omitLocks, ListResultsConsumer.UniqueSemantic semantic) {
-		super( queryOptions );
-		this.omitLimit = omitLimit;
-		this.omitLocks = omitLocks;
-		this.uniqueSemantic = semantic;
-		this.originalLimit = unwrappedLimit( queryOptions );
-	}
-
 	private static Limit unwrappedLimit(QueryOptions queryOptions) {
 		return queryOptions instanceof SqlOmittingQueryOptions wrapped
 				? wrapped.peekOriginalLimit()

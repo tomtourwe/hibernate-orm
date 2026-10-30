@@ -146,10 +146,6 @@ public class DomainParameterXref implements SqmParameterMapping {
 		return parameterResolutions;
 	}
 
-	public List<SqmParameter<?>> getSqmParameters(QueryParameterImplementor<?> queryParameter) {
-		return sqmParamsByQueryParam.get( queryParameter );
-	}
-
 	public QueryParameterImplementor<?> getQueryParameter(SqmParameter<?> sqmParameter) {
 		return sqmParameter instanceof QueryParameterImplementor<?> parameterImplementor
 				? parameterImplementor

@@ -24,10 +24,6 @@ import java.sql.SQLException;
  */
 public class SybaseJtdsJsonAsStringArrayJdbcType extends JsonAsStringArrayJdbcType {
 
-	public SybaseJtdsJsonAsStringArrayJdbcType(JdbcType elementJdbcType) {
-		super( elementJdbcType, SqlTypes.NCLOB );
-	}
-
 	public SybaseJtdsJsonAsStringArrayJdbcType(JdbcType elementJdbcType, int ddlTypeCode) {
 		super( elementJdbcType, ddlTypeCode );
 	}

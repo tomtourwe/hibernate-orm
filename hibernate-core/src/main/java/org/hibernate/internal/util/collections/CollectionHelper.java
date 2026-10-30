@@ -13,9 +13,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
 
-import static java.util.Arrays.asList;
 import static java.util.Collections.addAll;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
@@ -138,61 +136,6 @@ public final class CollectionHelper {
 		return determineProperSizing( original.size() );
 	}
 
-	public static <X, Y> Map<X, Y> makeCopy(Map<X, Y> map) {
-		final Map<X, Y> copy = mapOfSize( map.size() + 1 );
-		copy.putAll( map );
-		return copy;
-	}
-
-	public static <K, V> HashMap<K, V> makeCopy(
-			Map<K, V> original,
-			Function<K, K> keyTransformer,
-			Function<V, V> valueTransformer) {
-		if ( original == null ) {
-			return null;
-		}
-		else {
-			final HashMap<K, V> copy = new HashMap<>( determineProperSizing( original ) );
-			original.forEach( (key, value) -> copy.put( keyTransformer.apply( key ),
-					valueTransformer.apply( value ) ) );
-			return copy;
-		}
-	}
-
-	public static <K, V> Map<K, V> makeMap(
-			Collection<V> collection,
-			Function<V,K> keyProducer) {
-		return makeMap( collection, keyProducer, v -> v );
-	}
-
-	public static <K, V, E> Map<K, V> makeMap(
-			Collection<E> collection,
-			Function<E,K> keyProducer,
-			Function<E,V> valueProducer) {
-		if ( isEmpty( collection ) ) {
-			return emptyMap();
-		}
-		else {
-			final Map<K, V> map = new HashMap<>( determineProperSizing( collection.size() ) );
-			for ( E element : collection ) {
-				map.put( keyProducer.apply( element ), valueProducer.apply( element ) );
-			}
-			return map;
-		}
-	}
-
-	/**
-	 * Given a set, determine the proper initial size for a new set to hold the same number of values.
-	 * Specifically we want to account for load size and load factor to prevent immediate resizing.
-	 *
-	 * @param original The original set
-	 *
-	 * @return The proper size.
-	 */
-	public static int determineProperSizing(Set<?> original) {
-		return determineProperSizing( original.size() );
-	}
-
 	/**
 	 * Determine the proper initial size for a new collection in order for it to hold the given a number of elements.
 	 * Specifically we want to account for load size and load factor to prevent immediate resizing.
@@ -235,14 +178,6 @@ public final class CollectionHelper {
 
 	public static <T> ArrayList<T> arrayList(int expectedNumberOfElements) {
 		return new ArrayList<>( Math.max( expectedNumberOfElements + 1, DEFAULT_LIST_CAPACITY ) );
-	}
-
-	public static <T> ArrayList<T> populatedArrayList(int expectedNumberOfElements, T value) {
-		final ArrayList<T> list = new ArrayList<>( Math.max( expectedNumberOfElements + 1, DEFAULT_LIST_CAPACITY ) );
-		for ( int i = 0; i < expectedNumberOfElements; i++ ) {
-			list.add( value );
-		}
-		return list;
 	}
 
 	public static <T> Set<T> makeCopy(Set<T> source) {
@@ -298,10 +233,6 @@ public final class CollectionHelper {
 		final HashSet<T> set = new HashSet<>( determineProperSizing( values.length ) );
 		addAll( set, values );
 		return set;
-	}
-
-	public static <T> Set<T> setOf(Collection<T> values) {
-		return isEmpty( values ) ? emptySet() : new HashSet<>( values );
 	}
 
 	public static Properties asProperties(Map<?,?> map) {
@@ -401,52 +332,12 @@ public final class CollectionHelper {
 		return combined;
 	}
 
-	@SafeVarargs
-	public static <O> List<O> combine(List<O>... lists) {
-		final ArrayList<O> combined = new ArrayList<>();
-		for ( List<O> list : lists ) {
-			combined.addAll( list );
-		}
-		return combined;
-	}
-
 	public static int size(List<?> values) {
 		return values == null ? 0 : values.size();
 	}
 
 	public static int size(Collection<?> values) {
 		return values == null ? 0 : values.size();
-	}
-
-	public static int size(Map<?,?> values) {
-		return values == null ? 0 : values.size();
-	}
-
-	@SafeVarargs
-	public static <X> Set<X> toSet(X... values) {
-		final HashSet<X> result = new HashSet<>();
-		if ( isNotEmpty( values ) ) {
-			result.addAll( asList( values ) );
-		}
-		return result;
-	}
-
-	public static <E> List<E> mutableJoin(Collection<E> first, Collection<E> second) {
-		final int totalCount = ( first == null ? 0 : first.size() )
-				+ ( second == null ? 0 : second.size() );
-		if ( totalCount == 0 ) {
-			return new ArrayList<>();
-		}
-		else {
-			final ArrayList<E> joined = new ArrayList<>( totalCount );
-			if ( first != null ) {
-				joined.addAll( first );
-			}
-			if ( second != null ) {
-				joined.addAll( second );
-			}
-			return joined;
-		}
 	}
 
 	@SafeVarargs

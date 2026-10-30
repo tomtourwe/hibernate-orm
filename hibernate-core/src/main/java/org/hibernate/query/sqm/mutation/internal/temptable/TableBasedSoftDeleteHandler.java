@@ -18,7 +18,6 @@ import org.hibernate.query.sqm.internal.DomainParameterXref;
 import org.hibernate.query.sqm.internal.SqmJdbcExecutionContextAdapter;
 import org.hibernate.query.sqm.internal.SqmUtil;
 import org.hibernate.query.sqm.mutation.internal.AbstractMutationHandler;
-import org.hibernate.query.sqm.mutation.internal.DeleteHandler;
 import org.hibernate.query.sqm.mutation.internal.MultiTableSqmMutationConverter;
 import static org.hibernate.dialect.sql.ast.spi.SubquerySupport.Feature.MUTATION_TARGET_REFERENCE;
 import static org.hibernate.query.sqm.mutation.internal.SqmMutationStrategyHelper.softDeleteTargets;
@@ -65,8 +64,7 @@ import static org.hibernate.query.sqm.mutation.internal.temptable.ExecuteWithTem
 * @author Steve Ebersole
 */
 public class TableBasedSoftDeleteHandler
-		extends AbstractMutationHandler
-		implements DeleteHandler {
+		extends AbstractMutationHandler {
 	private static final Logger LOG = Logger.getLogger( TableBasedSoftDeleteHandler.class );
 
 	private final TemporaryTable idTable;

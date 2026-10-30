@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.boot.SessionFactoryBuilder;
 import org.hibernate.cfg.AvailableSettings;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.dialect.CockroachDialect;
 import org.hibernate.testing.orm.junit.DialectFeatureChecks;
 import org.hibernate.testing.orm.junit.DomainModel;
@@ -246,10 +245,6 @@ public class ReadWriteCacheTest {
 		book.setId( bookId );
 		book.setTitle( ORIGINAL_TITLE );
 		session.persist( book );
-	}
-
-	private Consumer<Configuration> getCacheConfig() {
-		return configuration -> configuration.setInterceptor( new TransactionInterceptor() );
 	}
 
 	private void loadBook(long bookId, Session session) {

@@ -42,26 +42,6 @@ public class Util {
 		}
 	}
 
-	public static void resolveResultSetMappings(
-			String[] resultSetMappingNames,
-			Class<?>[] resultSetMappingClasses,
-			ResultSetMapping resultSetMapping,
-			Consumer<String> querySpaceConsumer,
-			ResultSetMappingResolutionContext context) {
-		if ( !isEmpty( resultSetMappingNames ) ) {
-			// cannot specify both
-			if ( !isEmpty( resultSetMappingClasses ) ) {
-				throw new IllegalArgumentException( "Cannot specify both result-set mapping names and classes" );
-			}
-			resolveResultSetMappingNames( resultSetMappingNames, resultSetMapping, querySpaceConsumer, context );
-		}
-		else if ( !isEmpty( resultSetMappingClasses ) ) {
-			resolveResultSetMappingClasses( resultSetMappingClasses, resultSetMapping, querySpaceConsumer, context );
-		}
-
-		// otherwise, nothing to resolve
-	}
-
 	public static void resolveResultSetMappingNames(
 			String[] resultSetMappingNames,
 			ResultSetMapping resultSetMapping,

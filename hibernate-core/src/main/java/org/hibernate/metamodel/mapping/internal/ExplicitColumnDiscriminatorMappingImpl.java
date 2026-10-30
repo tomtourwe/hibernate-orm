@@ -44,35 +44,6 @@ public class ExplicitColumnDiscriminatorMappingImpl extends AbstractDiscriminato
 			boolean isFormula,
 			boolean isPhysical,
 			boolean isUpdateable,
-			String customReadExpression,
-			Long length,
-			Integer precision,
-			Integer scale,
-			DiscriminatorType<?> discriminatorType) {
-		this(
-				mappingType,
-				name,
-				tableExpression,
-					columnExpression,
-					isFormula,
-					isPhysical,
-					isUpdateable,
-					customReadExpression,
-					length,
-					null,
-				precision,
-				scale,
-				discriminatorType );
-	}
-
-	public ExplicitColumnDiscriminatorMappingImpl(
-			ManagedMappingType mappingType,
-			String name,
-			String tableExpression,
-			String columnExpression,
-			boolean isFormula,
-			boolean isPhysical,
-			boolean isUpdateable,
 			@Nullable String customReadExpression,
 			@Nullable Long length,
 			@Nullable Integer arrayLength,

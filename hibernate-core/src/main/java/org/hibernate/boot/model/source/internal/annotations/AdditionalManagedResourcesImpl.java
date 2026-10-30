@@ -54,11 +54,6 @@ public final class AdditionalManagedResourcesImpl {
 			return this;
 		}
 
-		public Builder addPackages(String... packages) {
-			List.of( packages ).forEach( resources::addPackageDescriptor );
-			return this;
-		}
-
 		public ManagedResources build() {
 			return resources.build();
 		}

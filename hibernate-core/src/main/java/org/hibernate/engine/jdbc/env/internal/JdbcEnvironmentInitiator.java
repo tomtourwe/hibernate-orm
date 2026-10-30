@@ -514,10 +514,6 @@ public class JdbcEnvironmentInitiator implements StandardServiceInitiator<JdbcEn
 			this.connectionProvider = connectionProvider;
 		}
 
-		public MultiTenantConnectionProvider<?> getConnectionProvider() {
-			return connectionProvider;
-		}
-
 		@Override
 		public Connection obtainConnection() throws SQLException {
 			return connectionProvider.getAnyConnection();

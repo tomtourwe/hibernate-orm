@@ -37,10 +37,6 @@ public abstract class SessionBuilderImpl
 		return this;
 	}
 
-	protected StatefulOptions options() {
-		return options;
-	}
-
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// SessionBuilder
 

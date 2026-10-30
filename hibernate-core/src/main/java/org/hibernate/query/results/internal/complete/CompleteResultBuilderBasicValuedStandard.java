@@ -4,6 +4,7 @@ import org.hibernate.metamodel.mapping.BasicValuedMapping;
 import org.hibernate.query.results.spi.ResultBuilder;
 import org.hibernate.query.results.internal.DomainResultCreationStateImpl;
 import org.hibernate.query.results.internal.ResultSetMappingSqlSelection;
+import org.hibernate.query.results.spi.ResultBuilderBasicValued;
 import org.hibernate.sql.ast.spi.query.select.SqlSelection;
 import org.hibernate.sql.results.graph.DomainResultCreationState;
 import org.hibernate.sql.results.graph.basic.BasicResult;
@@ -25,7 +26,7 @@ import static org.hibernate.sql.ast.spi.creation.SqlExpressionResolver.createCol
  *
  * @author Steve Ebersole
  */
-public class CompleteResultBuilderBasicValuedStandard implements CompleteResultBuilderBasicValued {
+public class CompleteResultBuilderBasicValuedStandard implements ResultBuilderBasicValued {
 
 	private final String explicitColumnName;
 

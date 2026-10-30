@@ -12,8 +12,4 @@ public class PathResolutionException extends HibernateException implements NonTr
 	public PathResolutionException(String message) {
 		super( message );
 	}
-
-	public PathResolutionException(String message, Throwable cause) {
-		super( message, cause );
-	}
 }

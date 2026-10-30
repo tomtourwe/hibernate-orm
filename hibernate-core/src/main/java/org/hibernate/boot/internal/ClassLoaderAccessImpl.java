@@ -5,7 +5,6 @@ import java.net.URL;
 import org.hibernate.boot.registry.classloading.spi.ClassLoaderService;
 import org.hibernate.boot.registry.classloading.spi.ClassLoadingException;
 import org.hibernate.boot.spi.ClassLoaderAccess;
-import org.hibernate.service.ServiceRegistry;
 
 import static org.hibernate.boot.BootLogging.BOOT_LOGGER;
 
@@ -24,10 +23,6 @@ public class ClassLoaderAccessImpl implements ClassLoaderAccess {
 			ClassLoaderService classLoaderService) {
 		this.jpaTempClassLoader = jpaTempClassLoader;
 		this.classLoaderService = classLoaderService;
-	}
-
-	public ClassLoaderAccessImpl(ClassLoader tempClassLoader, ServiceRegistry serviceRegistry) {
-		this( tempClassLoader, serviceRegistry.getService( ClassLoaderService.class ) );
 	}
 
 	public ClassLoaderAccessImpl(ClassLoaderService classLoaderService) {

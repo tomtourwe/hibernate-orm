@@ -1,6 +1,5 @@
 package org.hibernate.orm.test.cdi.lifecycle;
 
-import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -52,10 +51,6 @@ public class ExtendedBeanManagerNoCallbackTest {
 		public void registerLifecycleListener(LifecycleListener lifecycleListener) {
 			assert this.lifecycleListener == null;
 			this.lifecycleListener = lifecycleListener;
-		}
-
-		public void notify(BeanManager ready) {
-			lifecycleListener.beanManagerInitialized( ready );
 		}
 	}
 }

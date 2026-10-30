@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -622,19 +621,6 @@ public class TestUtil {
 		else {
 			fail( "Unexpected component type" );
 			return null;
-		}
-	}
-
-	private static class MetaModelFilenameFilter implements FileFilter {
-		@Override
-		public boolean accept(File pathName) {
-			if ( pathName.isDirectory() ) {
-				return true;
-			}
-			else {
-				return pathName.getAbsolutePath().endsWith( "_.java" )
-						|| pathName.getAbsolutePath().endsWith( "_.class" );
-			}
 		}
 	}
 

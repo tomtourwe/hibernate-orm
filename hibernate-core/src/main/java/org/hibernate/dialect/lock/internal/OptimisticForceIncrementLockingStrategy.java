@@ -22,7 +22,6 @@ import org.hibernate.persister.entity.EntityPersister;
  * @since 3.5
  */
 public class OptimisticForceIncrementLockingStrategy implements LockingStrategy {
-	private final EntityPersister lockable;
 	private final LockMode lockMode;
 
 	/**
@@ -32,7 +31,6 @@ public class OptimisticForceIncrementLockingStrategy implements LockingStrategy 
 	 * @param lockMode Indicates the type of lock to be acquired.
 	 */
 	public OptimisticForceIncrementLockingStrategy(EntityPersister lockable, LockMode lockMode) {
-		this.lockable = lockable;
 		this.lockMode = lockMode;
 		if ( lockMode.lessThan( LockMode.OPTIMISTIC_FORCE_INCREMENT ) ) {
 			throw new HibernateException( "Entity '" + lockable.getEntityName()
@@ -54,9 +52,5 @@ public class OptimisticForceIncrementLockingStrategy implements LockingStrategy 
 		else {
 			throw new UnsupportedOperationException( "Optimistic locking strategies not supported in stateless session" );
 		}
-	}
-
-	protected LockMode getLockMode() {
-		return lockMode;
 	}
 }

@@ -11,8 +11,4 @@ public class OrderByComplianceViolation extends HibernateException implements Jp
 	public OrderByComplianceViolation(String message) {
 		super( message );
 	}
-
-	public OrderByComplianceViolation(String message, Throwable cause) {
-		super( message, cause );
-	}
 }

@@ -40,7 +40,6 @@ public abstract class AbstractPluralAttributeSourceImpl
 	private static final FilterSource[] NO_FILTER_SOURCES = new FilterSource[0];
 
 	private final PluralAttributeInfo pluralAttributeJaxbMapping;
-	private final AttributeSourceContainer container;
 
 	private final AttributeRole attributeRole;
 	private final AttributePath attributePath;
@@ -63,7 +62,6 @@ public abstract class AbstractPluralAttributeSourceImpl
 			AttributeSourceContainer container) {
 		super( mappingDocument );
 		this.pluralAttributeJaxbMapping = pluralAttributeJaxbMapping;
-		this.container = container;
 
 		this.attributeRole = container.getAttributeRoleBase().append( pluralAttributeJaxbMapping.getName() );
 		this.attributePath = container.getAttributePathBase().append( pluralAttributeJaxbMapping.getName() );
@@ -267,10 +265,6 @@ public abstract class AbstractPluralAttributeSourceImpl
 						)
 				);
 		}
-	}
-
-	protected AttributeSourceContainer container() {
-		return container;
 	}
 
 	@Override

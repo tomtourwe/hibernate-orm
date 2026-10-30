@@ -113,10 +113,6 @@ public class DeferredResultSetAccess extends AbstractResultSetAccess {
 		}
 	}
 
-	public Limit getLimit() {
-		return limit;
-	}
-
 	@Override
 	public ResultSet getResultSet() {
 		if ( resultSet == null ) {

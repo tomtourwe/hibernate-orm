@@ -18,14 +18,6 @@ public final class MutableClock extends Clock {
 		this( ZoneId.systemDefault(), START_INSTANT );
 	}
 
-	public MutableClock(ZoneId zoneId) {
-		this( zoneId, START_INSTANT );
-	}
-
-	public MutableClock(Instant instant) {
-		this( ZoneId.systemDefault(), instant );
-	}
-
 	public MutableClock(ZoneId zoneId, Instant instant) {
 		this.zoneId = zoneId;
 		this.instant = instant;
@@ -44,10 +36,6 @@ public final class MutableClock extends Clock {
 	@Override
 	public Instant instant() {
 		return instant;
-	}
-
-	public void setInstant(Instant instant) {
-		this.instant = instant;
 	}
 
 	public void reset() {

@@ -40,25 +40,13 @@ public class EnhancementInfoAnnotation implements EnhancementInfo {
 		return includesDirtyChecking;
 	}
 
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
 	@Override
 	public boolean includesAssociationManagement() {
 		return includesAssociationManagement;
 	}
 
-	public void setIncludesDirtyChecking(boolean includesDirtyChecking) {
-		this.includesDirtyChecking = includesDirtyChecking;
-	}
-
 	@Override
 	public Class<? extends Annotation> annotationType() {
 		return EnhancementInfo.class;
-	}
-
-	public void setIncludesAssociationManagement(boolean includesAssociationManagement) {
-		this.includesAssociationManagement = includesAssociationManagement;
 	}
 }

@@ -18,10 +18,6 @@ public class ResultsHelper {
 		return jdbcPosition - 1;
 	}
 
-	public static int valuesArrayPositionToJdbcPosition(int valuesArrayPosition) {
-		return valuesArrayPosition + 1;
-	}
-
 	public static DomainResultCreationStateImpl impl(DomainResultCreationState creationState) {
 		return unwrap( creationState );
 	}

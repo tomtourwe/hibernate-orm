@@ -1,6 +1,5 @@
 package org.hibernate.tool.reveng.internal.util;
 
-import org.hibernate.boot.spi.MetadataBuildingContext;
 import org.hibernate.mapping.BasicValue;
 import org.hibernate.mapping.SimpleValue;
 
@@ -14,10 +13,6 @@ public class ValueUtil extends BasicValue {
 	public ValueUtil(SimpleValue sv) {
 		super(sv.getBuildingContext());
 		sv.getCustomIdGeneratorCreator();
-	}
-
-	public ValueUtil(MetadataBuildingContext buildingContext) {
-		super(buildingContext);
 	}
 
 	public Map<String, Object> getIdentifierGeneratorParameters() {

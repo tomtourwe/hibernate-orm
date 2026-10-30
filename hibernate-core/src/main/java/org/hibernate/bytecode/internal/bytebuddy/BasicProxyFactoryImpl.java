@@ -80,8 +80,4 @@ public class BasicProxyFactoryImpl implements BasicProxyFactory {
 		}
 	}
 
-	public boolean isInstance(Object object) {
-		return proxyClass.isInstance( object );
-	}
-
 }

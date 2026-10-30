@@ -5,6 +5,7 @@ import org.hibernate.metamodel.mapping.BasicValuedMapping;
 import org.hibernate.query.results.spi.ResultBuilder;
 import org.hibernate.query.results.internal.DomainResultCreationStateImpl;
 import org.hibernate.query.results.internal.ResultSetMappingSqlSelection;
+import org.hibernate.query.results.spi.ResultBuilderBasicValued;
 import org.hibernate.resource.beans.spi.ManagedBean;
 import org.hibernate.sql.ast.spi.query.select.SqlSelection;
 import org.hibernate.sql.results.graph.DomainResultCreationState;
@@ -28,7 +29,7 @@ import static org.hibernate.sql.ast.spi.creation.SqlExpressionResolver.createCol
  *
  * @author Steve Ebersole
  */
-public class CompleteResultBuilderBasicValuedConverted<O,R> implements CompleteResultBuilderBasicValued {
+public class CompleteResultBuilderBasicValuedConverted<O,R> implements ResultBuilderBasicValued {
 	private final String explicitColumnName;
 	private final BasicValuedMapping underlyingMapping;
 	private final AttributeConverterBean<O, R> valueConverter;
