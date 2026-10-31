@@ -1,7 +1,5 @@
 package org.hibernate.spatial.testing.dialects.db2;
 
-import java.sql.SQLException;
-import java.util.Map;
 
 import org.hibernate.spatial.dialect.db2.DB2GeometryType;
 import org.hibernate.spatial.testing.AbstractExpectationsFactory;
@@ -24,22 +22,6 @@ public class DB2ExpectationsFactory extends AbstractExpectationsFactory {
 
 	public DB2ExpectationsFactory() {
 		super();
-	}
-
-	/**
-	 * Returns the expected extent of all testsuite-suite geometries.
-	 *
-	 * @return map of identifier, extent
-	 *
-	 * @throws SQLException
-	 */
-	public Map<Integer, Geometry> getExtent() throws SQLException {
-		throw new UnsupportedOperationException();
-	}
-
-	public NativeSQLStatement createNativeExtentStatement() {
-		return createNativeSQLStatement(
-				"select max(t.id), db2gse.ST_GetAggrResult(MAX(db2gse.st_BuildMBRAggr(t.geom))) from GeomTest t where db2gse.st_srid(t.geom) = 4326" );
 	}
 
 	@Override

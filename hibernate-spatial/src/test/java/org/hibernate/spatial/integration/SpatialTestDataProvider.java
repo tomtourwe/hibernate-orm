@@ -25,7 +25,6 @@ import static org.hibernate.spatial.testing.datareader.TestSupport.TestDataPurpo
 
 @Deprecated
 public class SpatialTestDataProvider {
-	protected final static String JTS = "jts";
 	protected NativeSQLTemplates templates;
 	protected final PredicateRegexes predicateRegexes;
 	protected final Map<CommonSpatialFunction, String> hqlOverrides;
@@ -53,10 +52,6 @@ public class SpatialTestDataProvider {
 		catch (InstantiationException | IllegalAccessException e) {
 			throw new RuntimeException( e );
 		}
-	}
-
-	protected <T extends GeomEntityLike<?>> List<T> entities(Class<T> clazz) {
-		return entities( clazz, StoreRetrieveData );
 	}
 
 	protected <T extends GeomEntityLike<?>> List<T> entities(Class<T> clazz, TestSupport.TestDataPurpose purpose) {

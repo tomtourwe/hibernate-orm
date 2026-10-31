@@ -10,10 +10,6 @@ public class HQLTemplate {
 		this.hqlTemplate = template;
 	}
 
-	public static HQLTemplate from(String s) {
-		return new HQLTemplate( s );
-	}
-
 	public String mkHQLString(Object... params) {
 		return String.format( Locale.ROOT, hqlTemplate, params );
 	}

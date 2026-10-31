@@ -17,7 +17,7 @@ public class SDOTestDataReader extends TestDataReader {
 		String type = element.selectSingleNode( "type" ).getText();
 		String wkt = element.selectSingleNode( "wkt" ).getText();
 		String sdo = element.selectSingleNode( "sdo" ).getText();
-		TestDataElement testDataElement = new SDOTestDataElement( id, type, wkt, sdo );
+		TestDataElement testDataElement = new SDOTestDataElement( id, type, wkt);
 		testDataElements.add( testDataElement );
 	}
 
