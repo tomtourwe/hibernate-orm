@@ -18,27 +18,14 @@ public class CourseMeetingId implements Serializable {
 		this.period = period;
 		this.location = location;
 	}
-
-	public String getCourseCode() {
-		return courseCode;
-	}
 	public void setCourseCode(String courseCode) {
 		this.courseCode = courseCode;
-	}
-	public String getDay() {
-		return day;
 	}
 	public void setDay(String day) {
 		this.day = day;
 	}
-	public int getPeriod() {
-		return period;
-	}
 	public void setPeriod(int period) {
 		this.period = period;
-	}
-	public String getLocation() {
-		return location;
 	}
 	public void setLocation(String location) {
 		this.location = location;

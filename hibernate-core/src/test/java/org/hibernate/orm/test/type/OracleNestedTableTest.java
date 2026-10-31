@@ -104,7 +104,7 @@ public class OracleNestedTableTest {
 		});
 	}
 
-	public enum ActivityType { Work, Play, Sleep }
+	public enum ActivityType { Work, Play}
 
 	@Entity(name = "ContainerWithArrays")
 	public static class Container {

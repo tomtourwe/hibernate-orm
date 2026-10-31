@@ -20,11 +20,9 @@ import org.hibernate.tool.schema.extract.internal.ExtractionContextImpl;
 import org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl;
 import org.hibernate.tool.schema.extract.spi.DatabaseInformation;
 import org.hibernate.tool.schema.extract.spi.ExtractionContext;
-import org.hibernate.tool.schema.internal.exec.JdbcContext;
 import org.hibernate.tool.schema.spi.SchemaManagementTool;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -169,29 +167,6 @@ public class TestExtraPhysicalTableTypes {
 
 		public boolean isPhysicalTableType(String tableType) {
 			return super.isPhysicalTableType( tableType );
-		}
-	}
-
-	static class DdlTransactionIsolatorImpl implements  DdlTransactionIsolator{
-
-		@Override
-		public JdbcContext getJdbcContext() {
-			return null;
-		}
-
-		@Override
-		public Connection getIsolatedConnection() {
-			return null;
-		}
-
-		@Override
-		public Connection getIsolatedConnection(boolean autocommit) {
-			return null;
-		}
-
-		@Override
-		public void release() {
-
 		}
 	}
 }

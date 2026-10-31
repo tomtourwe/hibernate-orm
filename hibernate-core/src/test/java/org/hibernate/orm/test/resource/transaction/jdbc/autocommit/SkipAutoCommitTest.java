@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.cfg.AvailableSettings;
-import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.H2Dialect;
 import org.hibernate.dialect.MySQLDialect;
 import org.hibernate.dialect.OracleDialect;
@@ -14,7 +13,6 @@ import org.hibernate.dialect.PostgreSQLDialect;
 import org.hibernate.dialect.SQLServerDialect;
 
 import org.hibernate.testing.orm.jdbc.PreparedStatementSpyConnectionProvider;
-import org.hibernate.testing.orm.junit.DialectContext;
 import org.hibernate.testing.orm.junit.DialectFeatureChecks;
 import org.hibernate.testing.orm.junit.EntityManagerFactoryBasedFunctionalTest;
 import org.hibernate.testing.orm.junit.RequiresDialect;
@@ -74,10 +72,6 @@ public class SkipAutoCommitTest extends EntityManagerFactoryBasedFunctionalTest 
 		return new Class<?>[] {
 			City.class,
 		};
-	}
-
-	protected Dialect getDialect() {
-		return DialectContext.getDialect();
 	}
 
 	@Test

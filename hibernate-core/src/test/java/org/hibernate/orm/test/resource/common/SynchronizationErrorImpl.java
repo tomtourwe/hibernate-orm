@@ -17,10 +17,6 @@ public class SynchronizationErrorImpl implements Synchronization {
 		return new SynchronizationErrorImpl( false, true );
 	}
 
-	public static SynchronizationErrorImpl forBoth() {
-		return new SynchronizationErrorImpl( true, true );
-	}
-
 	private SynchronizationErrorImpl(boolean errorOnBefore, boolean errorOnAfter) {
 		this.errorOnBefore = errorOnBefore;
 		this.errorOnAfter = errorOnAfter;

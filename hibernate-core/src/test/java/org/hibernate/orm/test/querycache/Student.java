@@ -1,10 +1,4 @@
 package org.hibernate.orm.test.querycache;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Gavin King
@@ -12,10 +6,6 @@ import java.util.Set;
 public class Student {
 	private long studentNumber;
 	private PersonName name;
-	private Course preferredCourse;
-	private Set enrolments = new HashSet();
-	private Map addresses = new HashMap();
-	private List secretCodes = new ArrayList();
 
 	public Student() {}
 
@@ -38,38 +28,6 @@ public class Student {
 
 	public void setStudentNumber(long studentNumber) {
 		this.studentNumber = studentNumber;
-	}
-
-	public Map getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(Map addresses) {
-		this.addresses = addresses;
-	}
-
-	public Course getPreferredCourse() {
-		return preferredCourse;
-	}
-
-	public void setPreferredCourse(Course preferredCourse) {
-		this.preferredCourse = preferredCourse;
-	}
-
-	public Set getEnrolments() {
-		return enrolments;
-	}
-
-	public void setEnrolments(Set employments) {
-		this.enrolments = employments;
-	}
-
-	public List getSecretCodes() {
-		return secretCodes;
-	}
-
-	public void setSecretCodes(List secretCodes) {
-		this.secretCodes = secretCodes;
 	}
 
 	public boolean equals(Object o) {

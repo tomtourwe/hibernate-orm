@@ -7,20 +7,15 @@ package org.hibernate.orm.test.querycache;
  * @author Steve Ebersole
  */
 public class Address {
-	private long id;
-	private String addressType;
 	private String street;
 	private String city;
 	private String stateProvince;
 	private String postalCode;
 	private String country;
-	private Student student;
 
 	public Address() {}
 
-	public Address(Student student, String type, String street, String city, String stateProvince, String postalCode, String country) {
-		this.student = student;
-		this.addressType = type;
+	public Address(String street, String city, String stateProvince, String postalCode, String country) {
 		this.street = street;
 		this.city = city;
 		this.stateProvince = stateProvince;
@@ -28,64 +23,20 @@ public class Address {
 		this.country = country;
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
-	public String getAddressType() {
-		return addressType;
-	}
-
-	public void setAddressType(String addressType) {
-		this.addressType = addressType;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
 	public void setStreet(String street) {
 		this.street = street;
-	}
-
-	public String getCity() {
-		return city;
 	}
 
 	public void setCity(String city) {
 		this.city = city;
 	}
 
-	public String getPostalCode() {
-		return postalCode;
-	}
-
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
 	public void setCountry(String country) {
 		this.country = country;
-	}
-
-	public String getStateProvince() {
-		return stateProvince;
 	}
 
 	public void setStateProvince(String stateProvince) {

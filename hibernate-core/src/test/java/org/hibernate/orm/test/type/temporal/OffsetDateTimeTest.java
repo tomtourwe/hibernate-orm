@@ -260,8 +260,7 @@ public class OffsetDateTimeTest extends AbstractJavaTimeTypeTests<OffsetDateTime
 	public record DataImpl(
 			int year, int month, int day,
 			int hour, int minute, int second, int nanosecond,
-			String offset) implements Data<OffsetDateTime> {
-		@Override
+			String offset) {
 		public OffsetDateTime makeValue() {
 			return OffsetDateTime.of( year, month, day, hour, minute, second, nanosecond, ZoneOffset.of( offset ) );
 		}

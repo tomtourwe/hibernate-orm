@@ -629,17 +629,4 @@ public class ReadOnlyVersionedNodesTest extends AbstractReadOnlyTest {
 		assertUpdateCount( 0, scope );
 		assertDeleteCount( 2, scope );
 	}
-
-	protected void cleanupTest(SessionFactoryScope scope) throws Exception {
-		cleanup( scope );
-	}
-
-	private void cleanup(SessionFactoryScope scope) {
-		scope.inTransaction(
-				session -> {
-					session.createQuery( "delete from VersionedNode where parent is not null" ).executeUpdate();
-					session.createQuery( "delete from VersionedNode" ).executeUpdate();
-				}
-		);
-	}
 }

@@ -514,8 +514,8 @@ public class SQLTest {
 					.setTupleTransformer(
 							(tuple, aliases) -> {
 								PersonSummaryDTO dto = new PersonSummaryDTO();
-								dto.setId( (Long) tuple[0] );
-								dto.setName( (String) tuple[1] );
+								dto.setId( );
+								dto.setName( );
 								return dto;
 							}
 					)

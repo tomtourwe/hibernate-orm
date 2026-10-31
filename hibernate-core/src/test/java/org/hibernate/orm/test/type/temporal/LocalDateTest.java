@@ -198,8 +198,7 @@ public class LocalDateTest extends AbstractJavaTimeTypeTests<LocalDate, LocalDat
 		}
 	}
 
-	public record DataImpl(int year, int month, int day) implements Data<LocalDate> {
-		@Override
+	public record DataImpl(int year, int month, int day) {
 		public LocalDate makeValue() {
 			return LocalDate.of( year, month, day );
 		}

@@ -196,8 +196,7 @@ public class LocalDateTimeTest
 			int hour,
 			int minute,
 			int second,
-			int nanosecond) implements Data<LocalDateTime> {
-		@Override
+			int nanosecond) {
 		public LocalDateTime makeValue() {
 			return LocalDateTime.of( year, month, day, hour, minute, second, nanosecond );
 		}

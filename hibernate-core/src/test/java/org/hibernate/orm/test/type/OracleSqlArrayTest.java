@@ -110,7 +110,7 @@ public class OracleSqlArrayTest {
 		});
 	}
 
-	public enum ActivityKind { Work, Play, Sleep }
+	public enum ActivityKind { Work, Play}
 
 	@Entity(name = "ContainerWithArrays")
 	public static class Container {

@@ -5,7 +5,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.hibernate.FlushMode;
 import org.hibernate.Interceptor;
-import org.hibernate.SessionEventListener;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.engine.spi.StatelessSessionImplementor;
@@ -312,18 +311,5 @@ public class SimpleSharedSessionBuildingTests {
 	}
 
 	public record InterceptorImpl(String name) implements Interceptor {
-	}
-
-	public static class SessionListener implements SessionEventListener {
-		private boolean closed;
-
-		public boolean wasClosed() {
-			return closed;
-		}
-
-		@Override
-		public void end() {
-			closed = true;
-		}
 	}
 }

@@ -74,14 +74,6 @@ public class JtaPlatformStandardTestingImpl extends AbstractJtaPlatform {
 		return retrieveTransactionManager();
 	}
 
-	public UserTransaction userTransaction() {
-		return retrieveUserTransaction();
-	}
-
-	public TransactionSynchronizationRegistry synchronizationRegistry() {
-		return synchronizationRegistry;
-	}
-
 	@Override
 	protected TransactionManager locateTransactionManager() {
 		return transactionManager;

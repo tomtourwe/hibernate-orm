@@ -1377,11 +1377,6 @@ public class SqlAstTranslatorSurfaceTests {
 		) ).isTrue();
 	}
 
-	private static void assertFinalMethod(String name) throws NoSuchMethodException {
-		assertThat( Modifier.isFinal( AbstractSqlAstTranslator.class.getDeclaredMethod( name ).getModifiers() ) )
-				.isTrue();
-	}
-
 	private static void assertPrivateMethod(String name, Class<?>... parameterTypes) throws NoSuchMethodException {
 		assertThat( Modifier.isPrivate(
 				AbstractSqlAstTranslator.class.getDeclaredMethod( name, parameterTypes ).getModifiers()

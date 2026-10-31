@@ -21,14 +21,6 @@ public class StudentDTO {
 		this.courseDescription = description;
 	}
 
-	public PersonName getName() {
-		return studentName;
-	}
-
-	public String getDescription() {
-		return courseDescription;
-	}
-
 	public boolean equals(Object o) {
 		if ( this == o ) {
 			return true;
