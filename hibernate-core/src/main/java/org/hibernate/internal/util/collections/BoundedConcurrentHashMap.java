@@ -1116,13 +1116,6 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 		transient int modCount;
 
 		/**
-		 * The table is rehashed when its size exceeds this threshold.
-		 * (The value of this field is always {@code (int)(capacity *
-		 * loadFactor)}.)
-		 */
-		transient int threshold;
-
-		/**
 		 * The per-segment table.
 		 */
 		transient volatile HashEntry<K, V>[] table;
@@ -1157,7 +1150,6 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 		 * Call only while holding lock or in constructor.
 		 */
 		void setTable(HashEntry<K, V>[] newTable) {
-			threshold = (int) ( newTable.length * loadFactor );
 			table = newTable;
 		}
 
