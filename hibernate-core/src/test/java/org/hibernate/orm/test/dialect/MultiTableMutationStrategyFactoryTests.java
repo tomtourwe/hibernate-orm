@@ -9,7 +9,6 @@ import org.hibernate.dialect.mutation.spi.MultiTableMutationSupport;
 import org.hibernate.dialect.sql.ast.spi.CteSupport;
 import org.hibernate.dialect.temptable.spi.TemporaryTableStrategy;
 import org.hibernate.metamodel.mapping.EntityMappingType;
-import org.hibernate.metamodel.mapping.internal.MappingModelCreationProcess;
 import org.hibernate.metamodel.spi.RuntimeModelCreationContext;
 import org.hibernate.query.sqm.mutation.internal.SqmMultiTableMutationStrategyProviderStandard;
 import org.hibernate.query.sqm.mutation.internal.cte.CteInsertStrategy;
@@ -289,11 +288,5 @@ public class MultiTableMutationStrategyFactoryTests {
 		final RuntimeModelCreationContext creationContext = mock( RuntimeModelCreationContext.class );
 		when( creationContext.getSessionFactoryOptions() ).thenReturn( mock( SessionFactoryOptions.class ) );
 		return creationContext;
-	}
-
-	private static MappingModelCreationProcess creationProcess(RuntimeModelCreationContext creationContext) {
-		final MappingModelCreationProcess creationProcess = mock( MappingModelCreationProcess.class );
-		when( creationProcess.getCreationContext() ).thenReturn( creationContext );
-		return creationProcess;
 	}
 }

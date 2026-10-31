@@ -10,8 +10,4 @@ public class Money {
 	public long getCents() {
 		return cents;
 	}
-
-	public void setCents(long cents) {
-		this.cents = cents;
-	}
 }

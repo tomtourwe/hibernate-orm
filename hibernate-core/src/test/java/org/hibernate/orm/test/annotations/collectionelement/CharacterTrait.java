@@ -6,9 +6,5 @@ package org.hibernate.orm.test.annotations.collectionelement;
  */
 public enum CharacterTrait {
 	GENTLE,
-	NORMAL,
-	AGGRESSIVE,
-	ATTENTIVE,
-	VIOLENT,
 	CRAFTY
 }

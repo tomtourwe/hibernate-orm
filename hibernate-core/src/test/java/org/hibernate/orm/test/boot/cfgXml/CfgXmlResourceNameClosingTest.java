@@ -97,10 +97,6 @@ public class CfgXmlResourceNameClosingTest {
 			wasClosed = true;
 			super.close();
 		}
-
-		public boolean wasClosed() {
-			return wasClosed;
-		}
 	}
 
 

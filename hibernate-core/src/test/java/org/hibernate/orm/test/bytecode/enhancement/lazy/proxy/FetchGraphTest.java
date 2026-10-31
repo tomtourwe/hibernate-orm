@@ -333,10 +333,6 @@ public class FetchGraphTest {
 		);
 	}
 
-	private <T> ScrollableResults<T> getScrollableResults(org.hibernate.query.Query<T> query) {
-		return query.scroll();
-	}
-
 	@Test
 	public void testLazyAssociationSameAsNonLazyInPC(SessionFactoryScope scope) {
 

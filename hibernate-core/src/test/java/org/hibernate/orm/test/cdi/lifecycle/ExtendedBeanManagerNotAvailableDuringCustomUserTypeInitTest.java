@@ -1,6 +1,5 @@
 package org.hibernate.orm.test.cdi.lifecycle;
 
-import jakarta.enterprise.inject.spi.BeanManager;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -141,11 +140,6 @@ public class ExtendedBeanManagerNotAvailableDuringCustomUserTypeInitTest {
 		public void registerLifecycleListener(LifecycleListener lifecycleListener) {
 			assert this.lifecycleListener == null;
 			this.lifecycleListener = lifecycleListener;
-		}
-
-		// not called
-		public void notify(BeanManager ready) {
-			lifecycleListener.beanManagerInitialized( ready );
 		}
 	}
 }

@@ -62,9 +62,5 @@ public class CockroachDialectVersionTest {
 		private CockroachDBTestDialect(String versionString) {
 			super (parseVersion( versionString ));
 		}
-
-		private DatabaseVersion getMinimumVersion() {
-			return getMinimumSupportedVersion();
-		}
 	}
 }

@@ -134,7 +134,6 @@ public class TypeVariableTest {
 	}
 
 	public enum Gender {
-		MALE,
 		FEMALE
 	}
 

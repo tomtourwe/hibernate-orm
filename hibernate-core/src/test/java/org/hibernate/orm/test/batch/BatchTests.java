@@ -148,19 +148,6 @@ public class BatchTests {
 		} );
 	}
 
-	private void withoutBatch(EntityManagerFactoryScope scope) {
-		//tag::batch-session-batch-example[]
-		scope.inTransaction(
-				entityManager -> {
-					for ( int i = 0; i < 100_000; i++ ) {
-						Person Person = new Person( String.format( "Person %d", i ) );
-						entityManager.persist( Person );
-					}
-				}
-		);
-		//end::batch-session-batch-example[]
-	}
-
 	private void withBatch(EntityManagerFactoryScope scope) {
 		int entityCount = 100;
 		int batchSize = 25;

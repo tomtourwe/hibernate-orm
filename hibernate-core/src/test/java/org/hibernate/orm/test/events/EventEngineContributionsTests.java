@@ -68,14 +68,11 @@ public class EventEngineContributionsTests {
 		}
 	}
 
-	public interface SexyRxyBaseListener {
-	}
-
 	public static class RxySaveEvent {
 		public static final RxySaveEvent INSTANCE = new RxySaveEvent();
 	}
 
-	public static class SexyRxySaveListener implements SexyRxyBaseListener {
+	public static class SexyRxySaveListener {
 		public static final String EVENT_NAME = "rx-save";
 
 		public static final SexyRxySaveListener INSTANCE = new SexyRxySaveListener();
@@ -91,7 +88,7 @@ public class EventEngineContributionsTests {
 		public static final RxyPersistEvent INSTANCE = new RxyPersistEvent();
 	}
 
-	public static class SexyRxyPersistListener implements SexyRxyBaseListener {
+	public static class SexyRxyPersistListener {
 		public static final String EVENT_NAME = "rx-persist";
 
 		public static final SexyRxyPersistListener INSTANCE = new SexyRxyPersistListener();

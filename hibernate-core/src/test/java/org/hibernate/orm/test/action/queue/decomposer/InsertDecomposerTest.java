@@ -542,30 +542,4 @@ public class InsertDecomposerTest {
 
 		String name;
 	}
-
-	/**
-	 * Composite key for grouping operations by shape and ordinalBase.
-	 */
-	private static class OperationGroupKey {
-		private final StatementShapeKey shapeKey;
-		private final int ordinalBase;
-
-		OperationGroupKey(StatementShapeKey shapeKey, int ordinalBase) {
-			this.shapeKey = shapeKey;
-			this.ordinalBase = ordinalBase;
-		}
-
-		@Override
-		public boolean equals(Object o) {
-			if (this == o) return true;
-			if (!(o instanceof OperationGroupKey)) return false;
-			OperationGroupKey that = (OperationGroupKey) o;
-			return ordinalBase == that.ordinalBase && shapeKey.equals(that.shapeKey);
-		}
-
-		@Override
-		public int hashCode() {
-			return 31 * shapeKey.hashCode() + ordinalBase;
-		}
-	}
 }

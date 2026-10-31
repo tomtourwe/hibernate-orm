@@ -51,20 +51,16 @@ public class EnumeratedAndGenericsTest {
 		);
 	}
 
-	public interface EnumBase {
-		String name();
+	public enum TestEnum {
+		BAR
 	}
 
-	public enum TestEnum implements EnumBase {
-		FOO, BAR
-	}
-
-	public enum AnotherTestEnum implements EnumBase {
-		ONE, TWO
+	public enum AnotherTestEnum {
+		TWO
 	}
 
 	@MappedSuperclass
-	public static abstract class GenericBaseEntity<T extends EnumBase> {
+	public static abstract class GenericBaseEntity<T> {
 
 		@Enumerated(EnumType.STRING)
 		protected T state;

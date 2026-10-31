@@ -478,21 +478,4 @@ public class MergeContextTest {
 
 		}
 	}
-
-	private class ExceptionThrowingEntityCopyObserver implements EntityCopyObserver {
-
-		@Override
-		public void entityCopyDetected(Object managedEntity, Object mergeEntity1, Object mergeEntity2, EventSource session) {
-			throw new IllegalStateException( "Entity copies not allowed." );
-		}
-
-		@Override
-		public void topLevelMergeComplete(EventSource session) {
-		}
-
-		@Override
-		public void clear() {
-
-		}
-	}
 }

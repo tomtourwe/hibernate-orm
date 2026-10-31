@@ -41,10 +41,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SessionFactory
 public abstract class AbstractCollectionEventTest {
 
-	protected String getBaseForMappings() {
-		return "org/hibernate/orm/test/";
-	}
-
 	@AfterEach
 	protected void cleanupTest(SessionFactoryScope scope) {
 		scope.getSessionFactory().getSchemaManager().truncate();

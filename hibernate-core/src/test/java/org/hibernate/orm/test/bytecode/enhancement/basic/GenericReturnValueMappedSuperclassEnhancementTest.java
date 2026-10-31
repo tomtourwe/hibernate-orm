@@ -32,7 +32,7 @@ public class GenericReturnValueMappedSuperclassEnhancementTest {
 
 	@MappedSuperclass
 	@Cache(usage = CacheConcurrencyStrategy.NONE)
-	public static class AbstractMappedSuperclassWithGenericReturnValue<T extends Marker> {
+	public static class AbstractMappedSuperclassWithGenericReturnValue<T> {
 
 		@Id
 		@GeneratedValue
@@ -50,14 +50,11 @@ public class GenericReturnValueMappedSuperclassEnhancementTest {
 		}
 	}
 
-	public interface Marker {
-	}
-
 	@Entity
 	@Cache(usage = CacheConcurrencyStrategy.NONE)
 	public static class SimpleEntity extends AbstractMappedSuperclassWithGenericReturnValue<SimpleEntity.Type> {
 
-		public enum Type implements Marker {
+		public enum Type {
 			ONE
 		}
 	}

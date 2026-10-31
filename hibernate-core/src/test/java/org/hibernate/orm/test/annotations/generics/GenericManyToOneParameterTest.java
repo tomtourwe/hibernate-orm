@@ -85,15 +85,12 @@ public class GenericManyToOneParameterTest {
 		Long getId();
 	}
 
-	public interface Site extends EntityWithId {
-	}
-
-	public interface UserSite extends Site {
+	public interface UserSite extends EntityWithId {
 		String getName();
 	}
 
 	@Entity( name = "SiteImpl" )
-	public static abstract class SiteImpl implements Site {
+	public static abstract class SiteImpl implements EntityWithId {
 		@Id
 		protected Long id;
 
@@ -123,12 +120,12 @@ public class GenericManyToOneParameterTest {
 	public interface Bar extends EntityWithId {
 	}
 
-	public interface SitedBar<S extends Site> extends Bar {
+	public interface SitedBar<S extends EntityWithId> extends Bar {
 		S getSite();
 	}
 
 	@MappedSuperclass
-	public static abstract class BarBarImpl<T extends Site> implements SitedBar<T> {
+	public static abstract class BarBarImpl<T extends EntityWithId> implements SitedBar<T> {
 		@ManyToOne( fetch = FetchType.LAZY, targetEntity = SiteImpl.class )
 		@JoinColumn( name = "BAR_ID" )
 		private T site;

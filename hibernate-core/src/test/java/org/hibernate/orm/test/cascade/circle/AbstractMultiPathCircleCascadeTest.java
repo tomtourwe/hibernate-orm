@@ -325,13 +325,6 @@ public abstract class AbstractMultiPathCircleCascadeTest {
 		);
 	}
 
-	private Node getSimpleUpdatedDetachedEntity() {
-
-		Node deliveryNode = new Node();
-		deliveryNode.setName( "deliveryNodeB" );
-		return deliveryNode;
-	}
-
 	private Route getUpdatedDetachedEntity(SessionFactoryScope scope) {
 
 		Route route = new Route();
@@ -563,10 +556,5 @@ public abstract class AbstractMultiPathCircleCascadeTest {
 	protected void assertUpdateCount(SessionFactoryScope scope, int expected) {
 		int updates = (int) scope.getSessionFactory().getStatistics().getEntityUpdateCount();
 		assertEquals( expected, updates, "unexpected update counts" );
-	}
-
-	protected void assertDeleteCount(SessionFactoryScope scope, int expected) {
-		int deletes = (int) scope.getSessionFactory().getStatistics().getEntityDeleteCount();
-		assertEquals( expected, deletes, "unexpected delete counts" );
 	}
 }

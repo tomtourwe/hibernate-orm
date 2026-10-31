@@ -44,11 +44,7 @@ public class EnumeratedAndGenerics3Test {
 		);
 	}
 
-	public interface EnumBase {
-		String name();
-	}
-
-	public enum TestEnum implements EnumBase {
+	public enum TestEnum {
 		FOO, BAR
 	}
 

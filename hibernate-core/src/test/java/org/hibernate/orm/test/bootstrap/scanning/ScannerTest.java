@@ -11,9 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Set;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,10 +32,6 @@ public class ScannerTest extends PackagingTestCase {
 		Scanner scanner = new ProvidedIndexScanner( new ScanningContextTestingImpl(), jandexIndex );
 		final ScanningResult scanningResult = scanner.scan( archiveUrl );
 
-	}
-
-	private void assertClassesContained(Set<String> discoveredClasses, Class<?> classToCheckFor) {
-		assertThat( discoveredClasses ).contains( classToCheckFor.getName() );
 	}
 
 	@Test

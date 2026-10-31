@@ -617,9 +617,4 @@ public abstract class AbstractMultiPathCircleCascadeTest {
 		int updates = (int) scope.getSessionFactory().getStatistics().getEntityUpdateCount();
 		Assertions.assertEquals( expected, updates, "unexpected update counts" );
 	}
-
-	protected void assertDeleteCount(SessionFactoryScope scope, int expected) {
-		int deletes = (int) scope.getSessionFactory().getStatistics().getEntityDeleteCount();
-		Assertions.assertEquals( expected, deletes, "unexpected delete counts" );
-	}
 }
