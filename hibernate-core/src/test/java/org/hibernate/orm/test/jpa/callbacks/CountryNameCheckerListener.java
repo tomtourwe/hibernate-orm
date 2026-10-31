@@ -11,11 +11,6 @@ import jakarta.persistence.PreUpdate;
 public class CountryNameCheckerListener {
 	private List<String> countries = new ArrayList<String>();
 
-	{
-		countries.add( "France" );
-		countries.add( "Netherland" );
-	}
-
 	@PrePersist
 	@PreUpdate
 	public void testCountryName(Object object) {

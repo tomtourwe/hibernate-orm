@@ -145,11 +145,6 @@ public class ExplicitJavaTypeDescriptorTest {
 			return state;
 		}
 
-		// mutable
-		public void setState(String state) {
-			this.state = state;
-		}
-
 		@Override
 		public boolean equals(Object o) {
 			if ( this == o ) {

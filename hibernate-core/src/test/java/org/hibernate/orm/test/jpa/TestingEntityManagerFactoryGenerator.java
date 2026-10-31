@@ -20,10 +20,6 @@ public class TestingEntityManagerFactoryGenerator {
 		return generateEntityManagerFactory( new PersistenceUnitDescriptorAdapter(), settings );
 	}
 
-	public static EntityManagerFactory generateEntityManagerFactory(PersistenceUnitDescriptor descriptor, Object... settings) {
-		return generateEntityManagerFactory( descriptor, SettingsGenerator.generateSettings( settings ) );
-	}
-
 	public static EntityManagerFactory generateEntityManagerFactory(PersistenceUnitDescriptor descriptor, Map<String,Object> settings) {
 		return Bootstrap.getEntityManagerFactoryBuilder( descriptor, settings ).build();
 	}

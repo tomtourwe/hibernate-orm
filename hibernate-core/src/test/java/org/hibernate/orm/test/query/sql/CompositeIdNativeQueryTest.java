@@ -192,10 +192,6 @@ public class CompositeIdNativeQueryTest {
 
 		}
 
-		public BookPK(final String fileid) {
-			this( fileid, "" );
-		}
-
 		public BookPK(final String fileid, final String versionid) {
 			this.fileid = fileid;
 			this.versionid = versionid;

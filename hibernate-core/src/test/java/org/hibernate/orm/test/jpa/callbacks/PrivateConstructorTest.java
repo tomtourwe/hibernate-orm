@@ -8,11 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import org.hibernate.bytecode.internal.BytecodeProviderInitiator;
-import org.hibernate.cfg.AvailableSettings;
-import org.hibernate.cfg.Environment;
-import org.hibernate.proxy.ProxyFactory;
-import org.hibernate.proxy.pojo.bytebuddy.ByteBuddyProxyFactory;
 import org.hibernate.testing.orm.junit.EntityManagerFactoryScope;
 import org.hibernate.testing.orm.junit.JiraKey;
 import org.hibernate.testing.orm.junit.Jpa;
@@ -54,16 +49,6 @@ public class PrivateConstructorTest {
 					}
 				}
 		);
-	}
-
-	private static Class<? extends ProxyFactory> proxyFactoryClass() {
-		String byteCodeProvider = Environment.getProperties().getProperty( AvailableSettings.BYTECODE_PROVIDER );
-		if ( byteCodeProvider == null || BytecodeProviderInitiator.BYTECODE_PROVIDER_NAME_BYTEBUDDY.equals( byteCodeProvider ) ) {
-			return ByteBuddyProxyFactory.class;
-		}
-		else {
-			throw new UnsupportedOperationException( "Unknown bytecode provider:" + byteCodeProvider );
-		}
 	}
 
 	@Entity(name = "Parent")

@@ -118,10 +118,6 @@ public class BidirectionalOneToOneWithConverterEagerTest {
 		public String getValue() {
 			return value;
 		}
-
-		public void setValue(String value) {
-			this.value = value;
-		}
 	}
 
 	public static class BusinessIdConverter implements AttributeConverter<BusinessId, String> {

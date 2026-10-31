@@ -32,14 +32,4 @@ public class BitSetHelper {
 		}
 		return BitSet.valueOf(values);
 	}
-
-	public static byte[] bitSetToBytes(BitSet bitSet) {
-		return bitSet == null ? null : bitSet.toByteArray();
-	}
-
-	public static BitSet bytesToBitSet(byte[] bytes) {
-		return bytes == null || bytes.length == 0
-				? null
-				: BitSet.valueOf(bytes);
-	}
 }

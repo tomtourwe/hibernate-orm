@@ -147,11 +147,8 @@ public class ToHqlStringTest {
 		@Id
 		public Integer id;
 
-		public String name;
-
 		public TestDto(Integer id, String name) {
 			this.id = id;
-			this.name = name;
 		}
 	}
 

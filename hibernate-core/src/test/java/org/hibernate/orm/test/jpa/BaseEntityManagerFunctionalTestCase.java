@@ -39,8 +39,6 @@ import org.hibernate.testing.util.ServiceRegistryUtil;
 import org.junit.After;
 import org.junit.Before;
 
-import static java.util.Collections.emptyMap;
-
 /**
  * A base class for all ejb tests.
  *
@@ -65,14 +63,6 @@ public abstract class BaseEntityManagerFunctionalTestCase extends BaseUnitTestCa
 
 	protected Dialect getDialect() {
 		return dialect;
-	}
-
-	protected SessionFactoryImplementor entityManagerFactory() {
-		return entityManagerFactory;
-	}
-
-	protected StandardServiceRegistryImpl serviceRegistry() {
-		return serviceRegistry;
 	}
 
 	@Before
@@ -336,22 +326,6 @@ public abstract class BaseEntityManagerFunctionalTestCase extends BaseUnitTestCa
 			entityManager = entityManagerFactory.createEntityManager();
 		}
 		return entityManager;
-	}
-
-	protected EntityManager createIsolatedEntityManager() {
-		final EntityManager isolatedEntityManager = entityManagerFactory.createEntityManager();
-		isolatedEntityManagers.add( isolatedEntityManager );
-		return isolatedEntityManager;
-	}
-
-	protected EntityManager createIsolatedEntityManager(Map<?,?> properties) {
-		final EntityManager isolatedEntityManager = entityManagerFactory.createEntityManager( properties );
-		isolatedEntityManagers.add( isolatedEntityManager );
-		return isolatedEntityManager;
-	}
-
-	protected EntityManager createEntityManager() {
-		return createEntityManager( emptyMap() );
 	}
 
 	protected EntityManager createEntityManager(Map<?,?> properties) {

@@ -29,10 +29,6 @@ public class JournalingSchemaToolingTarget implements GenerationTarget {
 
 	}
 
-	public List<String> getActions() {
-		return actions;
-	}
-
 	public boolean containedText(String text) {
 		for ( String action : actions ) {
 			if ( action.contains( text ) ) {

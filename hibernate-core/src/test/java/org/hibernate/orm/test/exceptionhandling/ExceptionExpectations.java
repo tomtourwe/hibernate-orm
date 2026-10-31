@@ -13,7 +13,6 @@ import org.hibernate.TransactionException;
 import org.hibernate.TransientObjectException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.id.IdentifierGenerationException;
-import org.hibernate.query.SemanticException;
 import org.hibernate.query.SyntaxException;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -107,83 +106,6 @@ public interface ExceptionExpectations {
 			@Override
 			public void onExecuteUpdateWithConstraintViolation(RuntimeException e) {
 				assertThat( e, instanceOf( PersistenceException.class ) );
-				assertThat( e, instanceOf( ConstraintViolationException.class ) );
-				assertThat( e.getCause(), instanceOf( SQLException.class ) );
-			}
-		};
-	}
-
-	static ExceptionExpectations nativePre52() {
-		return new ExceptionExpectations() {
-			@Override
-			public void onConstraintViolationOnSaveAndSaveOrUpdate(RuntimeException e) {
-				assertThat( e, instanceOf( ConstraintViolationException.class ) );
-				assertThat( e, instanceOf( SQLException.class ) );
-			}
-
-			@Override
-			public void onConstraintViolationOnPersistAndMergeAndFlush(RuntimeException e) {
-				assertThat( e, instanceOf( ConstraintViolationException.class ) );
-				assertThat( e, instanceOf( SQLException.class ) );
-			}
-
-			@Override
-			public void onTransientObjectOnSaveAndSaveOrUpdate(RuntimeException e) {
-				assertThat( e, instanceOf( TransientObjectException.class ) );
-			}
-
-			@Override
-			public void onTransientObjectOnPersistAndMergeAndFlush(RuntimeException e) {
-				assertThat( e, instanceOf( TransientObjectException.class ) );
-			}
-
-			@Override
-			public void onInvalidQueryExecuted(RuntimeException e) {
-				assertThat( e, instanceOf( SemanticException.class ) );
-			}
-
-			@Override
-			public void onUniqueResultWithMultipleResults(RuntimeException e) {
-				assertThat( e, instanceOf( org.hibernate.NonUniqueResultException.class ) );
-			}
-
-			@Override
-			public void onGetSingleResultWithMultipleResults(RuntimeException e) {
-				assertThat( e, instanceOf( org.hibernate.NonUniqueResultException.class ) );
-			}
-
-			@Override
-			public void onGetSingleResultWithNoResults(RuntimeException e) {
-				assertThat( e, instanceOf( NoResultException.class ) );
-			}
-
-			@Override
-			public void onStaleObjectMergeAndUpdateFlush(RuntimeException e) {
-				assertThat( e, instanceOf( StaleStateException.class ) );
-			}
-
-			@Override
-			public void onIdentifierGeneratorFailure(RuntimeException e) {
-				assertThat( e, instanceOf( IdentifierGenerationException.class ) );
-			}
-
-			@Override
-			public void onTransactionExceptionOnSaveAndSaveOrUpdate(RuntimeException e) {
-				assertThat( e, instanceOf( TransactionException.class ) );
-			}
-
-			@Override
-			public void onTransactionExceptionOnPersistAndMergeAndFlush(RuntimeException e) {
-				assertThat( e, instanceOf( TransactionException.class ) );
-			}
-
-			@Override
-			public void onTransactionExceptionOnCommit(RuntimeException e) {
-				assertThat( e, instanceOf( TransactionException.class ) );
-			}
-
-			@Override
-			public void onExecuteUpdateWithConstraintViolation(RuntimeException e) {
 				assertThat( e, instanceOf( ConstraintViolationException.class ) );
 				assertThat( e.getCause(), instanceOf( SQLException.class ) );
 			}

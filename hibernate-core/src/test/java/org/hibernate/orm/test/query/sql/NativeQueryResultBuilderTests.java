@@ -423,35 +423,4 @@ public class NativeQueryResultBuilderTests {
 	public void cleanUpData(SessionFactoryScope scope) {
 		scope.getSessionFactory().getSchemaManager().truncate();
 	}
-
-	public static class DTO {
-		private Integer key;
-		private String text;
-
-		public DTO(Integer key, String text) {
-			this.key = key;
-			this.text = text;
-		}
-	}
-
-	public static class Bean {
-		private Integer key;
-		private String text;
-
-		public Integer getKey() {
-			return key;
-		}
-
-		public void setKey(Integer key) {
-			this.key = key;
-		}
-
-		public String getText() {
-			return text;
-		}
-
-		public void setText(String text) {
-			this.text = text;
-		}
-	}
 }

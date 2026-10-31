@@ -38,13 +38,7 @@ import org.hibernate.testing.orm.junit.Setting;
 import org.hibernate.testing.orm.junit.SkipForDialect;
 import org.hibernate.type.AbstractSingleColumnStandardBasicType;
 import org.hibernate.type.descriptor.java.BigDecimalJavaType;
-import org.hibernate.type.descriptor.java.FloatJavaType;
-import org.hibernate.type.descriptor.java.PrimitiveByteArrayJavaType;
-import org.hibernate.type.descriptor.java.StringJavaType;
-import org.hibernate.type.descriptor.jdbc.BinaryJdbcType;
-import org.hibernate.type.descriptor.jdbc.CharJdbcType;
 import org.hibernate.type.descriptor.jdbc.NumericJdbcType;
-import org.hibernate.type.descriptor.jdbc.RealJdbcType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -572,50 +566,11 @@ public class NativeQueryResultTypeAutoDiscoveryTest {
 		}
 	}
 
-	public static class FloatAsRealType extends AbstractSingleColumnStandardBasicType<Float> {
-		public static final String NAME = "float_as_real";
-
-		public FloatAsRealType() {
-			super( RealJdbcType.INSTANCE, FloatJavaType.INSTANCE );
-		}
-
-		@Override
-		public String getName() {
-			return NAME;
-		}
-	}
-
 	public static class BigDecimalAsDecimalType extends AbstractSingleColumnStandardBasicType<BigDecimal> {
 		public static final String NAME = "big_decimal_as_decimal";
 
 		public BigDecimalAsDecimalType() {
 			super( NumericJdbcType.INSTANCE, BigDecimalJavaType.INSTANCE );
-		}
-
-		@Override
-		public String getName() {
-			return NAME;
-		}
-	}
-
-	public static class StringAsNonVarCharType extends AbstractSingleColumnStandardBasicType<String> {
-		public static final String NAME = "string_as_nonvar_char_array";
-
-		public StringAsNonVarCharType() {
-			super( CharJdbcType.INSTANCE, StringJavaType.INSTANCE );
-		}
-
-		@Override
-		public String getName() {
-			return NAME;
-		}
-	}
-
-	public static class ByteArrayAsNonVarBinaryType extends AbstractSingleColumnStandardBasicType<byte[]> {
-		public static final String NAME = "byte_array_as_nonvar_binary";
-
-		public ByteArrayAsNonVarBinaryType() {
-			super( BinaryJdbcType.INSTANCE, PrimitiveByteArrayJavaType.INSTANCE );
 		}
 
 		@Override

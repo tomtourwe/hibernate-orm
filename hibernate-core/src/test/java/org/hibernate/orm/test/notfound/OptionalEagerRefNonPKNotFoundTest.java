@@ -252,10 +252,6 @@ public class OptionalEagerRefNonPKNotFoundTest {
 		assertNull( person.getCity() );
 	}
 
-	private void checkException(Person person) {
-		assertNull( person );
-	}
-
 	@MappedSuperclass
 	public abstract static class Person {
 		private String name;

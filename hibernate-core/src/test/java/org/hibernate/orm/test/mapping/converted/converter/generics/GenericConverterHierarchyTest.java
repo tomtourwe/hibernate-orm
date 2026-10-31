@@ -71,7 +71,6 @@ public class GenericConverterHierarchyTest {
 	}
 
 	public enum Status {
-		ACTIVE,
 		INACTIVE
 	}
 

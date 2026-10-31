@@ -12,7 +12,6 @@ import jakarta.persistence.TemporalType;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.testing.orm.domain.gambit.EntityOfBasics;
 import org.hibernate.testing.orm.domain.gambit.MutableValue;
-import org.junit.jupiter.api.Assertions;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -279,51 +278,6 @@ public class Aggregate {
 
 	public void setMutableValue(MutableValue mutableValue) {
 		this.mutableValue = mutableValue;
-	}
-
-	static void assertEquals(Aggregate a1, Aggregate a2) {
-		Assertions.assertEquals( a1.theInt, a2.theInt );
-		Assertions.assertEquals( a1.theDouble, a2.theDouble );
-		Assertions.assertEquals( a1.theBoolean, a2.theBoolean );
-		Assertions.assertEquals( a1.theNumericBoolean, a2.theNumericBoolean );
-		Assertions.assertEquals( a1.theStringBoolean, a2.theStringBoolean );
-		Assertions.assertEquals( a1.theString, a2.theString );
-		Assertions.assertEquals( a1.theInteger, a2.theInteger );
-		Assertions.assertEquals( a1.theClob, a2.theClob );
-		assertArrayEquals( a1.theBinary, a2.theBinary );
-		Assertions.assertEquals( a1.theDate, a2.theDate );
-		Assertions.assertEquals( a1.theTime, a2.theTime );
-		Assertions.assertEquals( a1.theTimestamp, a2.theTimestamp );
-		Assertions.assertEquals( a1.theInstant, a2.theInstant );
-		Assertions.assertEquals( a1.theUuid, a2.theUuid );
-		Assertions.assertEquals( a1.gender, a2.gender );
-		Assertions.assertEquals( a1.convertedGender, a2.convertedGender );
-		Assertions.assertEquals( a1.ordinalGender, a2.ordinalGender );
-		Assertions.assertEquals( a1.theDuration, a2.theDuration );
-		Assertions.assertEquals( a1.theLocalDateTime, a2.theLocalDateTime );
-		Assertions.assertEquals( a1.theLocalDate, a2.theLocalDate );
-		Assertions.assertEquals( a1.theLocalTime, a2.theLocalTime );
-		if ( a1.theZonedDateTime == null ) {
-			assertNull( a2.theZonedDateTime );
-		}
-		else {
-			assertNotNull( a2.theZonedDateTime );
-			Assertions.assertEquals( a1.theZonedDateTime.toInstant(), a2.theZonedDateTime.toInstant() );
-		}
-		if ( a1.theOffsetDateTime == null ) {
-			assertNull( a2.theOffsetDateTime );
-		}
-		else {
-			assertNotNull( a2.theOffsetDateTime );
-			Assertions.assertEquals( a1.theOffsetDateTime.toInstant(), a2.theOffsetDateTime.toInstant() );
-		}
-		if ( a1.mutableValue == null ) {
-			assertNull( a2.mutableValue );
-		}
-		else {
-			assertNotNull( a2.mutableValue );
-			Assertions.assertEquals( a1.mutableValue.getState(), a2.mutableValue.getState() );
-		}
 	}
 
 	public static Aggregate createAggregate1() {

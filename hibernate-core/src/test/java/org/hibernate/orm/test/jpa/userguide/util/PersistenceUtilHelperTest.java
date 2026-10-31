@@ -18,13 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PersistenceUtilHelperTest {
 	private final PersistenceUtilHelper.MetadataCache cache = new PersistenceUtilHelper.MetadataCache();
 
-	public static class FieldAccessBean extends FieldAccessBeanBase {
-		protected String protectedAccessProperty;
-		private String privateAccessProperty;
-	}
-
-	public static class FieldAccessBeanBase {
-		public String publicAccessProperty;
+	public static class FieldAccessBean {
 	}
 
 	public static class MethodAccessBean extends MethodAccessBeanBase {

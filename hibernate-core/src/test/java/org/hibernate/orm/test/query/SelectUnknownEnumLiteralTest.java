@@ -55,6 +55,6 @@ public class SelectUnknownEnumLiteralTest {
 	}
 
 	enum Type {
-		TRANSACTION, DIRECT_DEBIT_GROUP, DIRECT_DEBIT
+		TRANSACTION
 	}
 }

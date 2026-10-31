@@ -222,10 +222,6 @@ public class ConverterTest {
 			return text;
 		}
 
-		public void setText(String text) {
-			this.text = text;
-		}
-
 		@Override
 		public boolean equals(Object o) {
 			if ( this == o ) {

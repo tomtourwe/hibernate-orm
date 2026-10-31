@@ -66,7 +66,7 @@ public class ManyToOneJoinTableTest implements SessionFactoryProducer {
 				} );
 	}
 
-	public interface Issuer extends Resource {
+	public interface Issuer {
 	}
 
 	@Entity(name = IssuerImpl.ENTITY_NAME)
@@ -151,13 +151,9 @@ public class ManyToOneJoinTableTest implements SessionFactoryProducer {
 		}
 	}
 
-	public interface Resource {
-
-	}
-
 	@Entity(name = ResourceImpl.ENTITY_NAME)
 	@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-	public static class ResourceImpl implements Resource {
+	public static class ResourceImpl {
 
 		private static final String ENTITY_NAME = "TestResource";
 

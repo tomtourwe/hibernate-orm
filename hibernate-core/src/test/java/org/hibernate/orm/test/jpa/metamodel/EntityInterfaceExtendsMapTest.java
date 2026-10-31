@@ -93,11 +93,8 @@ public class EntityInterfaceExtendsMapTest {
 		}
 	}
 
-	interface Library extends Map<String, BookEntity> {
-	}
-
 	@Entity( name = "LibraryEntity" )
-	static class LibraryEntity implements Library {
+	static class LibraryEntity implements Map<String, BookEntity> {
 		@Id
 		@GeneratedValue
 		private Long id;

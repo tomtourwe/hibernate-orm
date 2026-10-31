@@ -56,7 +56,7 @@ public class SQLServerNationalizedScalarQueryTest {
 		} );
 	}
 
-	enum Role { ADMIN, USER, GUEST }
+	enum Role { USER}
 
 	static class Converter implements AttributeConverter<Role,String> {
 		@Override

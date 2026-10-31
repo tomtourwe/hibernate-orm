@@ -64,7 +64,6 @@ public class Farm {
 
 	public static enum Accreditation {
 		ORGANIC,
-		SUSTAINABLE,
-		FARM_TO_TABLE
+		SUSTAINABLE
 	}
 }
