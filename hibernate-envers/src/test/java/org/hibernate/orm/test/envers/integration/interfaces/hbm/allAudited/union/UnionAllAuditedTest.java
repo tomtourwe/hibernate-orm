@@ -10,7 +10,4 @@ import org.hibernate.testing.orm.junit.Jpa;
 @EnversTest
 @Jpa(xmlMappings = "mappings/interfaces/unionAllAuditedMappings.hbm.xml")
 public class UnionAllAuditedTest extends AbstractAllAuditedTest {
-	protected String[] getMappings() {
-		return new String[] {"mappings/interfaces/unionAllAuditedMappings.hbm.xml"};
-	}
 }

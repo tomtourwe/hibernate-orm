@@ -11,14 +11,6 @@ public final class Dto {
 		this.pages = pages;
 	}
 
-	public String title() {
-		return title;
-	}
-
-	public int pages() {
-		return pages;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this) return true;

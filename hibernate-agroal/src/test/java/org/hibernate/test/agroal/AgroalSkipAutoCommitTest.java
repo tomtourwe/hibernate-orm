@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class AgroalSkipAutoCommitTest {
 	private static final PreparedStatementSpyConnectionProvider connectionProvider = new PreparedStatementSpyConnectionProvider();
-	private static final SettingProvider.Provider<PreparedStatementSpyConnectionProvider> connectionProviderProvider = () -> connectionProvider;
 
 	@Test
 	@ServiceRegistry(

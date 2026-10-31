@@ -19,16 +19,4 @@ public enum Strategy {
 		this.settingValue = settingValue;
 		this.strategyClass = strategyClass;
 	}
-
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	public String getSettingValue() {
-		return settingValue;
-	}
-
-	public boolean isStrategy(Class<?> strategyClass) {
-		return strategyClass.isAssignableFrom( this.strategyClass );
-	}
 }

@@ -17,16 +17,8 @@ public class Component implements Serializable {
 	public Component() {
 	}
 
-	public String getProp1() {
-		return prop1;
-	}
-
 	public void setProp1(String prop1) {
 		this.prop1 = prop1;
-	}
-
-	public int getProp2() {
-		return prop2;
 	}
 
 	public void setProp2(int prop2) {

@@ -217,24 +217,6 @@ public class VectorTestHelper {
 		return result;
 	}
 
-	public static float[] euclideanNormalize(double[] f) {
-		final double norm = euclideanNorm( f );
-		final float[] result = new float[f.length];
-		for ( int i = 0; i < f.length; i++ ) {
-			result[i] = (float) (f[i] / norm);
-		}
-		return result;
-	}
-
-	public static float[] euclideanNormalize(byte[] f) {
-		final double norm = euclideanNorm( f );
-		final float[] result = new float[f.length];
-		for ( int i = 0; i < f.length; i++ ) {
-			result[i] = (float) (f[i] / norm);
-		}
-		return result;
-	}
-
 	public static double euclideanNormBinary(byte[] f) {
 		double result = 0;
 		for ( byte v : f ) {

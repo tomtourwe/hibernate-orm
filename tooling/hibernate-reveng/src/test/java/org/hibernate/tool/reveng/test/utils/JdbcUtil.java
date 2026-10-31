@@ -106,19 +106,6 @@ public class JdbcUtil {
 		}
 	}
 
-	public static boolean isDatabaseOnline(Object test) {
-		boolean result = false;
-		try {
-			Connection connection = createJdbcConnection(test);
-			result = connection.isValid(1);
-			connection.commit();
-			connection.close();
-		} catch (SQLException e) {
-			// this will happen when the connection cannot be created
-		}
-		return result;
-	}
-
 	/**
 	 * Establish a connection and execute create.sql.
 	 *
