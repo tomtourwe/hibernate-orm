@@ -20,7 +20,6 @@ import org.hibernate.query.sql.spi.ParameterRecognizer;
 public class ParameterRecognizerImpl implements ParameterRecognizer {
 	private enum ParameterStyle {
 		JDBC,
-		ORDINAL,
 		NAMED
 	}
 
