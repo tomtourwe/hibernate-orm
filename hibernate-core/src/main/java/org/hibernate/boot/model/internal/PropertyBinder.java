@@ -1290,7 +1290,7 @@ public class PropertyBinder {
 				bindEmbeddable(
 						inferredData,
 						propertyHolder,
-						entityBinder.getPropertyAccessor( property ),
+						inferredData.getClassAccess(),
 						entityBinder,
 						isIdentifierMapper,
 						buildingContext,
