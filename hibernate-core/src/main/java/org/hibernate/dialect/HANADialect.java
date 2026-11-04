@@ -1718,14 +1718,6 @@ public class HANADialect extends Dialect implements CurrentTemporalSupport, Temp
 				}
 			};
 		}
-
-		public int getMaxLobPrefetchSize() {
-			return this.maxLobPrefetchSize;
-		}
-
-		public boolean isUseUnicodeStringTypes() {
-			return this.useUnicodeStringTypes;
-		}
 	}
 
 	private static class HANANClobJdbcType extends NClobJdbcType {
@@ -1821,10 +1813,6 @@ public class HANADialect extends Dialect implements CurrentTemporalSupport, Temp
 					return doExtract( statement.getNClob( name ), options );
 				}
 			};
-		}
-
-		public int getMaxLobPrefetchSize() {
-			return maxLobPrefetchSize;
 		}
 	}
 
