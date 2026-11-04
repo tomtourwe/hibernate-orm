@@ -1400,14 +1400,6 @@ public class MySQLLegacyDialect extends Dialect implements CurrentTemporalSuppor
 		registration.registerKeyword( "key" );
 	}
 
-	boolean supportsForShare() {
-		return getMySQLVersion().isSameOrAfter( 8 );
-	}
-
-	boolean supportsAliasLocks() {
-		return getMySQLVersion().isSameOrAfter( 8 );
-	}
-
 	@Override
 	@SPI({ IMPLEMENT, SUPPLY })
 	public FunctionalDependencyAnalysisSupport getFunctionalDependencyAnalysisSupport() {
