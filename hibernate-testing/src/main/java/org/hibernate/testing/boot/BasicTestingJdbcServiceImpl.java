@@ -15,7 +15,6 @@ import org.hibernate.engine.jdbc.env.spi.JdbcMetadata;
 import org.hibernate.engine.jdbc.spi.JdbcServices;
 import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.hibernate.engine.jdbc.spi.SqlStatementLogger;
-import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.spi.ServiceRegistryAwareService;
 import org.hibernate.service.spi.ServiceRegistryImplementor;
 import org.hibernate.service.spi.Stoppable;
@@ -40,7 +39,6 @@ public class BasicTestingJdbcServiceImpl implements JdbcServices, ServiceRegistr
 	private SqlStatementLogger sqlStatementLogger;
 
 	private JdbcConnectionAccess jdbcConnectionAccess;
-	private ServiceRegistry serviceRegistry;
 	private ParameterMarkerStrategy parameterMarkerStrategy;
 
 	public void start() {
@@ -120,7 +118,6 @@ public class BasicTestingJdbcServiceImpl implements JdbcServices, ServiceRegistr
 
 	@Override
 	public void injectServices(@NonNull ServiceRegistryImplementor serviceRegistry) {
-		this.serviceRegistry = serviceRegistry;
 		this.parameterMarkerStrategy = serviceRegistry.getService( ParameterMarkerStrategy.class );
 	}
 }
